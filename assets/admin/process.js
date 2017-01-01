@@ -257,35 +257,12 @@
             notification = $this.data('notification');
         }
 
-        // request(url, formData, function (result) {
-        //     notify(result.status, result.title, result.msg, notification);
-        //     ajaxSubmit.prop('disabled', false).html(ajaxSubmitHtml);
-
-        // }, function () {
-        //     alert('Internal Server Error.');
-        // });
         request(url, formData, function (result) {
-            noty({
-                text: result.msg,
-                type: result.status,
-                animation: {
-                    open: 'animated bounceInLeft',
-                    close: 'animated bounceOutLeft',
-                    easing: 'swing',
-                    speed: 500 // opening & closing animation speed
-                }
-            });
+            notify(result.status, result.title, result.msg, notification);
+            ajaxSubmit.prop('disabled', false).html(ajaxSubmitHtml);
+
         }, function () {
-            noty({
-                text: 'Internal Server Error',
-                type: 'error',
-                animation: {
-                    open: 'animated bounceInLeft',
-                    close: 'animated bounceOutLeft',
-                    easing: 'swing',
-                    speed: 500 // opening & closing animation speed
-                }
-            });
+            alert('Internal Server Error.');
         });
     });
 
