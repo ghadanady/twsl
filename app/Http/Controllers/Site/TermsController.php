@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers\Site;
 use App\Http\Controllers\Controller;
-use App\Faq;
+use App\Condition;
 use Illuminate\Http\Request;
 
-class FaqController extends Controller
+class TermsController extends Controller
 {
     public function getIndex()
     {
-        // $rows = Faq::latest()->get()->filter(function ($row)
+        // $rows = Condition::latest()->get()->filter(function ($row)
         // {
         //     return $row->active;
         // });
-        return view('site.pages.faq');
+        return view('site.pages.terms');
     }
 }

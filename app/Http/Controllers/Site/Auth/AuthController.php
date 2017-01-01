@@ -20,8 +20,8 @@ class AuthController extends Controller
         $this->middleware('guest.site', ['except' => ['logout' , 'getLogout']]);
     }
 
-    public function getLogin(){
-        return view('site.auth.login');
+    public function getIndex(){
+        return view('site.auth.index');
     }
 
     public function postLogin(Request $r){

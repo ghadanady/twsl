@@ -11,8 +11,8 @@ class ContactController extends Controller
 {
     public function getIndex()
     {
-        $contact = ContactContent::first();
-        return view('site.pages.contact.index',compact('contact'));
+        // $contact = ContactContent::first();
+        return view('site.pages.contact');
     }
 
     /**

@@ -12,9 +12,9 @@ class ProfileController extends Controller
      *
      * @return View
      */
-   
 
-    public function getProfile(){
+
+    public function getIndex(){
         return view('site.pages.profile');
     }
 
@@ -26,8 +26,8 @@ class ProfileController extends Controller
             "email" => 'required|email|unique:members,email,'.auth()->guard('members')->user()->id,
             "address" => 'required|min:2',
             "image" => 'image|mimes:png,gif,jpg,jpeg|max:20000',
-         
-                   
+
+
         ]);
 
         // if the validation has been failed return the error msgs
@@ -46,7 +46,7 @@ class ProfileController extends Controller
             $member->twitter = $r->twitter;
             $member->google = $r->google;
             $member->information = $r->information;
-   
+
 
         // validate if there's an image remove the old one and  save the new one.
         $destination = storage_path('uploads/images/avatars');
