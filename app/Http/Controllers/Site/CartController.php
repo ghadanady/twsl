@@ -35,13 +35,13 @@ class CartController extends Controller
      */
     public function getIndex()
     {
-        $this->basket->refresh();
+        // $this->basket->refresh();
+        //
+        // if (request()->ajax()) {
+        //     return view('site.layouts.shopping-cart')->render();
+        // }
 
-        if (request()->ajax()) {
-            return view('site.layouts.shopping-cart')->render();
-        }
-
-    	return view('site.pages.cart.index');
+    	return view('site.pages.cart');
     }
 
     /**

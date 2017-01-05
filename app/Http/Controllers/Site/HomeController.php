@@ -16,23 +16,22 @@ class HomeController extends Controller
      */
     public function getIndex()
     {
-    	$best_seller = Product::orderBy('sold' , 'desc')->paginate(4);
-    	$new_arrival = Product::latest()->take(16)->get();
-    	$categories  = Category::latest()
-    	->get()
-    	->filter(function($category){
-    		return $category->isMain() && count($category->getProducts());
-    	})
-    	->take(7)->all();
-    	$hot_deals   = Product::orderBy('discount' , 'desc')
-    	->get()
-    	->filter(function($product){
-    		return $product->hasOffer();
-    	})
-    	->take(16)->all();
+    	// $best_seller = Product::orderBy('sold' , 'desc')->paginate(4);
+    	// $new_arrival = Product::latest()->take(16)->get();
+    	// $categories  = Category::latest()
+    	// ->get()
+    	// ->filter(function($category){
+    	// 	return $category->isMain() && count($category->getProducts());
+    	// })
+    	// ->take(7)->all();
+    	// $hot_deals   = Product::orderBy('discount' , 'desc')
+    	// ->get()
+    	// ->filter(function($product){
+    	// 	return $product->hasOffer();
+    	// })
+    	// ->take(16)->all();
 
-        return view('site.pages.home' ,compact( 'best_seller', 'new_arrival' 
-        	, 'categories' , 'hot_deals'));
+        return view('site.pages.index');
     }
 
 

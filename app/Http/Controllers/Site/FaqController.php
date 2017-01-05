@@ -9,10 +9,10 @@ class FaqController extends Controller
 {
     public function getIndex()
     {
-        $rows = Faq::latest()->get()->filter(function ($row)
-        {
-            return $row->active;
-        });
-        return view('site.pages.accordion.index',compact('rows'));
+        // $rows = Faq::latest()->get()->filter(function ($row)
+        // {
+        //     return $row->active;
+        // });
+        return view('site.pages.faq');
     }
 }

@@ -35,7 +35,7 @@ class RouteServiceProvider extends ServiceProvider
         view()->share('settings', Setting::first());
         view()->share('basket', $this->app->make(Basket::class));
 
-        
+
         // $time = time();
         // $Arabic = new \I18N_Arabic('Date');
         // $Arabic->setMode(4);
@@ -73,7 +73,8 @@ class RouteServiceProvider extends ServiceProvider
             'middleware' => 'web',
             'namespace' => $this->namespace,
         ], function ($router) {
-            require base_path('routes/web.php');
+            require base_path('routes/site.php');
+            require base_path('routes/admin.php');
         });
     }
 
