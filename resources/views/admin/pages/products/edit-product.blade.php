@@ -1,18 +1,5 @@
 @extends('admin.master')
 
-@php
-    $enProduct = $product->translated('en');
-    $arProduct = $product->translated('ar');
-@endphp
-
-@section('title')
-    {{ trans('products.edit_page_name' , ['title' =>  $product->translated()->name ]) }}
-@endsection
-
-@section('content-title')
-    {{ trans('products.edit_page_name' , ['title' =>  $product->translated()->name ]) }}
-@endsection
-
 @section('content')
     <section class="content">
         <form class="ajax-form" action="{{ route('admin.products.edit' , ['id' => $product->id]) }}" method="post" enctype="multipart/form-data">
@@ -78,24 +65,24 @@
                         <!-- /.box-header -->
                         <div class="box-body">
                             <div class="row">
-                                <div class="form-group col-md-6">
-                                    <label class="col-md-4">{{ trans('products.en_name_header') }}</label>
-                                    <input class="form-control" type="text" name="en_name" placeholder="{{ trans('products.en_name_placeholder') }}" value="{{ $enProduct->name }}">
+                                <div class="form-group col-md-12">
+                                    <label class="col-md-4">الاسم </label>
+                                    <input class="form-control" type="text" name="name" placeholder="{{ trans('products.en_name_placeholder') }}" value="{{ $product->name }}">
                                 </div>
-                                <div class="form-group col-md-6">
-                                    <label class="col-md-4">{{ trans('products.ar_name_header') }}</label>
-                                    <input class="form-control" type="text" name="ar_name" placeholder="{{ trans('products.ar_name_placeholder') }}" value="{{ $arProduct->name }}">
-                                </div>
+                               
+
                             </div>
                             <div class="row">
-                                <div class="form-group col-md-4">
-                                    <label class="col-md-4">{{ trans('products.price_header') }}</label>
+                                <div class="form-group col-md-12">
+                                    <label class="col-md-4">السعر </label>
                                     <input class="form-control" type="number" min="1" name="price" placeholder="{{ trans('products.price_placeholder') }}" value="{{ $product->price }}">
                                 </div>
-                                <div class="form-group col-md-4 col-sm-4">
-                                    <label class="col-md-4">{{ trans('products.category_col') }}</label>
+                                </div>
+                                <div class="row">
+                                <div class="form-group col-md-6 col-sm-6">
+                                    <label class="col-md-4">القسم </label>
                                     <select name="category_id" class="form-control">
-                                        <option value="">{{ trans('products.categories_choose_option') }}</option>
+                                        <option value="">اختر القسم </option>
                                         @foreach ($categories['main'] as $category)
                                             @php
                                                 $arCat = $category->translated('ar');
@@ -124,46 +111,42 @@
                                         @endif
                                     </select>
                                 </div>
-                                <div class="form-group col-md-4 col-sm-4">
-                                    <label class="col-md-4">{{ trans('products.status_col') }}</label>
+                                <div class="form-group col-md-6 col-sm-6">
+                                    <label class="col-md-4">الحالة </label>
                                     <select name="active" class="form-control">
-                                        <option value="">{{ trans('products.status_choose_option') }}</option>
+                                        <option value="">ختر الحله  </option>
                                         <option value="1" {{ $product->active? 'selected' : ''}}>{{ trans('products.active') }}</option>
                                         <option value="0" {{ $product->active? '' : 'selected'}}>{{ trans('products.not_active') }}</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="form-group col-md-4">
-                                    <label class="col-md-4">{{ trans('products.stock_header') }}</label>
+                                <div class="form-group col-md-6">
+                                    <label class="col-md-6">الكميه المتوفرة</label>
                                     <input class="form-control" type="number" min="1" name="stock" placeholder="{{ trans('products.stock_placeholder') }}" value="{{ $product->stock }}">
                                 </div>
-                                <div class="form-group col-md-4">
-                                    <label class="col-md-4">{{ trans('products.discount_header') }}</label>
+                                <div class="form-group col-md-6">
+                                    <label class="col-md-6">نسبه الخصم</label>
                                     <input class="form-control" type="number" min="0" name="discount" placeholder="{{ trans('products.discount_placeholder') }}" value="{{ $product->discount }}">
                                 </div>
-                                <div class="form-group col-md-4">
-                                    <label class="col-md-4">{{ trans('products.offer_header') }}</label>
-                                    <input class="form-control" type="text" name="discount_date" placeholder="{{ trans('products.offer_placeholder') }}" value="{{ $product->getDate() }}" id="calendar">
-                                </div>
+                               
+
                             </div>
                             <div class="row">
-                                <label class="col-md-4">{{ trans('products.en_description_header') }}</label>
+                                <label class="col-md-4">
+                                وصف المنتج
+                                </label>
                                 <div class="form-group col-md-12">
-                                    <textarea class="form-control tiny-editor" name="" rows="3" placeholder="">{{ $enProduct->description }}</textarea>
+                                    <textarea class="form-control tiny-editor" name="desc" rows="3" placeholder="">الوصف</textarea>
                                 </div>
                             </div>
-                            <div class="row">
-                                <label class="col-md-4">{{ trans('products.ar_description_header') }}</label>
-                                <div class="form-group col-md-12">
-                                    <textarea class="form-control tiny-editor" name="" rows="3" placeholder="">{{ $arProduct->description }}</textarea>
-                                </div>
-                            </div>
+                           
+
 
                         </div>
                         <div class="box-footer text-center">
                             <button type="submit" class="btn btn-app ajax-submit">
-                                <i class="fa fa-save"></i> {{ trans('products.btn_save') }}
+                                <i class="fa fa-save"></i> حفظ 
                             </button>
                         </div>
                     </div>

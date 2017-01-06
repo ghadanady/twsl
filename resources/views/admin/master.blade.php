@@ -43,8 +43,8 @@
     <link rel="stylesheet" href="{{ asset('assets/admin/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}">
 
 
-       <!--  <link rel="stylesheet" href="{{ asset('assets/admin/bootstrap/css/bootstrap-rtl.css') }}">
-        <link rel="stylesheet" href="{{ asset('assets/admin/dist/css/Style-AR-2.css') }}"> -->
+        <link rel="stylesheet" href="{{ asset('assets/admin/bootstrap/css/bootstrap-rtl.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/admin/dist/css/Style-AR-2.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/admin/sweetalert.css') }}">
     @yield('styles')
     <link rel="shortcut icon" href="{{ $settings->getLogo() }}">

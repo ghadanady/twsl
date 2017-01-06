@@ -1,19 +1,18 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Ad;
+use App\Http\Controllers\Controller;
 use App\User;
 use Hash;
 use Auth;
 use App\Image;
-use App\AdsPosition;
+use App\Trademark;
 
-class AdsController extends Controller {
-
-
+class TrademarksController extends Controller
+{
+  
     /**
      * render and paginate the users page.
      *
@@ -23,8 +22,8 @@ class AdsController extends Controller {
         if(auth()->user()->isNormal()){
             return redirect('admin')->withWarning(trans('admin_global.denied_page'));
         }
-        $ads = Ad::paginate(15);
-        return view('admin.pages.ads.all', compact('ads'));
+        $trademarks = Trademark::paginate(15);
+        return view('admin.pages.tradmark.all', compact('trademarks'));
     }
 
 
@@ -38,12 +37,12 @@ class AdsController extends Controller {
     public function postAdd(Request $r) {
 
         $v = validator($r->all(), [
-            "place" => 'required',
+            "name" => 'required',
             "link" => 'required',
         ]);
         // setting custom attribute names
         $v->setAttributeNames([
-            "place" => trans('admin_global.palce'),
+            "name" => trans('admin_global.name'),
             "link" => trans('admin_global.link'),
 
         ]);
@@ -53,21 +52,21 @@ class AdsController extends Controller {
             return msg('error.save',['msg' => implode('<br>', $v->errors()->all())]);
         }
 
-        $ad = new Ad;
+        $trademark = new Trademark;
 
         // set data for the new created data
-        $ad->place = $r->place;
-        $ad->link = $r->link;
+        $trademark->name = $r->name;
+        $trademark->link = $r->link;
 
-        // save the new ad data
-        if ($ad->save()) {
+        // save the new Trademarkdata
+        if ($trademark->save()) {
 
             // validate if there's an image to save it
-            $destination = storage_path('uploads/images/banners');
+            $destination = storage_path('uploads/images/trademark');
             if($r->avatar){
 
                 $avatar = microtime(time()) . "_" . $r->avatar->getClientOriginalName();
-                $image = $ad->image()->create([
+                $image = $trademark->image()->create([
                     'name' => $avatar
                 ]);
 
@@ -81,14 +80,14 @@ class AdsController extends Controller {
 
      public function postInfo($id)
     {
-        $ad = Ad::find($id);
+        $trademark= Trademark::find($id);
 
-        if(!$ad){
+        if(!$trademark){
             return  ['status' => false, 'data' => 'There is no user with id #'.$id.'.'];
         }
-      $ad->img = $ad->image ? $ad->image->name : 'default.jpg';
+      $trademark->img = $trademark->image ? $trademark->image->name : 'default.jpg';
 
-        return  ['status' => true, 'data' => $ad];
+        return  ['status' => true, 'data' => $trademark];
     }
 
   
@@ -105,9 +104,9 @@ class AdsController extends Controller {
             return msg('error.edit',['msg' => 'لا يوجد اعلان ']);
         }
 
-        $ad = Ad::find($r->id);
+        $trademark= Trademark::find($r->id);
 
-        if(!$ad){
+        if(!$trademark){
             return msg('error.edit',['msg' => 'لا يوجد اعلات '.$r->id.'.']);
         }
 
@@ -126,35 +125,35 @@ class AdsController extends Controller {
 
 
         // set the new values for update
-        $ad->place = $r->place;
-        $ad->link = $r->link;
+        $trademark->name = $r->name;
+        $trademark->link = $r->link;
 
         // validate if there's an image remove the old one and  save the new one.
-        $destination = storage_path('uploads/images/banners');
+        $destination = storage_path('uploads/images/trademark');
         if($r->avatar){
 
             $avatar = microtime(time()) . "_" . $r->avatar->getClientOriginalName();
 
-            if($ad->image){
+            if($trademark->image){
                 @unlink("{$destination}/{$user->image->name}");
             }
 
-            $ad->image()->updateOrCreate([],[
+            $trademark->image()->updateOrCreate([],[
                 'name' => $avatar
             ]);
 
             $r->avatar->move($destination,$avatar);
         }
 
-        // update the ad data in the database.
-        if ($ad->save()) {
+        // update the Trademarkdata in the database.
+        if ($trademark->save()) {
             return msg('success.edit',['msg' => 'تم التعديل بنجاح']);
         }
         return msg('error.edit',['msg' => 'حدث خطأ اثناء التعديل']);
     }
 
     /**
-     * delete a ad account if its id is passed
+     * delete a Trademarkaccount if its id is passed
      * if not it will delete the current user
      * @param  int $id
      * @return Redirect
@@ -166,19 +165,17 @@ class AdsController extends Controller {
             Auth::logout();
         }
 
-        $ad = Ad::find($id);
+        $trademark= Trademark::find($id);
 
-        if(!$ad){
-            return redirect()->back()->with('m', 'Ads with id #'.$id.' not found');
+        if(!$trademark){
+            return redirect()->back()->with('m', 'لا يوجد اعلان ');
         }
 
-        if(!empty($ad->imageName)){
-            @unlink(storage_path('uploads/images/avatars' . $ad->image->name));
+        if(!empty($trademark->imageName)){
+            @unlink(storage_path('uploads/images/trademark' . $ad->image->name));
         }
 
-        $ad->delete();
-        return redirect()->back()->with('m', 'ad has been deleted successfully');
+        $trademark->delete();
+        return redirect()->back()->with('m', 'تم الحذف بنجاح ');
     }
-
-
 }

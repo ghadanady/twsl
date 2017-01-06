@@ -8,6 +8,7 @@ use App\Menu;
 use App\Product;
 use App\Ad;
 use App\Category;
+use App\AdsPosition;
 use App\Support\Storage\Contracts\StorageInterface;
 use App\Support\Storage\SessionStorage;
 class AppServiceProvider extends ServiceProvider
@@ -21,6 +22,7 @@ class AppServiceProvider extends ServiceProvider
     {   $categories = Category::get();
 
         $advs = Ad::get();
+        $adsPostion=AdsPosition::get();
         $menus = Menu::get();
         $products = Product::paginate(9);
         $product_count = Product::count();
@@ -39,7 +41,8 @@ class AppServiceProvider extends ServiceProvider
             'products'=>$products ,
             'product_count'=>$product_count ,
             'best_seller'=>$best_seller ,
-            'hot_deals'=>$hot_deals
+            'hot_deals'=>$hot_deals,
+            'adsPostion'=>$adsPostion
         ]);
 
         Validator::extend('greater_than', function($attribute, $value, $parameters, $validator) {

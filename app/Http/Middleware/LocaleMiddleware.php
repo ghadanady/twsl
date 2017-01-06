@@ -17,11 +17,11 @@ class LocaleMiddleware
      */
     public function handle($request, Closure $next)
     {
-        $current_locale = session('locale');
+        $current_locale = 'ar';//session('locale');
 
-        if(empty($current_locale)){
-            $current_locale = Locale::find(Setting::first()->default_locale)->name;
-        }
+        // if(empty($current_locale)){
+        //     $current_locale = Locale::find(Setting::first()->default_locale)->name;
+        // }
         App::setLocale($current_locale);
         session(['locale'=>$current_locale]);
 

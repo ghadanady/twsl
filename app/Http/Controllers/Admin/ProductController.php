@@ -93,28 +93,22 @@ class productController extends Controller {
         $v = validator($r->all(),[
             'imgs' => 'required|array',
             'imgs.*' => 'required|file|image|max:20000',
-            'en_name' => 'required|min:2',
-            'ar_name' => 'required|min:2',
+            'name' => 'required|min:2',
             'price' => 'required|numeric|greater_than:0',
             'stock' => 'required|numeric|greater_than:0',
-            'discount' => 'numeric|greater_than:0',
-            'discount_date' => 'date',
-            'editor1' => 'required|min:2',
-            'editor2' => 'required|min:2',
+            'discount' => 'numeric|greater_than:0', 
             'category_id' => 'required|integer',
             'active' => 'required|digits_between:0,1',
         ]);
 
         // setting custom attribute names
         $v->setAttributeNames([
-            'en_name' => trans('products.en_name_header'),
-            'ar_name' => trans('products.ar_name_header'),
+            'name' => trans('products.name'),
+            'imgs'=> trans('products.imgs'),
             'price' => trans('products.price_header'),
             'stock' => trans('products.stock_header'),
             'discount' => trans('products.discount_header'),
-            'discount_date' => trans('products.offer_header'),
-            'editor1' => trans('products.en_description_header'),
-            'editor2' => trans('products.ar_description_header'),
+            'desc' => trans('products.ar_description_header'),
             'category_id' => trans('products.category_col'),
             'active' => trans('products.status_col'),
         ]);
@@ -132,19 +126,8 @@ class productController extends Controller {
             ]);
         }
 
-        //validate if there's an offer
-        if (!empty($r->input('discount')) && empty($r->input('discount_date'))) {
-            return msg('error.save',[
-                'msg' => trans('validation.required',['attribute' =>  trans('products.offer_header')]),
-            ]);
-        }
 
-        //validate if there's an offer
-        if (empty($r->input('discount')) && !empty($r->input('discount_date'))) {
-            return msg('error.save',[
-                'msg' => trans('validation.required',['attribute' =>  trans('products.discount_header')]),
-            ]);
-        }
+
 
 
         // instanciate new product and save its data
@@ -153,33 +136,14 @@ class productController extends Controller {
         $product->category_id = $r->category_id;
         $product->price = $r->price;
         $product->stock = $r->stock;
+        $product->name = $r->name;
+        $product->desc = $r->desc;
+       
 
-        //if there is an offer
-        if (!empty($r->input('discount'))) {
-            $product->discount = $r->input('discount');
-            $product->discount_date = Carbon::createFromFormat('m/d/Y', $r->input('discount_date'))->toDateString();
-        } else {
-            $product->discount = null;
-            $product->discount_date = null;
-        }
 
 
         if($product->save()){
 
-            // save the Product details
-            $product->details()->create([
-                'name' => $r->en_name,
-                'description' => $r->editor1,
-                'slug' => $this->generateSlug($r->en_name),
-                'locale_id'=> 1
-            ]);
-
-            $product->details()->create([
-                'name' => $r->ar_name,
-                'description' => $r->editor2,
-                'slug' => $this->generateSlug($r->ar_name),
-                'locale_id'=> 2
-            ]);
 
             // store the product images
             if($r->hasFile('imgs')){
@@ -217,28 +181,22 @@ class productController extends Controller {
         $v = validator($r->all(),[
             'imgs' => 'array',
             'imgs.*' => 'file|image|max:20000',
-            'en_name' => 'required|min:2',
-            'ar_name' => 'required|min:2',
+            'name' => 'required|min:2',
             'price' => 'required|numeric|greater_than:0',
             'stock' => 'required|numeric|greater_than:0',
             'discount' => 'numeric|greater_than:0',
-            'discount_date' => 'date',
-            'editor1' => 'required|min:2',
-            'editor2' => 'required|min:2',
+            'desc' => 'required|min:2',
             'category_id' => 'required|integer',
             'active' => 'required|digits_between:0,1',
         ]);
 
         // setting custom attribute names
         $v->setAttributeNames([
-            'en_name' => trans('products.en_name_header'),
-            'ar_name' => trans('products.ar_name_header'),
+            'name' => trans('products.name'),
             'price' => trans('products.price_header'),
             'stock' => trans('products.stock_header'),
             'discount' => trans('products.discount_header'),
-            'discount_date' => trans('products.offer_header'),
-            'editor1' => trans('products.en_description_header'),
-            'editor2' => trans('products.ar_description_header'),
+            'desc' => trans('products.desc'),
             'category_id' => trans('products.category_col'),
             'active' => trans('products.status_col'),
         ]);
@@ -257,19 +215,10 @@ class productController extends Controller {
             ]);
         }
 
-        //validate if there's an offer
-        if (!empty($r->input('discount')) && empty($r->input('discount_date'))) {
-            return msg('error.save',[
-                'msg' => trans('validation.required',['attribute' =>  trans('products.offer_header')]),
-            ]);
-        }
+   
 
-        //validate if there's an offer
-        if (empty($r->input('discount')) && !empty($r->input('discount_date'))) {
-            return msg('error.save',[
-                'msg' => trans('validation.required',['attribute' =>  trans('products.discount_header')]),
-            ]);
-        }
+     
+     
 
 
         //  save product data
@@ -277,31 +226,12 @@ class productController extends Controller {
         $product->category_id = $r->category_id;
         $product->price = $r->price;
         $product->stock = $r->stock;
-
-        //if there is an offer
-        if (!empty($r->input('discount'))) {
-            $product->discount = $r->input('discount');
-            $product->discount_date = Carbon::createFromFormat('m/d/Y', $r->input('discount_date'))->toDateString();
-        } else {
-            $product->discount = null;
-            $product->discount_date = null;
-        }
+        $product->name = $r->name;
+        $product->desc = $r->desc;
 
 
         if($product->save()){
 
-            // save the Product details
-            $product->translated('en')->update([
-                'name' => $r->en_name,
-                'description' => $r->editor1,
-                'slug' => $this->generateSlug($r->en_name),
-            ]);
-
-            $product->translated('ar')->update([
-                'name' => $r->ar_name,
-                'description' => $r->editor2,
-                'slug' => $this->generateSlug($r->ar_name),
-            ]);
 
             // store the product images
             if($r->hasFile('imgs')){
@@ -432,7 +362,7 @@ class productController extends Controller {
 
         $product->trash();
 
-        return back()->withSuccess(msg('success.delete.msg'));
+        return back()->withSuccess(msg('تم الحذف بنجاح '));
     }
 
     public function postDeleteImage($product_id , $image_id)
@@ -463,7 +393,7 @@ class productController extends Controller {
 
         $image->delete();
 
-        return msg('success.delete');
+        return msg('success.delete.msg');
     }
 
 }

@@ -34,18 +34,9 @@
                 </li>
             @endif
         </li>
-        <li class="treeview">
-            <a href="{{ route('admin.ads.index') }}">
-                <i class="fa fa-pie-chart"></i>
-                <span>Advertisement</span>
-            </a>
-        </li>
-        <li class="treeview">
-            <a href="{{ route('admin.menus.index') }}">
-                <i class="fa fa-pie-chart"></i>
-                <span>{{ trans('menus.page_name') }}</span>
-            </a>
-        </li>
+      
+
+      
         <li class="treeview">
             <a href="#">
                 <i class="fa fa-pie-chart"></i>
@@ -71,6 +62,22 @@
             </li>
         </ul>
     </li>
+     <!-- ghada strat -->
+     <li class="treeview">
+        <a href="{{url('admin/ads')}}">
+            <i class="fa fa-dashboard"></i> <span>
+            الاعلانات
+            </span>
+        </a>
+    </li>
+     <li class="treeview">
+        <a href="{{url('admin/trademark')}}">
+            <i class="fa fa-dashboard"></i> <span>
+            الماركات التجارية
+            </span>
+        </a>
+    </li>
+   <!--  ghada end -->
     <li class="treeview">
         <a href="{{ route('contact') }}">
             <i class="fa fa-pie-chart"></i>

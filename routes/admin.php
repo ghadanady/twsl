@@ -159,5 +159,39 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
             Route::get('/delete/{id}','MenuController@getDelete')->name('admin.menus.delete');
         });
 
+         // ghada strat 
+        /**
+        * ads routes
+        */
+        Route::group(['prefix' => 'ads'], function () {
+            Route::get('/', 'AdsController@getIndex')->name('admin.ads.index');
+            Route::get('add', 'AdsController@getAdd')->name('admin.ads.add');
+            Route::post('add', 'AdsController@postAdd');
+            Route::get('edit/{id}', 'AdsController@getEdit')->name('admin.ads.edit');
+            Route::post('/edit', 'AdsController@postEdit');
+            Route::post('/action/{action}', 'AdsController@postAction');
+            Route::post('info/{id}', 'AdsController@postInfo')->name('admin.ads.info');
+            Route::get('/delete/{id}', 'AdsController@getDelete')
+                 ->name('admin.ads.delete');
+            Route::get('/filter/{filter}', 'AdsController@getFilter');
+            Route::get('/search/{q?}', 'AdsController@getSearch');
+        });
+        /**
+        * tradmark routes
+        */
+    Route::group(['prefix' => 'trademark'], function () {
+            Route::get('/', 'TrademarksController@getIndex')->name('admin.trademark.index');
+            Route::get('add', 'TrademarksController@getAdd')->name('admin.trademark.add');
+            Route::post('add', 'TrademarksController@postAdd');
+            Route::get('edit/{id}', 'TrademarksController@getEdit')->name('admin.trademark.edit');
+            Route::post('/edit', 'TrademarksController@postEdit');
+            Route::post('/action/{action}', 'TrademarksController@postAction');
+            Route::post('info/{id}', 'TrademarksController@postInfo')->name('admin.trademark.info');
+            Route::get('/delete/{id}', 'TrademarksController@getDelete')
+                 ->name('admin.ads.delete');
+            Route::get('/filter/{filter}', 'TrademarksController@getFilter');
+            Route::get('/search/{q?}', 'TrademarksController@getSearch');
+        });
+
     });
 });

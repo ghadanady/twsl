@@ -20,22 +20,11 @@
 
             <div class="box-header with-border">
 
-                <h3 class="box-title">{{ trans('products.page_name') }}</h3>
 
                 <div class="box-tools pull-left">
 
-                    <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
-
-                        <i class="fa fa-minus"></i>
-
-                    </button>
-
-                    <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
-
-                        <i class="fa fa-times"></i>
-
-                    </button>
-
+                   
+                   
                 </div>
 
                 <form action="{{ url('admin/products/') }}" onsubmit="return false;">
@@ -59,27 +48,8 @@
                                                 {{ trans('products.filter_all') }}
 
                                             </label>
-                                            <label class="btn btn-sm btn-default" >
+                                      
 
-                                                <input type="radio" name="options" class="btn-filter" data-filter="out_of_stock" autocomplete="off" >
-
-                                                {{ trans('products.filter_out_of_stock') }}
-
-                                            </label>
-                                            <label class="btn btn-sm btn-default" >
-
-                                                <input type="radio" name="options" class="btn-filter" data-filter="low_of_stock" autocomplete="off" >
-
-                                                {{ trans('products.filter_low_of_stock') }}
-
-                                            </label>
-                                            <label class="btn btn-sm btn-default" >
-
-                                                <input type="radio" name="options" class="btn-filter" data-filter="in_stock" autocomplete="off" >
-
-                                                {{ trans('products.filter_in_stock') }}
-
-                                            </label>
                                             <label class="btn btn-sm btn-default" title="Active Products">
 
                                                 <input type="radio" name="options"  class="btn-filter" data-filter="active" autocomplete="off">
@@ -226,11 +196,12 @@
 
                                                 </td>
 
-                                                <td>{{ "$en->name | $ar->name" }}</td>
+                                                <td>{{  $product->name }}</td>
 
                                                 <td>{{ $product->active ?  trans('products.active') : trans('products.not_active')}}</td>
 
-                                                <td>{{ $product->category->translated('en')->name . " | " .$product->category->translated('ar')->name}}</td>
+                                                <td>
+                                                {{ $product->category->translated('en')->name . " | " .$product->category->translated('ar')->name}}</td>
 
                                                 <td>
                                                     @if ($product->outOfStock())

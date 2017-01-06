@@ -8,7 +8,7 @@ class Product extends Model
 {
     public $quantity = null;
 
-    protected $dates = ['discount_date'];
+
 
     /**
     * Check if a product has a low stock.
