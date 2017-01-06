@@ -41,4 +41,14 @@ class Member extends Authenticatable
     {
         return $this->hasMany('App\Review');
     }
+
+    /**
+     * Get the Order(s) from the User.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function orders()
+    {
+    	return $this->hasMany('App\Order');
+    }
 }
