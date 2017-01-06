@@ -41,9 +41,9 @@
                                         @foreach($categories as $category)
 
                                             <tr {{ $category->active ? 'info' : 'warning'}}>
-                                                <td>{{ $category->translated('en')->name ." | ". $category->translated('ar')->name }}</td>
+                                                <td>{{ $category->name }}</td>
                                                 <td>{{ $category->active ? 'فعال' : 'غير فعال'}}</td>
-                                                <td>{{ $category->mainCategory->translated('en')->name ." | ". $category->mainCategory->translated('ar')->name }}</td>
+                                                <td>{{ $category->mainCategory->name }}</td>
                                                 <td class="text-center">
                                                     <button type="button" data-url ="{{ route('admin.categories.info' , ['id' => $category->id ]) }}" class="btn edit-modal-btn btn-success "  >
                                                         <li class="fa fa-pencil">{{ trans('categories.edit') }}</li>

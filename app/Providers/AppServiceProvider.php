@@ -4,7 +4,6 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Validator;
-use App\Menu;
 use App\Product;
 use App\Ad;
 use App\Category;
@@ -19,11 +18,10 @@ class AppServiceProvider extends ServiceProvider
     * @return void
     */
     public function boot()
-    {   $categories = Category::get();
-
+    {
+        $categories = Category::get();
         $advs = Ad::get();
         $adsPostion=AdsPosition::get();
-        $menus = Menu::get();
         $products = Product::paginate(9);
         $product_count = Product::count();
         $best_seller = Product::orderBy('sold' , 'desc')->take(12)->get();
@@ -37,7 +35,6 @@ class AppServiceProvider extends ServiceProvider
         view()->share([
             'categories'=>$categories ,
             'advs'=>$advs ,
-            'menus'=>$menus ,
             'products'=>$products ,
             'product_count'=>$product_count ,
             'best_seller'=>$best_seller ,

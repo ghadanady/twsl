@@ -5,7 +5,6 @@ namespace App\Http\Controllers\admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Product;
-use App\_Product;
 use DB;
 use App\Category;
 use Carbon\Carbon;
@@ -96,7 +95,7 @@ class productController extends Controller {
             'name' => 'required|min:2',
             'price' => 'required|numeric|greater_than:0',
             'stock' => 'required|numeric|greater_than:0',
-            'discount' => 'numeric|greater_than:0', 
+            'discount' => 'numeric|greater_than:0',
             'category_id' => 'required|integer',
             'active' => 'required|digits_between:0,1',
         ]);
@@ -126,10 +125,6 @@ class productController extends Controller {
             ]);
         }
 
-
-
-
-
         // instanciate new product and save its data
         $product = new Product;
         $product->active = $r->active;
@@ -138,12 +133,8 @@ class productController extends Controller {
         $product->stock = $r->stock;
         $product->name = $r->name;
         $product->desc = $r->desc;
-       
-
-
 
         if($product->save()){
-
 
             // store the product images
             if($r->hasFile('imgs')){
@@ -215,12 +206,6 @@ class productController extends Controller {
             ]);
         }
 
-   
-
-     
-     
-
-
         //  save product data
         $product->active = $r->active;
         $product->category_id = $r->category_id;
@@ -231,7 +216,6 @@ class productController extends Controller {
 
 
         if($product->save()){
-
 
             // store the product images
             if($r->hasFile('imgs')){
@@ -250,20 +234,19 @@ class productController extends Controller {
     }
 
     public function getSearch($q = null) {
+        $products = Product::latest();
+        
         if (!empty($q)) {
-            $cols = (new _Product)->getTableColumns();
-            $_products = _Product::latest();
-            $_products->where('id', 'LIKE', "%$q%");
+            $cols = (new Product)->getTableColumns();
+            $products->where('id', 'LIKE', "%$q%");
             foreach ($cols as $col) {
                 if (in_array($col, ['id', 'created_at', 'updated_at'])) {
                     continue;
                 }
-                $_products->orWhere($col, 'LIKE', "%$q%");
+                $products->orWhere($col, 'LIKE', "%$q%");
             }
-            $products = Product::whereIn('id',$_products->get()->pluck('product_id'));
-        }else{
-            $products = Product::latest();
         }
+
         $products = $products->paginate(15);
 
         return view('admin.pages.products.templates.products-table',compact('products'))->render();
@@ -347,7 +330,7 @@ class productController extends Controller {
     protected function generateSlug($title)
     {
         $slug = $temp = slugify($title);
-        while(_Product::where('slug',$slug)->first()){
+        while(Product::where('slug',$slug)->first()){
             $slug = $temp ."-". rand(1,1000);
         }
         return $slug;

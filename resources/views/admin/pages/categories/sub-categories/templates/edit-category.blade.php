@@ -6,18 +6,10 @@
     onsubmit="return false;">
     {!! csrf_field() !!}
     <div class="modal-body">
-        @php
-            $en = $category->translated('en');
-            $ar = $category->translated('ar');
-        @endphp
         <div class="row">
             <div class="form-group col-md-6">
                 <label>اسم القسم</label>
-                <input type="text" class="form-control" value="{{ $en->name }}" placeholder="مثال: اخبار السعوديه"  name="en_name">
-            </div>
-            <div class="form-group col-md-6">
-                <label>اسم القسم</label>
-                <input type="text" class="form-control" value="{{ $ar->name }}" placeholder="مثال: اخبار السعوديه"  name="ar_name">
+                <input type="text" class="form-control" value="{{ $category->name }}" placeholder="مثال: اخبار السعوديه"  name="name">
             </div>
         </div>
         <div class="row">
@@ -33,11 +25,7 @@
                 <select class="form-control" name="parent_id">
                     @foreach (App\Category::all() as $cat)
                         @if($cat->isMain())
-                            @php
-                                $en = $cat->translated('en');
-                                $ar = $cat->translated('ar');
-                            @endphp
-                            <option value="{{ $cat->id }}" {{ $category->parent_id === $cat->id ? 'selected' : '' }}>{{ "$en->name | $ar->name" }}</option>
+                            <option value="{{ $cat->id }}" {{ $category->parent_id === $cat->id ? 'selected' : '' }}>{{ $cat->name }}</option>
                         @endif
                     @endforeach
                 </select>

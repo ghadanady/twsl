@@ -5,7 +5,6 @@ namespace App\Http\Controllers\admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Category;
-use App\_Category;
 
 class CategoryController extends Controller
 {
@@ -72,15 +71,12 @@ class CategoryController extends Controller
     public function postEdit($type,$id,Request $request) {
         // basic validation rules
         $v = validator($request->all(), [
-            'en_name' => 'required|min:2',
-            'ar_name' => 'required|min:2',
+            'name' => 'required|min:2',
             'active' => 'required|digits_between:0,1',
         ],
         [
-            'en_name.required' => 'اسم القسم مطلوب.',
-            'en_name.min' => 'لا يمكن ان يقل اسم القسم عن حرفين.',
-            'ar_name.required' => 'اسم القسم مطلوب.',
-            'ar_name.min' => 'لا يمكن ان يقل اسم القسم عن حرفين.',
+            'name.required' => 'اسم القسم مطلوب.',
+            'name.min' => 'لا يمكن ان يقل اسم القسم عن حرفين.',
             'active.required' => 'حالة القسم مطلوبه',
             'active.digits_between' => 'حالة القسم لا يمكن ان تكون قيمه غير فعال او غير فعال.',
         ]);
@@ -142,12 +138,7 @@ class CategoryController extends Controller
         }
 
         $category->active = $request->active;
-        $category->translated('en')->update([
-            'name' => $request->en_name,
-        ]);
-        $category->translated('ar')->update([
-            'name' => $request->ar_name,
-        ]);
+        $category->name = $request->name;
 
         if($category->save()){
             return [
@@ -196,12 +187,7 @@ class CategoryController extends Controller
 
         $category->active = $request->active;
         $category->parent_id = $request->parent_id;
-        $category->translated('en')->update([
-            'name' => $request->en_name,
-        ]);
-        $category->translated('ar')->update([
-            'name' => $request->ar_name,
-        ]);
+        $category->name = $request->name;
 
         if($category->save()){
             return [
@@ -231,18 +217,16 @@ class CategoryController extends Controller
     public function postAdd($type,Request $request) {
         // basic validation rules
         $v = validator($request->all(), [
-            'en_name' => 'required|min:2',
-            'ar_name' => 'required|min:2',
+            'name' => 'required|min:2',
             'active' => 'required|digits_between:0,1',
         ],
         [
-            'en_name.required' => 'اسم القسم مطلوب.',
-            'en_name.min' => 'لا يمكن ان يقل اسم القسم عن حرفين.',
-            'ar_name.required' => 'اسم القسم مطلوب.',
-            'ar_name.min' => 'لا يمكن ان يقل اسم القسم عن حرفين.',
+            'name.required' => 'اسم القسم مطلوب.',
+            'name.min' => 'لا يمكن ان يقل اسم القسم عن حرفين.',
             'active.required' => 'حالة القسم مطلوبه',
             'active.digits_between' => 'حالة القسم لا يمكن ان تكون قيمه غير فعال او غير فعال.',
         ]);
+
         // if the validation has been failed return the error msgs
         if ($v->fails()) {
             return [
@@ -281,21 +265,12 @@ class CategoryController extends Controller
     protected function addMainCategory(Request $request , Category $category)
     {
 
+        $category->name = $request->name;
         $category->parent_id = 0;
         $category->active = $request->active;
+        $category->slug = $this->generateSlug($request->name);
 
         if($category->save()){
-
-            $category->details()->create([
-                'name' => $request->en_name,
-                'slug' => $this->generateSlug($request->en_name),
-                'locale_id' => 1 // for en
-            ]);
-            $category->details()->create([
-                'name' => $request->ar_name,
-                'slug' => $this->generateSlug($request->ar_name),
-                'locale_id' => 2 // for en
-            ]);
 
             return [
                 'status' => 'success',
@@ -323,7 +298,7 @@ class CategoryController extends Controller
     protected function addSubCategory(Request $request , Category $category)
     {
 
-        
+
 
         if(!$request->parent_id){
             return [
@@ -334,21 +309,12 @@ class CategoryController extends Controller
             ];
         }
 
+        $category->name = $request->name;
+        $category->slug = $this->generateSlug($request->name);
         $category->active = $request->active;
         $category->parent_id = $request->parent_id;
 
         if($category->save()){
-
-            $category->details()->create([
-                'name' => $request->en_name,
-                'slug' => $this->generateSlug($request->en_name),
-                'locale_id' => 1 // for en
-            ]);
-            $category->details()->create([
-                'name' => $request->ar_name,
-                'slug' => $this->generateSlug($request->ar_name),
-                'locale_id' => 2 // for en
-            ]);
 
             return [
                 'status' => 'success',
@@ -454,7 +420,7 @@ class CategoryController extends Controller
     protected function generateSlug($title)
     {
         $slug = $temp = slugify($title);
-        while(_Category::where('slug',$slug)->first()){
+        while(Category::where('slug',$slug)->first()){
             $slug = $temp ."-". rand(1,1000);
         }
         return $slug;
@@ -465,7 +431,6 @@ class CategoryController extends Controller
         if (!$category) {
             return back()->withError('لا يوجد قسم يطابق هذه البيانات ليتم حذفه.');
         }
-        $category->details()->delete();
         $category->delete();
         return back()->withSuccess('تمت عمليه الحذف بنجاح.');
     }

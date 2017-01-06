@@ -34,9 +34,9 @@
                 </li>
             @endif
         </li>
-      
 
-      
+
+
         <li class="treeview">
             <a href="#">
                 <i class="fa fa-pie-chart"></i>
@@ -70,41 +70,41 @@
             </span>
         </a>
     </li>
-     <li class="treeview">
+    <li class="treeview">
         <a href="{{url('admin/trademark')}}">
             <i class="fa fa-dashboard"></i> <span>
             الماركات التجارية
             </span>
         </a>
     </li>
-   <!--  ghada end -->
     <li class="treeview">
-        <a href="{{ route('contact') }}">
-            <i class="fa fa-pie-chart"></i>
-            <span>Contact Us Data</span>
+        <a href="{{ route('admin.contacts.main') }}">
+            <i class="fa fa-dashboard"></i> <span>
+            لينكات التواصل الاجتماعي
+            </span>
         </a>
     </li>
     <li class="treeview">
         <a href="#">
             <i class="fa fa-pencil-square-o"></i>
-            <span>Common Questions</span>
+            <span>الاسئلة الشائعه</span>
         </a>
         <ul class="treeview-menu">
-            <li><a href="{{ route('admin.faqs.add') }}"><i class="fa fa-circle-o"></i>Add new Question</a>
+            <li><a href="{{ route('admin.faqs.add') }}"><i class="fa fa-circle-o"></i>اضافة سؤال جديد</a>
             </li>
-            <li><a href="{{ route('admin.faqs.index') }}"><i class="fa fa-circle-o"></i>All Questions</a>
+            <li><a href="{{ route('admin.faqs.index') }}"><i class="fa fa-circle-o"></i>عرض الاسئلة</a>
             </li>
         </ul>
     </li>
     <li class="treeview">
         <a href="#">
             <i class="fa fa-pencil-square-o"></i>
-            <span>Subscriptions</span>
+            <span>الرسائل و الاشتركات</span>
         </a>
         <ul class="treeview-menu">
-            <li><a href="{{ route('admin.contacts.index') }}"><i class="fa fa-circle-o"></i>Show messages</a>
+            <li><a href="{{ route('admin.contacts.index') }}"><i class="fa fa-circle-o"></i>عرض الرسائل</a>
             </li>
-            <li><a href="{{ route('admin.subscribtions.index') }}"><i class="fa fa-circle-o"></i>Show Subscribers</a>
+            <li><a href="{{ route('admin.subscribtions.index') }}"><i class="fa fa-circle-o"></i>عرض الاشتركات</a>
             </li>
         </ul>
     </li>

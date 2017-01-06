@@ -153,17 +153,7 @@ class Product extends Model
       }catch(\Exception $e){
             return 0;
       }
-        
-    }
 
-    public function details()
-    {
-        return $this->hasMany('App\_Product');
-    }
-
-    public function translated($locale = null)
-    {
-        return $this->details()->where('locale_id' , Locale::where('name',$locale ?: app()->getLocale())->first()->id)->first();
     }
 
     public function getTableColumns() {
@@ -174,9 +164,6 @@ class Product extends Model
     {
         // trash images
         $this->trashImages();
-
-        // trash details
-        $this->trashDetails();
 
         // trash reviews
         $this->trashReviews();
@@ -201,16 +188,6 @@ class Product extends Model
         });
 
         $this->images()->delete();
-    }
-
-    /**
-     * Trash details of product.
-     *
-     * @return void
-     */
-    protected function trashDetails()
-    {
-        $this->details()->delete();
     }
 
     protected function trashReviews()

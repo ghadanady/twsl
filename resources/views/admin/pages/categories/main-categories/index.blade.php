@@ -21,7 +21,7 @@
                         <div class="box-body">
                             <div class="row" style="margin-bottom: 20px;">
                                 <a href="#add-modal" class="btn btn-primary" data-toggle="modal" >
-                                    <i class="fa fa-plus"></i>{{ trans('categories.add_new_category') }}
+                                    <i class="fa fa-plus"></i>{{ trans('categories.add_new_main_category') }}
                                 </a>
                             </div>
 
@@ -37,18 +37,14 @@
                                     <tbody>
 
                                         @foreach($categories as $category)
-                                            @php
-                                                $en = $category->translated('en');
-                                                $ar = $category->translated('ar');
-                                            @endphp
                                             <tr {{$category->active ? 'info' : 'warning'}}>
-                                                <td>{{"$en->name | $ar->name"}}</td>
+                                                <td>{{ $category->name }}</td>
                                                 <td>{{$category->active ? 'فعال' : 'غير فعال'}}</td>
                                                 <td class="text-center">
                                                     <button type="button" data-url ="{{ route('admin.categories.info' , ['id' => $category->id ]) }}" class="btn edit-modal-btn btn-success "  >
                                                         <li class="fa fa-pencil">{{ trans('categories.edit') }}</li>
                                                     </button>
-                                                    <button type="button" data-url ="{{ route('admin.categories.change' , ['id' => $category->id ,'type' => 'sub']) }}" data-type="main" data-name="{{ "$en->name | $ar->name" }}"  data-id="{{ $category->id }}" class="btn change-type-btn btn-info " >
+                                                    <button type="button" data-url ="{{ route('admin.categories.change' , ['id' => $category->id ,'type' => 'sub']) }}" data-type="main" data-name="{{ $category->name }}"  data-id="{{ $category->id }}" class="btn change-type-btn btn-info " >
                                                         <li class="fa fa-pencil">{{ trans('categories.set_as_sub_category') }}</li>
                                                     </button>
                                                     <a data-url="{{ route('admin.categories.delete' , ['id' => $category->id ]) }}" class="btn btn-danger modal-delete-btn"  >

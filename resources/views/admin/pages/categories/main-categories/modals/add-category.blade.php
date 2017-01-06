@@ -12,15 +12,11 @@
                 <div class="modal-body">
 
                     <div class="row">
-                        <div class="form-group col-md-4 col-sm-4">
+                        <div class="form-group col-md-6 col-sm-6">
                             <label>اسم القسم</label>
-                            <input type="text" class="form-control" placeholder="مثال: اخبار السعوديه"  name="en_name">
+                            <input type="text" class="form-control" placeholder="مثال: اخبار السعوديه"  name="name">
                         </div>
-                        <div class="form-group col-md-4 col-sm-4">
-                            <label>اسم القسم</label>
-                            <input type="text" class="form-control" placeholder="مثال: اخبار السعوديه"  name="ar_name">
-                        </div>
-                        <div class="form-group col-md-4 col-sm-4">
+                        <div class="form-group col-md-6 col-sm-6">
                             <label>حاله القسم</label>
                             <select class="form-control" name="active">
                                 <option value="">-- اختر الحاله --</option>

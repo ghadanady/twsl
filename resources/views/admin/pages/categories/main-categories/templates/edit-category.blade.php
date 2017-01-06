@@ -6,18 +6,10 @@
       onsubmit="return false;">
     {!! csrf_field() !!}
     <div class="modal-body">
-        @php
-            $en = $category->translated('en');
-            $ar = $category->translated('ar');
-        @endphp
         <div class="row">
             <div class="form-group col-md-4 col-sm-4">
                 <label>اسم القسم</label>
-                <input type="text" class="form-control" value="{{ $en->name }}" placeholder="مثال: اخبار السعوديه"  name="en_name">
-            </div>
-            <div class="form-group col-md-4 col-sm-4">
-                <label>اسم القسم</label>
-                <input type="text" class="form-control" value="{{ $ar->name }}" placeholder="مثال: اخبار السعوديه"  name="ar_name">
+                <input type="text" class="form-control" value="{{ $category->name }}" placeholder="مثال: اخبار السعوديه"  name="name">
             </div>
             <div class="form-group col-md-4 col-sm-4">
                 <label>حاله القسم</label>

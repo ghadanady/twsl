@@ -15,7 +15,7 @@
                 <div class="col-md-12">
                     <div class="box box-default">
                         <div class="box-header with-border">
-                           
+
                             <div class="box-tools pull-left">
                                 <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
                                     <i class="fa fa-minus"></i>
@@ -49,7 +49,7 @@
                     <!-- SELECT2 EXAMPLE -->
                     <div class="box box-default">
                         <div class="box-header with-border">
-                            
+
 
                             <div class="box-tools pull-left">
                                 <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
@@ -66,7 +66,7 @@
 
                                 <div class="form-group col-md-12">
                                     <label class="col-md-4">
-                                   اسم المنتج 
+                                   اسم المنتج
                                     </label>
                                     <input class="form-control" type="text" name="name" placeholder="مثال: سامسنج اس7" value="">
                                 </div>
@@ -75,7 +75,7 @@
                             <div class="row">
                                 <div class="form-group col-md-12">
                                     <label class="col-md-4">
-                                    سعر  البيع  بالريال 
+                                    سعر  البيع  بالريال
                                     </label>
                                     <input class="form-control" type="number" min="1" name="price" placeholder=" 200 " >
                                 </div>
@@ -85,31 +85,19 @@
                                     <label class="col-md-4"> القسم </label>
                                     <select name="category_id" class="form-control">
                                         <option value="">
-                                         اختار القسم 
+                                         اختار القسم
                                         </option>
                                         @foreach ($categories['main'] as $category)
-                                            @php
-                                                $arCat = $category->translated('ar');
-                                                $enCat = $category->translated('en');
-                                            @endphp
-                                            <optgroup label="{{ "$enCat->name | $arCat->name" }}">
+                                            <optgroup label="{{ $category->name }}">
                                                 @foreach ($category->subCategories as $sub)
-                                                    @php
-                                                        $arSubCat = $sub->translated('ar');
-                                                        $enSubCat = $sub->translated('en');
-                                                    @endphp
-                                                    <option value="{{ $sub->id }}">{{ "$enSubCat->name | $arSubCat->name" }}</option>
+                                                    <option value="{{ $sub->id }}">{{ $sub->name }}</option>
                                                 @endforeach
                                             </optgroup>
                                         @endforeach
                                         @if (!empty($categories['other']))
                                             <optgroup label="{{ trans('products.sub_categories_header') }}">
                                                 @foreach ($categories['other'] as $category)
-                                                    @php
-                                                        $arCat = $category->translated('ar');
-                                                        $enCat = $category->translated('en');
-                                                    @endphp
-                                                    <option value="{{ $category->id }}">{{ "$enCat->name | $arCat->name" }}</option>
+                                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
                                                 @endforeach
                                             </optgroup>
                                         @endif
@@ -117,11 +105,11 @@
                                 </div>
                                 <div class="form-group col-md-6 col-sm-6">
                                     <label class="col-md-4">
-                                    حاله المنتج 
+                                    حاله المنتج
                                     </label>
                                     <select name="active" class="form-control">
                                         <option value="">
-                                        اختر حاله المنتج 
+                                        اختر حاله المنتج
                                         </option>
                                         <option value="1">
                                        فعال </option>

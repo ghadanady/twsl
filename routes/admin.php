@@ -100,18 +100,6 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         });
 
         /**
-        * Contact us route
-        */
-        Route::group(['prefix' => 'contact'], function () {
-            Route::get('/', ['as' => 'contact', 'uses' => 'ContactUsController@getIndex']);
-            Route::post('/', ['as' => 'conatct', 'uses' => 'ContactUsController@postIndex']);
-            Route::post('contact/new', ['as' => 'contact-new', 'uses' => 'ContactUsController@postNew']);
-            Route::post('edit', ['as' => 'contact_edit', 'uses' => 'ContactUsController@postEdit']);
-            Route::post('contact/save', ['as' => 'contact_save', 'uses' => 'ContactUsController@postSave']);
-            Route::get('contact/delete/{id}', ['as' => 'contact/delete', 'uses' => 'ContactUsController@getDelete']);
-        });
-
-        /**
         * ads route
         */
         Route::group(['prefix' => 'ads'], function () {
@@ -159,7 +147,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
             Route::get('/delete/{id}','MenuController@getDelete')->name('admin.menus.delete');
         });
 
-         // ghada strat 
+        // ghada strat
         /**
         * ads routes
         */
@@ -172,14 +160,14 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
             Route::post('/action/{action}', 'AdsController@postAction');
             Route::post('info/{id}', 'AdsController@postInfo')->name('admin.ads.info');
             Route::get('/delete/{id}', 'AdsController@getDelete')
-                 ->name('admin.ads.delete');
+            ->name('admin.ads.delete');
             Route::get('/filter/{filter}', 'AdsController@getFilter');
             Route::get('/search/{q?}', 'AdsController@getSearch');
         });
         /**
         * tradmark routes
         */
-    Route::group(['prefix' => 'trademark'], function () {
+        Route::group(['prefix' => 'trademark'], function () {
             Route::get('/', 'TrademarksController@getIndex')->name('admin.trademark.index');
             Route::get('add', 'TrademarksController@getAdd')->name('admin.trademark.add');
             Route::post('add', 'TrademarksController@postAdd');
@@ -188,7 +176,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
             Route::post('/action/{action}', 'TrademarksController@postAction');
             Route::post('info/{id}', 'TrademarksController@postInfo')->name('admin.trademark.info');
             Route::get('/delete/{id}', 'TrademarksController@getDelete')
-                 ->name('admin.ads.delete');
+            ->name('admin.ads.delete');
             Route::get('/filter/{filter}', 'TrademarksController@getFilter');
             Route::get('/search/{q?}', 'TrademarksController@getSearch');
         });

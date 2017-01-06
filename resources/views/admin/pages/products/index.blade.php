@@ -20,11 +20,22 @@
 
             <div class="box-header with-border">
 
+                <h3 class="box-title">{{ trans('products.page_name') }}</h3>
 
                 <div class="box-tools pull-left">
 
-                   
-                   
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
+
+                        <i class="fa fa-minus"></i>
+
+                    </button>
+
+                    <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
+
+                        <i class="fa fa-times"></i>
+
+                    </button>
+
                 </div>
 
                 <form action="{{ url('admin/products/') }}" onsubmit="return false;">
@@ -35,9 +46,9 @@
 
                             <div class="row top-table">
 
-                                <div class=" col-md-8 col-sm-8">
+                                <div class=" col-md-9 col-sm-9">
 
-                                    <div class="col-md-9 col-xs-9">
+                                    <div class="col-md-10 col-xs-10">
 
                                         <div class="btn-group" data-toggle="buttons">
 
@@ -48,8 +59,27 @@
                                                 {{ trans('products.filter_all') }}
 
                                             </label>
-                                      
+                                            <label class="btn btn-sm btn-default" >
 
+                                                <input type="radio" name="options" class="btn-filter" data-filter="out_of_stock" autocomplete="off" >
+
+                                                {{ trans('products.filter_out_of_stock') }}
+
+                                            </label>
+                                            <label class="btn btn-sm btn-default" >
+
+                                                <input type="radio" name="options" class="btn-filter" data-filter="low_of_stock" autocomplete="off" >
+
+                                                {{ trans('products.filter_low_of_stock') }}
+
+                                            </label>
+                                            <label class="btn btn-sm btn-default" >
+
+                                                <input type="radio" name="options" class="btn-filter" data-filter="in_stock" autocomplete="off" >
+
+                                                {{ trans('products.filter_in_stock') }}
+
+                                            </label>
                                             <label class="btn btn-sm btn-default" title="Active Products">
 
                                                 <input type="radio" name="options"  class="btn-filter" data-filter="active" autocomplete="off">
@@ -84,7 +114,7 @@
 
                                     </div>
 
-                                    <div class="col-md-3 col-xs-3">
+                                    <div class="col-md-2 col-xs-2">
 
                                         <div class="dropdown">
 
@@ -108,7 +138,7 @@
                                     </div>
                                 </div>
 
-                                <div class=" ser-a-del col-md-4 col-sm-4">
+                                <div class=" ser-a-del col-md-3 col-sm-3">
 
                                     <div class="col-md-8 bcol-sm-8 inner-col">
 
@@ -130,7 +160,7 @@
 
                                     </div>
 
-                                    <div class="addNew col-md-4 bcol-sm-4">
+                                    <div class="addNew col-md-2 bcol-sm-2">
 
                                         <button type="button" class="btn btn-danger btn-sm btn-action"  data-action="deleted">
 
@@ -185,10 +215,6 @@
                                         @foreach($products as $product)
 
                                             <tr class="{{ $product->active ? 'success' : 'warning' }}">
-                                                @php
-                                                    $ar = $product->translated('ar');
-                                                    $en = $product->translated('en');
-                                                @endphp
 
                                                 <td class="ID">
 
@@ -196,12 +222,11 @@
 
                                                 </td>
 
-                                                <td>{{  $product->name }}</td>
+                                                <td>{{ $product->name }}</td>
 
                                                 <td>{{ $product->active ?  trans('products.active') : trans('products.not_active')}}</td>
 
-                                                <td>
-                                                {{ $product->category->translated('en')->name . " | " .$product->category->translated('ar')->name}}</td>
+                                                <td>{{ $product->category->name }}</td>
 
                                                 <td>
                                                     @if ($product->outOfStock())

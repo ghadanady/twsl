@@ -24,7 +24,7 @@
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
 
-    <link rel="stylesheet" href="{{ asset('assets/admin/dist/css/AdminLTE.min.css') }}">
+    <!-- <link rel="stylesheet" href="{{ asset('assets/admin/dist/css/AdminLTE.min.css') }}"> -->
 
     <link rel="stylesheet" href="{{ asset('assets/admin/dist/css/skins/skin-blue.min.css') }}">
     <!-- iCheck -->
@@ -42,9 +42,8 @@
     <!-- bootstrap wysihtml5 - text editor -->
     <link rel="stylesheet" href="{{ asset('assets/admin/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}">
 
-
-        <link rel="stylesheet" href="{{ asset('assets/admin/bootstrap/css/bootstrap-rtl.css') }}">
-        <link rel="stylesheet" href="{{ asset('assets/admin/dist/css/Style-AR-2.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/admin/bootstrap/css/bootstrap-rtl.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/admin/dist/css/Style-AR-2.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/admin/sweetalert.css') }}">
     @yield('styles')
     <link rel="shortcut icon" href="{{ $settings->getLogo() }}">

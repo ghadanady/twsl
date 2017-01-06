@@ -14,11 +14,7 @@
                     <option value="">-- اختر القسم الرئيسي --</option>
                     @foreach (App\Category::all() as $cat)
                         @if($cat->isMain())
-                            @php
-                                $en = $cat->translated('en');
-                                $ar = $cat->translated('ar');
-                            @endphp
-                            <option value="{{ $cat->id }}">{{ "$en->name | $ar->name" }}</option>
+                            <option value="{{ $cat->id }}">{{ $cat->name }}</option>
                         @endif
                     @endforeach
                 </select>

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\View\View;
 use App\Http\Controllers\Controller;
 use Mail;
+use App\Link;
 use App\ContactContent;
 use App\Contact;
 use Carbon\Carbon;
@@ -157,8 +158,12 @@ class ContactController extends Controller {
      * @return View
      */
     public function getMain() {
-        $contact = ContactContent::first();
-        return view('admin.pages.contacts.main', compact('contact'));
+        $content = Link::first();
+
+        $data['icons'] = $content? unserialize($content->icons) : [];
+        $data['contents'] = $content? unserialize($content->contents) : [];
+
+        return view('admin.pages.contacts.main', compact('data'));
     }
 
     /**
@@ -170,32 +175,36 @@ class ContactController extends Controller {
 
         // basic validation rules
         $v = validator($request->all(), [
-            'editor1' => 'required|min:2',
-            'editor2' => 'required|min:2'
-                ], [
-            'editor1.required' => 'المحتوي العلوي لا يمكن ان يكون فارغ',
-            'editor1.min' => 'المحتوي العلوي لا يمكن ان يقل عن حرفين',
-            'editor2.required' => 'المحتوي السفلي لا يمكن ان يكون فارغ.',
-            'editor2.min' => 'المحتوي السفلي لايمكن ان يقل عن حرفين.',
+            'icons.*' => 'required',
+            'contents.*' => 'required|min:2',
+        ]);
+
+        $v->setAttributeNames([
+            'icons.*' => 'الايقونات',
+            'contents.*' => 'المحتويات'
         ]);
 
         // if the validation has been failed return the error msgs
         if ($v->fails()) {
-            return ['status' => 'error', 'title' => 'فشل في التعديل', 'msg' => implode('<br>', $v->errors()->all())];
+            return ['status' => 'error', 'title' => 'فشل في الحفظ', 'msg' => implode('<br>', $v->errors()->all())];
         }
-        $contact = ContactContent::first();
+        $content = Link::first();
+
+        if(!$content){
+            $content = new Link;
+        }
 
         //get the data from request
-        $contact->top_content = $request->input('editor1');
-        $contact->bottom_content = $request->input('editor2');
+        $content->icons = serialize($request->input('icons'));
+        $content->contents = serialize($request->input('contents'));
 
-        // edit the data
-        if ($contact->save()) {
-            return ['status' => 'success', 'title' => 'نجاح في التعديل', 'msg' => 'تمت عملية التعديل بنجاح.'];
+        // save the data
+        if ($content->save()) {
+            return ['status' => 'success', 'title' => 'نجاح في الحفظ', 'msg' => 'تمت عملية الحفظ بنجاح.'];
         }
 
         // return an error if there's un expected action occured
-        return ['status' => 'error', 'title' => 'فشل في التعديل', 'msg' => 'فشل في اتمام عمليه التعديل من فضلك حاول مجددا.'];
+        return ['status' => 'error', 'title' => 'فشل في الحفظ', 'msg' => 'فشل في اتمام عمليه الحفظ من فضلك حاول مجددا.'];
     }
 
 }

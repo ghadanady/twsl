@@ -1,117 +1,63 @@
 <?php
 
-
-
 namespace App;
-
-
 
 use Illuminate\Database\Eloquent\Model;
 
-
-
 class Category extends Model {
 
-    public function menus()
-    {
-        return $this->belongsToMany('App\Menu','menu_category', 'category_id', 'menu_id');
-    }
-
     public function isMain()
-
     {
         return $this->parent_id === 0;
 
     }
 
-
-
     public function getUrl()
-
     {
 
-        return route('site.products.category',['slug'=> $this->translated()->slug]);
+        return route('site.products.category',['slug'=> $this->slug]);
 
     }
 
-
     public function getProducts()
     {
-        $products = [];
+        $products = $this->products;
 
-        if($this->products){
-            $this->products->map(function($product) use (&$products){
-                $products[] = $product;
-            });
-        }
-
-        if($this->subCategories){
+        if(!$this->subCategories->isEmpty()){
             $this->subCategories->map(function($c) use (&$products){
-                if($c->products){
-                    foreach ($c->products()->latest()->get() as $product) {
-                        $products[] = $product;
+                if(!$c->products->isEmpty()){
+                    foreach ($c->products as $product) {
+                        $products->push($product);
                     }
                 }
             });
         }
 
-        return collect($products);
+        return $products;
     }
 
     public function isActive()
-
     {
-
         return (bool) $this->active;
-
     }
-
-
 
     public function isSub()
-
     {
-
         return !$this->isMain();
-
     }
-
-
 
     public function products() {
-
         return $this->hasMany('App\Product', 'category_id');
-
     }
-
-
 
     public function mainCategory()
-
     {
-
         return $this->belongsTo('App\Category' ,'parent_id');
-
     }
-
-
 
     public function subCategories()
-
     {
-
         return $this->hasMany('App\Category' ,'parent_id');
-
-    }
-
-    public function details()
-    {
-        return $this->hasMany('App\_Category');
-    }
-
-    public function translated($locale = null)
-    {
-        return $this->details()->where('locale_id' , Locale::where('name',$locale ?: app()->getLocale())->first()->id)->first();
     }
 
 }

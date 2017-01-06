@@ -42,21 +42,23 @@ class CategorySeeder extends Seeder
             $cat = new Category;
             $cat->parent_id = $category['parent_id'];
             $cat->active = $category['active'];
+            $cat->name = $category['name'][1];
+            $cat->slug = $this->generateSlug($category['name'][1]);
             $cat->save();
 
-            //create translation for english
-            $cat->details()->create([
-                'name' => $category['name'][0],
-                'slug' => $this->generateSlug($category['name'][0]),
-                'locale_id' => 1,
-                ]) ;
-
-            //create translation for arabic
-            $cat->details()->create([
-                'name' => $category['name'][1],
-                'slug' => $this->generateSlug($category['name'][1]),
-                'locale_id' => 2,
-                ]) ;
+            // //create translation for english
+            // $cat->details()->create([
+            //     'name' => $category['name'][0],
+            //     'slug' => $this->generateSlug($category['name'][0]),
+            //     'locale_id' => 1,
+            //     ]) ;
+            //
+            // //create translation for arabic
+            // $cat->details()->create([
+            //     'name' => $category['name'][1],
+            //     'slug' => $this->generateSlug($category['name'][1]),
+            //     'locale_id' => 2,
+            //     ]) ;
 
         }
     }

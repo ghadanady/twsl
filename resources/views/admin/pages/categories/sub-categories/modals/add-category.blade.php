@@ -14,11 +14,7 @@
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label>اسم القسم</label>
-                            <input type="text" class="form-control " placeholder="مثال: اخبار السعوديه"  name="en_name">
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label>اسم القسم</label>
-                            <input type="text" class="form-control" placeholder="مثال: اخبار السعوديه"  name="ar_name">
+                            <input type="text" class="form-control" placeholder="مثال: اخبار السعوديه"  name="name">
                         </div>
                     </div>
                     <div class="row">
@@ -36,11 +32,7 @@
                                 <option value="">-- اختر القسم الرئيسي --</option>
                                 @foreach (App\Category::all() as $cat)
                                     @if($cat->isMain())
-                                        @php
-                                            $en = $cat->translated('en');
-                                            $ar = $cat->translated('ar');
-                                        @endphp
-                                        <option value="{{ $cat->id }}">{{ "$en->name | $ar->name" }}</option>
+                                        <option value="{{ $cat->id }}">{{ $cat->name }}</option>
                                     @endif
                                 @endforeach
                             </select>
