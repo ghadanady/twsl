@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model {
 
+  public function image(){
+        return $this->morphOne('App\Image', 'imageable');
+    }
     public function isMain()
     {
         return $this->parent_id === 0;

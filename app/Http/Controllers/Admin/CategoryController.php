@@ -43,12 +43,15 @@ class CategoryController extends Controller
                 'content' => '',
             ];
         }
+        $category->img = $category->image ? $category->image->name : 'default.jpg';
 
         // compile the edit modal view
         if($category->isMain()){
-            $content = view('admin.pages.categories.main-categories.templates.edit-category',compact('category'))->render();
+            $content = view('admin.pages.categories.main-categories.templates.edit-category',
+                compact('category'))->render();
         }else{
-            $content = view('admin.pages.categories.sub-categories.templates.edit-category',compact('category'))->render();
+            $content = view('admin.pages.categories.sub-categories.templates.edit-category',
+                compact('category'))->render();
         }
 
         return [
@@ -140,7 +143,26 @@ class CategoryController extends Controller
         $category->active = $request->active;
         $category->name = $request->name;
 
+        // validate if there's an image remove the old one and  save the new one.
+        $destination = storage_path('uploads/images/category');
+        if($request->avatar){
+
+            $avatar = microtime(time()) . "_" . $request->avatar->getClientOriginalName();
+
+            if($category->image){
+                @unlink("{$destination}/{$user->image->name}");
+            }
+
+            $category->image()->updateOrCreate([],[
+                'name' => $avatar
+            ]);
+
+            $request->avatar->move($destination,$avatar);
+        }
+
         if($category->save()){
+
+
             return [
                 'status' => 'success',
                 'title' => 'نجاح',
@@ -271,6 +293,18 @@ class CategoryController extends Controller
         $category->slug = $this->generateSlug($request->name);
 
         if($category->save()){
+
+                // validate if there's an image to save it
+            $destination = storage_path('uploads/images/category');
+            if($request->avatar){
+
+                $avatar = microtime(time()) . "_" . $request->avatar->getClientOriginalName();
+                $image = $category->image()->create([
+                    'name' => $avatar
+                ]);
+
+                $request->avatar->move($destination,$avatar);
+            }
 
             return [
                 'status' => 'success',
