@@ -9,14 +9,21 @@ Route::group(['namespace' => 'Site'], function () {
     *  Auth routes
     */
     Route::group(['prefix'=>'auth' , 'namespace' => 'Auth'],function(){
-        Route::get('/','AuthController@getIndex')->name('site.auth.index');
-        Route::post('login','AuthController@postLogin')->name('site.auth.login');
-        Route::post('register', 'AuthController@postRegister')->name('site.auth.register');
-        Route::get('social/{provider}', 'AuthController@redirectToProvider')->name('site.auth.social');
+        Route::get('/','AuthController@getIndex')
+              ->name('site.auth.index');
+        Route::post('login','AuthController@postLogin')
+             ->name('site.auth.login');
+        Route::post('register', 'AuthController@postRegister')
+             ->name('site.auth.register');
+        Route::get('social/{provider}', 'AuthController@redirectToProvider')
+             ->name('site.auth.social');
         Route::get('social/{provider}/callback', 'AuthController@handleProviderCallback');
-        Route::get('logout', 'AuthController@getLogout')->name('site.auth.logout');
-        Route::get('forget-password','AuthController@getRecoverPassword')->name('site.auth.forget-password');
+        Route::get('logout', 'AuthController@getLogout')
+             ->name('site.auth.logout');
+        Route::get('forget-password','AuthController@getRecoverPassword')
+             ->name('site.auth.forget-password');
     });
+    Route::resource('category', 'CategoryController');
 
     /**
     *  Home routes

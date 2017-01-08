@@ -19,7 +19,17 @@ class AppServiceProvider extends ServiceProvider
     */
     public function boot()
     {
-        $categories = Category::get();
+        $categories =array();
+        $mainCat=Category::where('parent_id',0)->get();
+        foreach ($mainCat as $key => $cat) {
+            $sub=Category::where('parent_id',$cat->id)->get();
+            if(count($sub)>0)
+            {
+                $categories[$key]['name']=$cat->name;
+                $categories[$key]['sub']=$sub;
+            }
+        }
+        
         $advs = Ad::get();
         $adsPostion=AdsPosition::get();
         $products = Product::paginate(9);

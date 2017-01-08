@@ -1,21 +1,4 @@
-<?php
 
-namespace App\Http\Controllers\Site;
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Illuminate\Pagination\LengthAwarePaginator;
-use Illuminate\Support\Collection;
-use App\_Category;
-use App\Product;
-use App\_Product;
-use App\Category;
-use App\Review;
-use App\Locale;
-
-class ProductController extends Controller
-{
-
-	
     public function getIndex(Request $request)
     {
         // // if the request is ajax request
@@ -199,5 +182,3 @@ class ProductController extends Controller
 
         return ['status' => 'error', 'msg' => 'There\'re some errors, please try again later.'];
     }
-
-}
