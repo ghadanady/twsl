@@ -133,6 +133,7 @@ class productController extends Controller {
         $product->stock = $r->stock;
         $product->name = $r->name;
         $product->desc = $r->desc;
+        $product->slug= $this->generateSlug($r->name);
 
         if($product->save()){
 

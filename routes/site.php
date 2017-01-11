@@ -25,6 +25,11 @@ Route::group(['namespace' => 'Site'], function () {
     });
     Route::resource('category', 'CategoryController');
 
+    Route::post('product/addComment', 'ProductController@postAddComment')->name('site.product.addComment');
+
+    Route::resource('product', 'ProductController');
+    //Route::post('product/addComment', 'ProductController@postAddComment');
+
     /**
     *  Home routes
     */
@@ -76,13 +81,13 @@ Route::group(['namespace' => 'Site'], function () {
     /**
     *  Product routes
     */
-    Route::group(['prefix'=>'product'],function(){
-        Route::get('/', 'ProductController@getIndex')->name('site.product.index');
-        Route::get('/details/{slug}', 'ProductController@getDetails')->name('site.product.details');
-        Route::post('/filter', 'ProductController@postFilter')->name('site.product.filter');
-        Route::get('/reviews/{id}', 'ProductController@getReview')->name('site.product.reviews');
-        Route::post('/review', 'ProductController@postReview')->name('site.product.review');
-    });
+    // Route::group(['prefix'=>'product'],function(){
+    //     Route::get('/', 'ProductController@getIndex')->name('site.product.index');
+    //     Route::get('/details/{slug}', 'ProductController@getDetails')->name('site.product.details');
+    //     Route::post('/filter', 'ProductController@postFilter')->name('site.product.filter');
+    //     Route::get('/reviews/{id}', 'ProductController@getReview')->name('site.product.reviews');
+    //     Route::post('/review', 'ProductController@postReview')->name('site.product.review');
+    // });
 
     /**
     *  Category routes

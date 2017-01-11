@@ -31,15 +31,15 @@
                 <ul class="up-menu">   
                    @foreach($categories as $c)
                     <li class="up-menu-item">
-                        <a href="" >
-                            {{$c['name']}}
+                        <a href="{{url('category/'.$c['cat']->id)}}" >
+                            {{$c['cat']->name}}
                             <i class="fa fa-angle-down"></i>
                         </a>
                         @if(count($c['sub'])>0)
                         <ul class="up-menu-child">
                         @foreach($c['sub'] as $sub)
                             <li>
-                                <a href="{{url('category/')}}">
+                                <a href="{{url('category/'.$sub->id)}}"">
                                    {{$sub['name']}}
                                 </a>
                             </li>

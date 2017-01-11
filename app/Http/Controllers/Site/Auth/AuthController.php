@@ -21,6 +21,8 @@ class AuthController extends Controller
     }
 
     public function getIndex(){
+        
+
         return view('site.auth.index');
     }
 
@@ -28,10 +30,22 @@ class AuthController extends Controller
 
         //dd($r->all());
 
-        $this->validate($r, [
+       $v =  validator($r->all(), [
             'email' => 'required|email',
-            'password' => 'required',
+            'password' => 'required|min:2',
         ]);
+
+         // setting custom attribute names
+        $v->setAttributeNames([
+
+            'email' => "قم باخال الايميل ",
+            'password' => " فم باخال  رقم الجوال",
+
+        ]);
+
+        if ($v->fails()) {
+             return redirect()->back()->withErrors(['خطأ', implode('<br>', $v->errors()->all())]);
+        }
 
         // grapping Member credentials
         $email = $r->input('email');
@@ -46,7 +60,7 @@ class AuthController extends Controller
             return redirect()->intended('/');
         }
         // failed
-        return redirect()->back()->with('error' , trans('admin_global.msg_error_login'));
+        return redirect()->back()->with('error' , 'من فضلك ادخل بيانات صحيحه ');
     }
 
     public function getLogout(){
@@ -61,14 +75,26 @@ class AuthController extends Controller
             'f_name' => 'required|min:2',
             'l_name' => 'required|min:2',
             'email' => 'required|email',
-            'phone' => 'required|min:6',
+
             'password' => 'required|min:2',
-            'repassword' => 'required|min:2|same:password',
-            'address' => 'required',
+            'cpassword' => 'required|min:2|same:password',
+            'agree'=> " required ",
+
+        ]);
+
+         // setting custom attribute names
+        $v->setAttributeNames([
+            'f_name' => " قم باخال الاسم الاول",
+            'l_name' => "قم باخال الاسم الاخير ",
+            'email' => "قم باخال الايميل ",
+            'password' => " فم باخال  رقم الجوال",
+            'cpassword'=> "كلمه السر غير متاطبقه ",
+            'agree'=> " يجب الموافقه عل  الشروط والاحكام  ",
+
         ]);
 
         if ($v->fails()) {
-            return ['status' => false, 'data' => implode(PHP_EOL, $v->errors()->all())];
+             return redirect()->back()->withErrors(['خطأ', implode('<br>', $v->errors()->all())]);
         }
 
         $member = new Member();
@@ -78,21 +104,18 @@ class AuthController extends Controller
         $member->phone = $r->input('phone');
         $member->password =  bcrypt($r->input('password'));
         $member->address = $r->input('address');
-        $member->auth_type ='site';
-
+        //$member->auth_type ='site';
 
         if($member->save())
         {
-            return ['status' => true , 'data'  => ' added seccessfully.'];
+           return redirect()->back()->withSuccess(['  تم تسجيل الدخول بنجاح ']);
         }
 
-        return ['status' => false , 'data'  => 'unexpected error. please try again'];
+        
     }
 
 
-    public function getProfile(){
-        return view('site.auth.profile');
-    }
+
 
     public function getRecoverPassword(){
         return view('site.auth.recover-password');

@@ -4,17 +4,28 @@ namespace App\Http\Controllers\Site;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Category;
+use App\Product;
 
 class CategoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+     /**
+    * Render The Main or Sub Categories Page
+    * @return View
+    */
+    public function getIndex($id){
+
+        
+        
+
+    }
+
+    public function getProducts($id)
     {
-        //
+       
+       
+
+        
     }
 
     /**
@@ -44,9 +55,32 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($)
+    public function show($id)
     {
-        //
+         $category=Category::find($id);
+         $category->img = $category->image ? $category->image->name : 'default.jpg';
+
+        if($category->parent_id==0)
+        {
+            //main category 
+            $sub_categories_ids = Category::where('parent_id' , $id)->pluck('id');
+            $products=Product::whereIn('category_id', $sub_categories_ids)->paginate(6);
+            $sub_categories = Category::where('parent_id' , $id)->get();
+
+        }else if($category->parent_id!=0){
+
+            //sub_catergory  category 
+            $products=Product::where('category_id', $id)->paginate(6);
+            $sub_categories = Category::where('parent_id' , $category->parent_id)->get();
+
+        }
+        else{
+           abort(404);  
+        }
+         return view('site.pages.category' , compact('categories',
+                                                     'products',
+                                                     'sub_categories',
+                                                     'category'));
     }
 
     /**

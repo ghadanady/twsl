@@ -8,6 +8,9 @@ use App\Product;
 use App\Ad;
 use App\Category;
 use App\AdsPosition;
+use App\Trademark;
+use App\Country;
+ use Auth;
 use App\Support\Storage\Contracts\StorageInterface;
 use App\Support\Storage\SessionStorage;
 class AppServiceProvider extends ServiceProvider
@@ -19,17 +22,22 @@ class AppServiceProvider extends ServiceProvider
     */
     public function boot()
     {
+
+        $countries=Country::get();
+        $trademark=Trademark::get();
+        //$trademark->img = $trademark->image ? $trademark->image->name : 'default.jpg';
         $categories =array();
         $mainCat=Category::where('parent_id',0)->get();
         foreach ($mainCat as $key => $cat) {
             $sub=Category::where('parent_id',$cat->id)->get();
             if(count($sub)>0)
             {
-                $categories[$key]['name']=$cat->name;
+                $categories[$key]['cat']=$cat;
                 $categories[$key]['sub']=$sub;
             }
         }
         
+
         $advs = Ad::get();
         $adsPostion=AdsPosition::get();
         $products = Product::paginate(9);
@@ -49,7 +57,10 @@ class AppServiceProvider extends ServiceProvider
             'product_count'=>$product_count ,
             'best_seller'=>$best_seller ,
             'hot_deals'=>$hot_deals,
-            'adsPostion'=>$adsPostion
+            'adsPostion'=>$adsPostion,
+            'trademark'=>$trademark,
+            'countries'=>$countries,
+            
         ]);
 
         Validator::extend('greater_than', function($attribute, $value, $parameters, $validator) {

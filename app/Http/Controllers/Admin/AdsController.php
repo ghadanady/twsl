@@ -36,47 +36,6 @@ class AdsController extends Controller {
      * @return json
      */
     public function postAdd(Request $r) {
-
-        $v = validator($r->all(), [
-            "place" => 'required',
-            "link" => 'required',
-        ]);
-        // setting custom attribute names
-        $v->setAttributeNames([
-            "place" => trans('admin_global.palce'),
-            "link" => trans('admin_global.link'),
-
-        ]);
-
-        // if the validation has been failed return the error msgs
-        if ($v->fails()) {
-            return msg('error.save',['msg' => implode('<br>', $v->errors()->all())]);
-        }
-
-        $ad = new Ad;
-
-        // set data for the new created data
-        $ad->place = $r->place;
-        $ad->link = $r->link;
-
-        // save the new ad data
-        if ($ad->save()) {
-
-            // validate if there's an image to save it
-            $destination = storage_path('uploads/images/banners');
-            if($r->avatar){
-
-                $avatar = microtime(time()) . "_" . $r->avatar->getClientOriginalName();
-                $image = $ad->image()->create([
-                    'name' => $avatar
-                ]);
-
-                $r->avatar->move($destination,$avatar);
-            }
-
-            return msg('success.save',['msg' => 'تمت الاضافة بنجاح ']);
-        }
-        return msg('error.save',['msg' => 'حدث خطأ اثناء الاضافة']);
     }
 
      public function postInfo($id)
@@ -84,7 +43,7 @@ class AdsController extends Controller {
         $ad = Ad::find($id);
 
         if(!$ad){
-            return  ['status' => false, 'data' => 'There is no user with id #'.$id.'.'];
+            return  ['status' => false, 'data' => 'لا يوجد اعلان '];
         }
       $ad->img = $ad->image ? $ad->image->name : 'default.jpg';
 
