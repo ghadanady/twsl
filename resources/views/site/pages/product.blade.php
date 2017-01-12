@@ -12,6 +12,7 @@
                         <div class="col-xs-12 col-md-6 rmb20">
                             <div class="pro-imgs-slider">
                                 <div class="owl-carousel big-images">
+                                
 
                                     @foreach ($product->getImages() as $img)
                                     <div class="larg-img">

@@ -7,7 +7,7 @@
                 <div class="col-md-12">
                     <div class="box box-default">
                         <div class="box-header with-border">
-                            <h3 class="box-title">{{ trans('products.visible_content_header') }}</h3>
+                           
                             <div class="box-tools pull-left">
                                 <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
                                     <i class="fa fa-minus"></i>
@@ -26,7 +26,8 @@
                                         <div class="thumbnail">
                                             <img alt="290X180" style="height: 180px; width: 100%; display: block; cursor: pointer;" src="{{ $img->url }}" data-holder-rendered="true">
                                             <div class="caption text-center">
-                                                <button type="button" data-url="{{ route('admin.products.images.delete' ,['product_id' => $product->id , 'image_id' => $img->id ]) }}" data-loading="{{ trans('admin_global.loading') }}" class="ajax-delete btn btn-warning"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></button>
+                                                <button type="button" data-url="{{ route('admin.products.images.delete' ,['product_id' => $product->id , 'image_id' => $img->id ]) }}"
+                                                 data-loading="تحميل" class="ajax-delete btn btn-warning"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></button>
                                             </div>
                                         </div>
                                     </div>
@@ -52,7 +53,7 @@
                     <!-- SELECT2 EXAMPLE -->
                     <div class="box box-default">
                         <div class="box-header with-border">
-                            <h3 class="box-title">{{ trans('products.textual_content_header') }}</h3>
+                            <h3 class="box-title">تعديل</h3>
                             <div class="box-tools pull-left">
                                 <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
                                     <i class="fa fa-minus"></i>
@@ -67,7 +68,9 @@
                             <div class="row">
                                 <div class="form-group col-md-12">
                                     <label class="col-md-4">الاسم </label>
-                                    <input class="form-control" type="text" name="name" placeholder="{{ trans('products.en_name_placeholder') }}" value="{{ $product->name }}">
+                                    <input class="form-control" type="text" name="name" 
+                                    placeholder="اسم المنتج" 
+                                    value="{{ $product->name }}">
                                 </div>
                                
 
@@ -75,7 +78,9 @@
                             <div class="row">
                                 <div class="form-group col-md-12">
                                     <label class="col-md-4">السعر </label>
-                                    <input class="form-control" type="number" min="1" name="price" placeholder="{{ trans('products.price_placeholder') }}" value="{{ $product->price }}">
+                                    <input class="form-control" type="number" min="1" name="price"
+                                     placeholder="السعر " 
+                                     value="{{ $product->price }}">
                                 </div>
                                 </div>
                                 <div class="row">
@@ -84,28 +89,20 @@
                                     <select name="category_id" class="form-control">
                                         <option value="">اختر القسم </option>
                                         @foreach ($categories['main'] as $category)
-                                            @php
-                                                $arCat = $category->translated('ar');
-                                                $enCat = $category->translated('en');
-                                            @endphp
-                                            <optgroup label="{{ "$enCat->name | $arCat->name" }}">
+                                         
+
+                                            <optgroup label="{{ "$category->name" }}">
                                                 @foreach ($category->subCategories as $sub)
-                                                    @php
-                                                        $arSubCat = $sub->translated('ar');
-                                                        $enSubCat = $sub->translated('en');
-                                                    @endphp
-                                                    <option value="{{ $sub->id }}" {{ $sub->id === $product->category_id ? 'selected' : '' }}>{{ "$enSubCat->name | $arSubCat->name" }}</option>
+                                                   
+
+                                                    <option value="{{ $sub->id }}" {{ $sub->id === $product->category_id ? 'selected' : '' }}>{{ "$sub->name " }}</option>
                                                 @endforeach
                                             </optgroup>
                                         @endforeach
                                         @if (!empty($categories['other']))
-                                            <optgroup label="{{ trans('products.sub_categories_header') }}">
+                                            <optgroup label="اقسام اخرى ">
                                                 @foreach ($categories['other'] as $category)
-                                                    @php
-                                                        $arCat = $category->translated('ar');
-                                                        $enCat = $category->translated('en');
-                                                    @endphp
-                                                    <option value="{{ $category->id }}" {{ $category->id === $product->category_id ? 'selected' : '' }}>{{ "$enCat->name | $arCat->name" }}</option>
+                                                    <option value="{{ $category->id }}" {{ $category->id === $product->category_id ? 'selected' : '' }}>{{ "$category->name " }}</option>
                                                 @endforeach
                                             </optgroup>
                                         @endif
@@ -115,19 +112,24 @@
                                     <label class="col-md-4">الحالة </label>
                                     <select name="active" class="form-control">
                                         <option value="">ختر الحله  </option>
-                                        <option value="1" {{ $product->active? 'selected' : ''}}>{{ trans('products.active') }}</option>
-                                        <option value="0" {{ $product->active? '' : 'selected'}}>{{ trans('products.not_active') }}</option>
+                                        <option value="1" {{ $product->active? 'selected' : ''}}>
+                                        فعال 
+                                        </option>
+                                        <option value="0" {{ $product->active? '' : 'selected'}}>
+                                        غير فعال 
+                                        </option>
                                     </select>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="form-group col-md-6">
                                     <label class="col-md-6">الكميه المتوفرة</label>
-                                    <input class="form-control" type="number" min="1" name="stock" placeholder="{{ trans('products.stock_placeholder') }}" value="{{ $product->stock }}">
+                                    <input class="form-control" type="number" min="1" name="stock" 
+                                    placeholder="الكميىه المتوفرة " value="{{ $product->stock }}">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label class="col-md-6">نسبه الخصم</label>
-                                    <input class="form-control" type="number" min="0" name="discount" placeholder="{{ trans('products.discount_placeholder') }}" value="{{ $product->discount }}">
+                                    <input class="form-control" type="number" min="0" name="discount" placeholder="الخصم " value="{{ $product->discount }}">
                                 </div>
                                
 

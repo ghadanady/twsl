@@ -14,7 +14,8 @@
                                 <div class="box-body box-profile file-box">
                                   <img   style="cursor:pointer;" 
                                   class=" def-img file-btn img-responsive" 
-                                  src="{{url('storage/uploads/images/category')}}/{{$category->img}}"  alt="User profile picture">
+                                  src="{{url('storage/uploads/images/category')}}/{{$category->img}}"  
+                                  alt="category picture">
 
                                   <input type="file"  style="visibility: hidden;" name="avatar">
 

@@ -45,6 +45,7 @@
     <link rel="stylesheet" href="{{ asset('assets/admin/bootstrap/css/bootstrap-rtl.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/admin/dist/css/Style-AR-2.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/admin/sweetalert.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/admin/style.css') }}">
     @yield('styles')
     <link rel="shortcut icon" href="{{ $settings->getLogo() }}">
 

@@ -2,7 +2,7 @@
     <div class="bar">
         <div class="container">
             <div class="row">
-            @if(!Auth::check())
+            @if(!Auth::user())
                 <div class="col-xs-12 col-md-6 rmb15 text-right">
                     <span class="welcome-text">
                     مرحباً بكم في متجرنا يمكنكم <a href="{{url('auth')}}">التسجيل</a> مجاناً
@@ -13,7 +13,8 @@
                     <span class="welcome-text">
                     
                          
-                        مرحبا بك  <a href="{{url('profile/')}}">{{auth::guard('members')->user()->f_name }}</a>           
+                        مرحبا بك  <a href="{{url('profile/')}}">{{auth::guard('members')->user()->f_name }}</a>
+                        <a href="{{url('auth/logout')}}">تسجيل خروج </a>           
                     </span>
                 </div>
 

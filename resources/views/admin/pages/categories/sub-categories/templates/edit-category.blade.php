@@ -6,21 +6,41 @@
     onsubmit="return false;">
     {!! csrf_field() !!}
     <div class="modal-body">
+
+      <div class="row">
+                        <div class=" col-md-12">
+                            <!-- Profile Image -->
+                              <div class="box box-primary">
+                                <div class="box-body box-profile file-box">
+                                  <img   style="cursor:pointer;" 
+                                  class=" def-img file-btn img-responsive" 
+                                  src="{{url('storage/uploads/images/category')}}/{{$category->img}}"  
+                                  alt="category picture">
+
+                                  <input type="file"  style="visibility: hidden;" name="avatar">
+
+                                </div>
+                                <!-- /.box-body -->
+                              </div>
+                              <!-- /.box -->
+                        </div>
+                    </div>
+
         <div class="row">
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-4">
                 <label>اسم القسم</label>
                 <input type="text" class="form-control" value="{{ $category->name }}" placeholder="مثال: اخبار السعوديه"  name="name">
             </div>
-        </div>
-        <div class="row">
-            <div class="form-group col-md-6">
+       
+       
+            <div class="form-group col-md-4">
                 <label>حاله القسم</label>
                 <select class="form-control" name="active">
                     <option value="1" {{ $category->active? 'selected' : '' }}>فعال</option>
                     <option value="0" {{ !$category->active? 'selected' : '' }}>غير فعال</option>
                 </select>
             </div>
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-4">
                 <label>القسم الرئيسي</label>
                 <select class="form-control" name="parent_id">
                     @foreach (App\Category::all() as $cat)

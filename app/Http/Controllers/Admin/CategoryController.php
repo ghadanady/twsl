@@ -211,6 +211,23 @@ class CategoryController extends Controller
         $category->parent_id = $request->parent_id;
         $category->name = $request->name;
 
+        // validate if there's an image remove the old one and  save the new one.
+        $destination = storage_path('uploads/images/category');
+        if($request->avatar){
+
+            $avatar = microtime(time()) . "_" . $request->avatar->getClientOriginalName();
+
+            if($category->image){
+                @unlink("{$destination}/{$user->image->name}");
+            }
+
+            $category->image()->updateOrCreate([],[
+                'name' => $avatar
+            ]);
+
+            $request->avatar->move($destination,$avatar);
+        }
+
         if($category->save()){
             return [
                 'status' => 'success',
@@ -348,8 +365,27 @@ class CategoryController extends Controller
         $category->active = $request->active;
         $category->parent_id = $request->parent_id;
 
+
+
         if($category->save()){
 
+
+        $destination = storage_path('uploads/images/category');
+        
+        if($request->avatar){
+
+            $avatar = microtime(time()) . "_" . $request->avatar->getClientOriginalName();
+
+            if($category->image){
+                @unlink("{$destination}/{$user->image->name}");
+            }
+
+            $category->image()->updateOrCreate([],[
+                'name' => $avatar
+            ]);
+
+            $request->avatar->move($destination,$avatar);
+        }
             return [
                 'status' => 'success',
                 'title' => 'نجاح',

@@ -65,8 +65,9 @@ class AuthController extends Controller
 
     public function getLogout(){
         auth()->guard('members')->logout();
-
-        return redirect('/login')->with('info',trans('admin_global.msg_success_logout'));
+        
+        return view('site.auth.index');
+       // return redirect('/login')->with('info',trans('admin_global.msg_success_logout'));
     }
 
     public function postRegister(Request $r){

@@ -6,7 +6,7 @@
 
 @section('title')
 
-    {{ trans('products.page_name') }}
+   عرض المنتجات 
 
 @endsection
 
@@ -20,7 +20,8 @@
 
             <div class="box-header with-border">
 
-                <h3 class="box-title">{{ trans('products.page_name') }}</h3>
+               
+
 
                 <div class="box-tools pull-left">
 
@@ -56,28 +57,28 @@
 
                                                 <input type="radio" name="options" class="btn-filter" data-filter="all" autocomplete="off" >
 
-                                                {{ trans('products.filter_all') }}
+                                                الكل
 
                                             </label>
                                             <label class="btn btn-sm btn-default" >
 
                                                 <input type="radio" name="options" class="btn-filter" data-filter="out_of_stock" autocomplete="off" >
 
-                                                {{ trans('products.filter_out_of_stock') }}
+                                               المنتهى   فى الكميه 
 
                                             </label>
                                             <label class="btn btn-sm btn-default" >
 
                                                 <input type="radio" name="options" class="btn-filter" data-filter="low_of_stock" autocomplete="off" >
 
-                                                {{ trans('products.filter_low_of_stock') }}
+                                          الشاحح فى الكميه  
 
                                             </label>
                                             <label class="btn btn-sm btn-default" >
 
                                                 <input type="radio" name="options" class="btn-filter" data-filter="in_stock" autocomplete="off" >
 
-                                                {{ trans('products.filter_in_stock') }}
+                                               المتوفر فى الكميى
 
                                             </label>
                                             <label class="btn btn-sm btn-default" title="Active Products">
@@ -86,7 +87,7 @@
 
                                                 <i class="fa fa-eye text-success"></i>
 
-                                                {{ trans('products.filter_active') }}
+                                              الفعال 
 
                                             </label>
 
@@ -95,8 +96,7 @@
                                                 <input type="radio" name="options" class="btn-filter" data-filter="rejected" autocomplete="off">
 
                                                 <i class="fa fa-eye-slash text-danger"></i>
-
-                                                {{ trans('products.filter_not_active') }}
+                                                الغير فعال
 
                                             </label>
 
@@ -106,7 +106,7 @@
 
                                                 <i class="fa fa-bell text-info "></i>
 
-                                                {{ trans('products.filter_today') }}
+                                                اليوم 
 
                                             </label>
 
