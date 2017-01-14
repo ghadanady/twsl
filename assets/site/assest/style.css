@@ -974,8 +974,8 @@ span.gray{
     margin-bottom: 20px;
 }
 .s-cmera img{
-    width: 100%;
-    height: auto;
+    width: 200px;
+    height: 150px;
     display: block;
     border: 1px #bdc2bd solid;
 }
@@ -983,8 +983,8 @@ span.gray{
     padding: 10px;
 }
 .larg-img img{
-    width: 100%;
-    height: auto;
+    width: 367px;
+    height: 311px;
     display: block;
     border: 1px #e0e0e0 solid;
 }
@@ -992,11 +992,11 @@ span.gray{
     padding: 5px;
 }
 .sma-img img{
-    width: 100%;
+    width: 100px;
     height: auto;
     display: block;
     border: 1px #e0e0e0 solid;
-    cursor: pointer;
+    /*cursor: pointer;*/
 }
 .big-images{
     margin-bottom: 30px;
@@ -1103,6 +1103,11 @@ span.gray{
     padding-top: 15px;
     padding-bottom: 15px;
     border-bottom: 1px #bdc2bd solid;
+}
+.comment-it_last{
+    padding-top: 15px;
+    padding-bottom: 15px;
+    
 }
 .comment-hed{
     padding: 10px 0px;

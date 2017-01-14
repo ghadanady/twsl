@@ -26,109 +26,31 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-12">
-                <ul class="up-menu">
-                    <li class="up-menu-item">
-                        <a href="" >
-                            الرئيسية
-                        </a>
-                    </li>
-                    <li class="up-menu-item">
-                        <a href="" >
-                            قائمة رئيسية
-                        </a>
-                    </li>
-                    <li class="up-menu-item">
-                        <a href="">
-                            قائمة رئيسية
-                        </a>
-                    </li>
-                    <li class="up-menu-item">
-                        <a href="http://google.com" >
-                            drop down
-                            <i class="fa fa-angle-down"></i>
-                        </a>
-                        <ul class="up-menu-child">
-                            <li>
-                                <a href="">
-                                    قائمة فرعية
+
+                @if(count($categories)>0)
+                    <ul class="up-menu">
+                        @foreach($categories as $c)
+                            <li class="up-menu-item">
+
+                                <a href="{{url('category/'.$c['cat']->id)}}" >
+                                    {{$c['cat']->name}}
+                                    <i class="fa fa-angle-down"></i>
                                 </a>
+                                @if(count($c['sub'])>0)
+                                    <ul class="up-menu-child">
+                                        @foreach($c['sub'] as $sub)
+                                            <li>
+                                                <a href="{{url('category/'.$sub->id)}}">
+                                                    {{$sub['name']}}
+                                                </a>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                @endif
                             </li>
-                            <li>
-                                <a href="">
-                                    قائمة فرعية
-                                </a>
-                            </li>
-                            <li>
-                                <a href="">
-                                    قائمة فرعية
-                                </a>
-                            </li>
-                            <li>
-                                <a href="">
-                                    قائمة فرعية
-                                </a>
-                            </li>
-                            <li>
-                                <a href="">
-                                    قائمة فرعية
-                                </a>
-                            </li>
-                            <li>
-                                <a href="">
-                                    قائمة فرعية
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="up-menu-item">
-                        <a href="" >
-                            قائمة رئيسية
-                            <i class="fa fa-angle-down"></i>
-                        </a>
-                        <ul class="up-menu-child">
-                            <li>
-                                <a href="">
-                                    قائمة فرعية
-                                </a>
-                            </li>
-                            <li>
-                                <a href="">
-                                    قائمة فرعية
-                                </a>
-                            </li>
-                            <li>
-                                <a href="">
-                                    قائمة فرعية
-                                </a>
-                            </li>
-                            <li>
-                                <a href="">
-                                    قائمة فرعية
-                                </a>
-                            </li>
-                            <li>
-                                <a href="">
-                                    قائمة فرعية
-                                </a>
-                            </li>
-                            <li>
-                                <a href="">
-                                    قائمة فرعية
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="up-menu-item">
-                        <a href="" >
-                            قائمة رئيسية
-                        </a>
-                    </li>
-                    <li class="up-menu-item">
-                        <a href="" >
-                            قائمة رئيسية
-                        </a>
-                    </li>
-                </ul>
+                        @endforeach
+                    </ul>
+                @endif
             </div>
         </div>
     </div>

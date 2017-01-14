@@ -1,7 +1,7 @@
 @extends('site.layouts.base.master')
 
 @section('title')
-
+{{$category->name}}
 @endsection
 @section('content')
 <div class="inner-container">
@@ -11,12 +11,14 @@
 
 
         <div class="sec-img">
-            <img src="{{ asset('assets/site/imgs/sec-img.png') }}" alt="sec" />
+            <img src="{{url('storage/uploads/images/category')}}/{{$category->img}}" alt="sec" />
         </div>
         <div class="sec-des">
-            <h2>إلكترونيات</h2>
+            <h2>{{$category->name}}</h2>
+            @if($category->parent_id==0)
             <span>القسم يحتوى على أقسام فرعية </span>
             <span>يمكنكم تصفح كل قسم على حدا</span>
+            @endif
         </div>
 
         <div class="hr-row">
@@ -51,13 +53,32 @@
 
         <div class="products-cc">
             <div class="row">
+            @if(count($products)>0)
+            @foreach($products as $p)
+            
                 <div class="col-xs-12 col-md-6 col-lg-4">
+                
                     <div class="prod-item">
-                        <span class="price">
-                                    455 <br /> ريال
-                                </span>
-                        <img src="{{ asset('assets/site/imgs/mob.png') }}" alt="mob" />
-                        <h2 class="prod-title"> إسم المنتج سوف يظهر هنا تفصيلياً </h2>
+                    @if($p['discount']!=0)
+                       <span class="price">
+                            {{$p['discount']}} <br /> ريال
+                        </span>
+                    @endif
+
+                   @if(count($p->getImages())>0)
+                        <img src="{{url('storage/uploads/images/category/p_default.png')}}" alt="c" />
+                   @else
+                       @foreach ($p->getImages() as $img)
+                         <img src="{{$img->url()}}" alt="mob" />
+                        @endforeach
+                    @endif
+
+
+                        <a href="{{url('product/'.$p['id'])}}">    
+                        <h2 class="prod-title">
+                         {{$p['name']}}
+                        </h2>
+                       </a>
                         <div class="rating">
                             <span class="gold"> <i class="fa fa-star"></i> </span>
                             <span class="gold"> <i class="fa fa-star"></i> </span>
@@ -70,259 +91,33 @@
                             <button type="button" class="add-cart"> <i class="fa fa-television"></i></button>
                         </div>
                     </div>
+                   
                 </div>
+
+            @endforeach
+
+                 <div class="hr-row">
+            <div class="hr-right">
+                
+                {{$products->links()}}
+            </div>
+          
+
+        </div>
+            @else
+            <div class='alert alert-info'> لايوجد منتجات بهذا التصنيف</div>
+            @endif
                 <!-- // -->
-                <div class="col-xs-12 col-md-6 col-lg-4">
-                    <div class="prod-item">
-                        <span class="price">
-                                    455 <br /> ريال
-                                </span>
-                        <img src="{{ asset('assets/site/imgs/mob.png') }}" alt="mob" />
-                        <h2 class="prod-title"> إسم المنتج سوف يظهر هنا تفصيلياً </h2>
-                        <div class="rating">
-                            <span class="gold"> <i class="fa fa-star"></i> </span>
-                            <span class="gold"> <i class="fa fa-star"></i> </span>
-                            <span class="gold"> <i class="fa fa-star"></i> </span>
-                            <span class="gold"> <i class="fa fa-star"></i> </span>
-                            <span class="gray"> <i class="fa fa-star"></i> </span>
-                        </div>
-                        <div class="prod-buts">
-                            <button type="button" class="add-cart"> <i class="fa fa-shopping-cart"></i> أضف إلى السلة </button>
-                            <button type="button" class="add-cart"> <i class="fa fa-television"></i></button>
-                        </div>
-                    </div>
-                </div>
-                <!-- // -->
-                <div class="col-xs-12 col-md-6 col-lg-4">
-                    <div class="prod-item">
-                        <span class="price">
-                                    455 <br /> ريال
-                                </span>
-                        <img src="{{ asset('assets/site/imgs/mob.png') }}" alt="mob" />
-                        <h2 class="prod-title"> إسم المنتج سوف يظهر هنا تفصيلياً </h2>
-                        <div class="rating">
-                            <span class="gold"> <i class="fa fa-star"></i> </span>
-                            <span class="gold"> <i class="fa fa-star"></i> </span>
-                            <span class="gold"> <i class="fa fa-star"></i> </span>
-                            <span class="gold"> <i class="fa fa-star"></i> </span>
-                            <span class="gray"> <i class="fa fa-star"></i> </span>
-                        </div>
-                        <div class="prod-buts">
-                            <button type="button" class="add-cart"> <i class="fa fa-shopping-cart"></i> أضف إلى السلة </button>
-                            <button type="button" class="add-cart"> <i class="fa fa-television"></i></button>
-                        </div>
-                    </div>
-                </div>
-                <!-- // -->
-                <div class="col-xs-12 col-md-6 col-lg-4">
-                    <div class="prod-item">
-                        <span class="price">
-                                    455 <br /> ريال
-                                </span>
-                        <img src="{{ asset('assets/site/imgs/mob.png') }}" alt="mob" />
-                        <h2 class="prod-title"> إسم المنتج سوف يظهر هنا تفصيلياً </h2>
-                        <div class="rating">
-                            <span class="gold"> <i class="fa fa-star"></i> </span>
-                            <span class="gold"> <i class="fa fa-star"></i> </span>
-                            <span class="gold"> <i class="fa fa-star"></i> </span>
-                            <span class="gold"> <i class="fa fa-star"></i> </span>
-                            <span class="gray"> <i class="fa fa-star"></i> </span>
-                        </div>
-                        <div class="prod-buts">
-                            <button type="button" class="add-cart"> <i class="fa fa-shopping-cart"></i> أضف إلى السلة </button>
-                            <button type="button" class="add-cart"> <i class="fa fa-television"></i></button>
-                        </div>
-                    </div>
-                </div>
-                <!-- // -->
-                <div class="col-xs-12 col-md-6 col-lg-4">
-                    <div class="prod-item">
-                        <span class="price">
-                                    455 <br /> ريال
-                                </span>
-                        <img src="{{ asset('assets/site/imgs/mob.png') }}" alt="mob" />
-                        <h2 class="prod-title"> إسم المنتج سوف يظهر هنا تفصيلياً </h2>
-                        <div class="rating">
-                            <span class="gold"> <i class="fa fa-star"></i> </span>
-                            <span class="gold"> <i class="fa fa-star"></i> </span>
-                            <span class="gold"> <i class="fa fa-star"></i> </span>
-                            <span class="gold"> <i class="fa fa-star"></i> </span>
-                            <span class="gray"> <i class="fa fa-star"></i> </span>
-                        </div>
-                        <div class="prod-buts">
-                            <button type="button" class="add-cart"> <i class="fa fa-shopping-cart"></i> أضف إلى السلة </button>
-                            <button type="button" class="add-cart"> <i class="fa fa-television"></i></button>
-                        </div>
-                    </div>
-                </div>
-                <!-- // -->
-                <div class="col-xs-12 col-md-6 col-lg-4">
-                    <div class="prod-item">
-                        <span class="price">
-                                    455 <br /> ريال
-                                </span>
-                        <img src="{{ asset('assets/site/imgs/mob.png') }}" alt="mob" />
-                        <h2 class="prod-title"> إسم المنتج سوف يظهر هنا تفصيلياً </h2>
-                        <div class="rating">
-                            <span class="gold"> <i class="fa fa-star"></i> </span>
-                            <span class="gold"> <i class="fa fa-star"></i> </span>
-                            <span class="gold"> <i class="fa fa-star"></i> </span>
-                            <span class="gold"> <i class="fa fa-star"></i> </span>
-                            <span class="gray"> <i class="fa fa-star"></i> </span>
-                        </div>
-                        <div class="prod-buts">
-                            <button type="button" class="add-cart"> <i class="fa fa-shopping-cart"></i> أضف إلى السلة </button>
-                            <button type="button" class="add-cart"> <i class="fa fa-television"></i></button>
-                        </div>
-                    </div>
-                </div>
-                <!-- // -->
-                <div class="col-xs-12 col-md-6 col-lg-4">
-                    <div class="prod-item">
-                        <span class="price">
-                                    455 <br /> ريال
-                                </span>
-                        <img src="{{ asset('assets/site/imgs/mob.png') }}" alt="mob" />
-                        <h2 class="prod-title"> إسم المنتج سوف يظهر هنا تفصيلياً </h2>
-                        <div class="rating">
-                            <span class="gold"> <i class="fa fa-star"></i> </span>
-                            <span class="gold"> <i class="fa fa-star"></i> </span>
-                            <span class="gold"> <i class="fa fa-star"></i> </span>
-                            <span class="gold"> <i class="fa fa-star"></i> </span>
-                            <span class="gray"> <i class="fa fa-star"></i> </span>
-                        </div>
-                        <div class="prod-buts">
-                            <button type="button" class="add-cart"> <i class="fa fa-shopping-cart"></i> أضف إلى السلة </button>
-                            <button type="button" class="add-cart"> <i class="fa fa-television"></i></button>
-                        </div>
-                    </div>
-                </div>
-                <!-- // -->
-                <div class="col-xs-12 col-md-6 col-lg-4">
-                    <div class="prod-item">
-                        <span class="price">
-                                    455 <br /> ريال
-                                </span>
-                        <img src="{{ asset('assets/site/imgs/mob.png') }}" alt="mob" />
-                        <h2 class="prod-title"> إسم المنتج سوف يظهر هنا تفصيلياً </h2>
-                        <div class="rating">
-                            <span class="gold"> <i class="fa fa-star"></i> </span>
-                            <span class="gold"> <i class="fa fa-star"></i> </span>
-                            <span class="gold"> <i class="fa fa-star"></i> </span>
-                            <span class="gold"> <i class="fa fa-star"></i> </span>
-                            <span class="gray"> <i class="fa fa-star"></i> </span>
-                        </div>
-                        <div class="prod-buts">
-                            <button type="button" class="add-cart"> <i class="fa fa-shopping-cart"></i> أضف إلى السلة </button>
-                            <button type="button" class="add-cart"> <i class="fa fa-television"></i></button>
-                        </div>
-                    </div>
-                </div>
-                <!-- // -->
-                <div class="col-xs-12 col-md-6 col-lg-4">
-                    <div class="prod-item">
-                        <span class="price">
-                                    455 <br /> ريال
-                                </span>
-                        <img src="{{ asset('assets/site/imgs/mob.png') }}" alt="mob" />
-                        <h2 class="prod-title"> إسم المنتج سوف يظهر هنا تفصيلياً </h2>
-                        <div class="rating">
-                            <span class="gold"> <i class="fa fa-star"></i> </span>
-                            <span class="gold"> <i class="fa fa-star"></i> </span>
-                            <span class="gold"> <i class="fa fa-star"></i> </span>
-                            <span class="gold"> <i class="fa fa-star"></i> </span>
-                            <span class="gray"> <i class="fa fa-star"></i> </span>
-                        </div>
-                        <div class="prod-buts">
-                            <button type="button" class="add-cart"> <i class="fa fa-shopping-cart"></i> أضف إلى السلة </button>
-                            <button type="button" class="add-cart"> <i class="fa fa-television"></i></button>
-                        </div>
-                    </div>
-                </div>
-                <!-- // -->
-                <div class="col-xs-12 col-md-6 col-lg-4">
-                    <div class="prod-item">
-                        <span class="price">
-                                    455 <br /> ريال
-                                </span>
-                        <img src="{{ asset('assets/site/imgs/mob.png') }}" alt="mob" />
-                        <h2 class="prod-title"> إسم المنتج سوف يظهر هنا تفصيلياً </h2>
-                        <div class="rating">
-                            <span class="gold"> <i class="fa fa-star"></i> </span>
-                            <span class="gold"> <i class="fa fa-star"></i> </span>
-                            <span class="gold"> <i class="fa fa-star"></i> </span>
-                            <span class="gold"> <i class="fa fa-star"></i> </span>
-                            <span class="gray"> <i class="fa fa-star"></i> </span>
-                        </div>
-                        <div class="prod-buts">
-                            <button type="button" class="add-cart"> <i class="fa fa-shopping-cart"></i> أضف إلى السلة </button>
-                            <button type="button" class="add-cart"> <i class="fa fa-television"></i></button>
-                        </div>
-                    </div>
-                </div>
-                <!-- // -->
-                <div class="col-xs-12 col-md-6 col-lg-4">
-                    <div class="prod-item">
-                        <span class="price">
-                                    455 <br /> ريال
-                                </span>
-                        <img src="{{ asset('assets/site/imgs/mob.png') }}" alt="mob" />
-                        <h2 class="prod-title"> إسم المنتج سوف يظهر هنا تفصيلياً </h2>
-                        <div class="rating">
-                            <span class="gold"> <i class="fa fa-star"></i> </span>
-                            <span class="gold"> <i class="fa fa-star"></i> </span>
-                            <span class="gold"> <i class="fa fa-star"></i> </span>
-                            <span class="gold"> <i class="fa fa-star"></i> </span>
-                            <span class="gray"> <i class="fa fa-star"></i> </span>
-                        </div>
-                        <div class="prod-buts">
-                            <button type="button" class="add-cart"> <i class="fa fa-shopping-cart"></i> أضف إلى السلة </button>
-                            <button type="button" class="add-cart"> <i class="fa fa-television"></i></button>
-                        </div>
-                    </div>
-                </div>
-                <!-- // -->
-                <div class="col-xs-12 col-md-6 col-lg-4">
-                    <div class="prod-item">
-                        <span class="price">
-                                    455 <br /> ريال
-                                </span>
-                        <img src="{{ asset('assets/site/imgs/mob.png') }}" alt="mob" />
-                        <h2 class="prod-title"> إسم المنتج سوف يظهر هنا تفصيلياً </h2>
-                        <div class="rating">
-                            <span class="gold"> <i class="fa fa-star"></i> </span>
-                            <span class="gold"> <i class="fa fa-star"></i> </span>
-                            <span class="gold"> <i class="fa fa-star"></i> </span>
-                            <span class="gold"> <i class="fa fa-star"></i> </span>
-                            <span class="gray"> <i class="fa fa-star"></i> </span>
-                        </div>
-                        <div class="prod-buts">
-                            <button type="button" class="add-cart"> <i class="fa fa-shopping-cart"></i> أضف إلى السلة </button>
-                            <button type="button" class="add-cart"> <i class="fa fa-television"></i></button>
-                        </div>
-                    </div>
-                </div>
-                <!-- // -->
+               
+
+              
+
+         
+
             </div>
         </div>
 
-        <div class="hr-row">
-            <div class="hr-right">
-                <div class="pagnation">
-                    <a href="#"><i class="fa fa-angle-right"></i></a>
-                    <a href="#">1</a>
-                    <a href="#" class="active">2</a>
-                    <a href="#">3</a>
-                    <a href="#">4</a>
-                    <a href="#"><i class="fa fa-angle-left"></i></a>
-                </div>
-            </div>
-            <div class="hr-left">
-                <div class="left-text">
-                    الصفحات من 1 : 20
-                </div>
-            </div>
-        </div>
+
         <!-- row -->
 
 
@@ -334,39 +129,24 @@
 
             <h2>السعر</h2>
             <div class="slider"></div>
+            @if($category->parent_id==0)
+            <h2>الاقسام الفرعيه </h2>
+            @else
+             <h2>اقسام مشابهه </h2>
+            @endif
 
-            <h2>التصنيفات</h2>
             <ul class="cats">
+                
+
+               
+               @foreach($sub_categories  as $sub)
                 <li>
-                    <a href="#"> <i class="fa fa-angle-double-left"></i> عنوان القسم الفرعي ( <span>0000</span> ) </a>
+                    <a href="{{url('category/'.$sub['id'])}}""> <i class="fa fa-angle-double-left"></i> 
+                    {{$sub['name']}}
+                     ( <span>0000</span> ) </a>
+                    
                 </li>
-                <li>
-                    <a href="#"> <i class="fa fa-angle-double-left"></i> عنوان القسم الفرعي ( <span>0000</span> ) </a>
-                </li>
-                <li>
-                    <a href="#"> <i class="fa fa-angle-double-left"></i> عنوان القسم الفرعي ( <span>0000</span> ) </a>
-                </li>
-                <li>
-                    <a href="#"> <i class="fa fa-angle-double-left"></i> عنوان القسم الفرعي ( <span>0000</span> ) </a>
-                </li>
-                <li>
-                    <a href="#"> <i class="fa fa-angle-double-left"></i> عنوان القسم الفرعي ( <span>0000</span> ) </a>
-                </li>
-                <li>
-                    <a href="#"> <i class="fa fa-angle-double-left"></i> عنوان القسم الفرعي ( <span>0000</span> ) </a>
-                </li>
-                <li>
-                    <a href="#"> <i class="fa fa-angle-double-left"></i> عنوان القسم الفرعي ( <span>0000</span> ) </a>
-                </li>
-                <li>
-                    <a href="#"> <i class="fa fa-angle-double-left"></i> عنوان القسم الفرعي ( <span>0000</span> ) </a>
-                </li>
-                <li>
-                    <a href="#"> <i class="fa fa-angle-double-left"></i> عنوان القسم الفرعي ( <span>0000</span> ) </a>
-                </li>
-                <li>
-                    <a href="#"> <i class="fa fa-angle-double-left"></i> عنوان القسم الفرعي ( <span>0000</span> ) </a>
-                </li>
+                @endforeach
             </ul>
 
 
@@ -390,24 +170,7 @@
                 <li>
                     <a href="#"> <i class="fa fa-angle-double-left"></i> لون <span>1</span> </a>
                 </li>
-                <li>
-                    <a href="#"> <i class="fa fa-angle-double-left"></i> لون <span>1</span> </a>
-                </li>
-                <li>
-                    <a href="#"> <i class="fa fa-angle-double-left"></i> لون <span>1</span> </a>
-                </li>
-                <li>
-                    <a href="#"> <i class="fa fa-angle-double-left"></i> لون <span>1</span> </a>
-                </li>
-                <li>
-                    <a href="#"> <i class="fa fa-angle-double-left"></i> لون <span>1</span> </a>
-                </li>
-                <li>
-                    <a href="#"> <i class="fa fa-angle-double-left"></i> لون <span>1</span> </a>
-                </li>
-                <li>
-                    <a href="#"> <i class="fa fa-angle-double-left"></i> لون <span>1</span> </a>
-                </li>
+               
             </ul>
 
 
@@ -420,33 +183,8 @@
                 <li>
                     <a href="#"> <i class="fa fa-angle-double-left"></i> الشركة المصنعة <span>1</span> </a>
                 </li>
-                <li>
-                    <a href="#"> <i class="fa fa-angle-double-left"></i> الشركة المصنعة <span>1</span> </a>
-                </li>
-                <li>
-                    <a href="#"> <i class="fa fa-angle-double-left"></i> الشركة المصنعة <span>1</span> </a>
-                </li>
-                <li>
-                    <a href="#"> <i class="fa fa-angle-double-left"></i> الشركة المصنعة <span>1</span> </a>
-                </li>
-                <li>
-                    <a href="#"> <i class="fa fa-angle-double-left"></i> الشركة المصنعة <span>1</span> </a>
-                </li>
-                <li>
-                    <a href="#"> <i class="fa fa-angle-double-left"></i> الشركة المصنعة <span>1</span> </a>
-                </li>
-                <li>
-                    <a href="#"> <i class="fa fa-angle-double-left"></i> الشركة المصنعة <span>1</span> </a>
-                </li>
-                <li>
-                    <a href="#"> <i class="fa fa-angle-double-left"></i> الشركة المصنعة <span>1</span> </a>
-                </li>
-                <li>
-                    <a href="#"> <i class="fa fa-angle-double-left"></i> الشركة المصنعة <span>1</span> </a>
-                </li>
-                <li>
-                    <a href="#"> <i class="fa fa-angle-double-left"></i> الشركة المصنعة <span>1</span> </a>
-                </li>
+                
+
             </ul>
 
 
@@ -467,58 +205,6 @@
 </div>
 
 <div class="small-imgs">
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="owl-carousel carousel1">
-                    <div class="s-cmera">
-                        <img src="{{ asset('assets/site/imgs/camera.png') }}" alt="c" />
-                    </div>
-                    <div class="s-cmera">
-                        <img src="{{ asset('assets/site/imgs/camera.png') }}" alt="c" />
-                    </div>
-                    <div class="s-cmera">
-                        <img src="{{ asset('assets/site/imgs/camera.png') }}" alt="c" />
-                    </div>
-                    <div class="s-cmera">
-                        <img src="{{ asset('assets/site/imgs/camera.png') }}" alt="c" />
-                    </div>
-                    <div class="s-cmera">
-                        <img src="{{ asset('assets/site/imgs/camera.png') }}" alt="c" />
-                    </div>
-                    <div class="s-cmera">
-                        <img src="{{ asset('assets/site/imgs/camera.png') }}" alt="c" />
-                    </div>
-                    <div class="s-cmera">
-                        <img src="{{ asset('assets/site/imgs/camera.png') }}" alt="c" />
-                    </div>
-                    <div class="s-cmera">
-                        <img src="{{ asset('assets/site/imgs/camera.png') }}" alt="c" />
-                    </div>
-                    <div class="s-cmera">
-                        <img src="{{ asset('assets/site/imgs/camera.png') }}" alt="c" />
-                    </div>
-                    <div class="s-cmera">
-                        <img src="{{ asset('assets/site/imgs/camera.png') }}" alt="c" />
-                    </div>
-                    <div class="s-cmera">
-                        <img src="{{ asset('assets/site/imgs/camera.png') }}" alt="c" />
-                    </div>
-                    <div class="s-cmera">
-                        <img src="{{ asset('assets/site/imgs/camera.png') }}" alt="c" />
-                    </div>
-                    <div class="s-cmera">
-                        <img src="{{ asset('assets/site/imgs/camera.png') }}" alt="c" />
-                    </div>
-                    <div class="s-cmera">
-                        <img src="{{ asset('assets/site/imgs/camera.png') }}" alt="c" />
-                    </div>
-                    <div class="s-cmera">
-                        <img src="{{ asset('assets/site/imgs/camera.png') }}" alt="c" />
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+     @include('site.layouts.partials.tradmark')
 </div>
 @endsection

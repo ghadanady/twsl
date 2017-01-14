@@ -9,65 +9,88 @@
             <div class="row">
 
                 <div class="col-xs-12">
-                    <h2 class="headline2"> إضافة تعليق </h2>
-                    <div class="notic">
-                        مرحباً أنت لم تقم بتسجيل الدخول يمكنك
-                        <a href="#">الدخول </a>
-                        او
-                        <a href="#">تسجيل عضوية جديدة</a>
-                    </div>
+                   
+                    @if(isset($errors) && count($errors) > 0)
+                        <div class="alert alert-danger alert-dismissable">
+                            <button class="close" data-dismiss="alert" area-hidden="true">&times;</button>
+                            <ul>
+                                @foreach($errors->all() as $error)
+                                    <li>
+                                        {!!$error!!}
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
+                    @if(session()->has('success'))
+                    @foreach(session()->pull('success') as $msg)
+                       <div class="alert alert-success">
+                        
+                           {!!$msg!!}
+                     </div>
+                    @endforeach
+                       
+                    @endif
 
                 </div>
 
                 <div class="col-xs-12 col-md-9 col-lg-9">
                     <h2 class="headline2"> التسجيل </h2>
-                    <div class="forms">
-                        <form action="" method="post">
+                    <div class="forms"  >
+                        <form  action="{{url('auth/register')}}" method="post">
+                        {{ csrf_field() }}
                             <div class="row">
                                 <div class="col-xs-12 col-md-6">
                                     <div class="row-form req">
-                                        <input type="text" class="full-form" placeholder="الإسم الأول" />
+                                        <input  name="f_name" type="text" class="full-form" placeholder="الإسم الأول" />
                                     </div>
                                     <div class="row-form">
-                                        <input type="text" class="full-form" placeholder="الوظيفة" />
+                                        <input name="job" type="text" class="full-form" placeholder="الوظيفة" />
                                     </div>
-                                    <div class="row-form req">
-                                        <input type="text" class="full-form" placeholder="الجوال" />
+                                     <div class="row-form req">
+                                        <input type="password" name="password" class="full-form" placeholder="كلمة المرور" />
                                     </div>
+                                    
                                 </div>
                                 <div class="col-xs-12 col-md-6">
                                     <div class="row-form req">
-                                        <input type="text" class="full-form" placeholder="الإسم الأخير" />
+                                        <input type="text" name="l_name" class="" placeholder="الإسم الأخير" />
                                     </div>
                                     <div class="row-form req">
-                                        <input type="text" class="full-form" placeholder="البريد الإلكتروني" />
+                                        <input type="email" name="email" class="full-form" placeholder="البريد الإلكتروني" />
                                     </div>
                                     <div class="row-form req">
-                                        <input type="text" class="full-form" placeholder="كلمة المرور" />
+                                        <input type="password" name="cpassword" class="full-form" 
+                                        placeholder=" تأكيد كلمة المرور" />
                                     </div>
                                 </div>
                             </div>
-
+@if(count($countries)>0)
                             <div class="row-form req">
                                 <span>البلد</span>
                                 <select name="" class="full-form">
-                                    <option value="">السعودية</option>
-                                    <option value="">السعودية</option>
-                                    <option value="">السعودية</option>
-                                    <option value="">السعودية</option>
-                                    <option value="">السعودية</option>
-                                    <option value="">السعودية</option>
+                                <option value="">اختر الدوله </option>
+                                @foreach($countries as $c)
+                                    
+                                    <option value="{{$c->code}}">{{$c->name}}</option>
+                                    
+                                @endforeach
                                 </select>
                             </div>
+@endif
                             <div class="row-form req">
-                                <input type="text" class="full-form" placeholder="المدينة" />
+                                <input type="text" name="phone" class="full-form" placeholder="الجوال" />
                             </div>
                             <div class="row-form req">
-                                <input type="text" class="full-form" placeholder="العنوان" />
+                                <input type="text" name="city" class="full-form" placeholder="المدينة" />
+                            </div>
+                            <div class="row-form req">
+                                <input type="text" name="address" class="full-form" placeholder="العنوان" />
                             </div>
                             <div class="row-form">
                                 <label>
-                                    <input type="checkbox" name="" />
+                                    <input type="checkbox" name="agree" />
                                     <span>أوافق على الشروط والأحكام</span>
                                 </label>
                             </div>
@@ -82,16 +105,17 @@
                 <div class="col-xs-12 col-md-6 col-lg-3">
                     <h2 class="headline2"> الدخول </h2>
                     <div class="forms">
-                        <form action="" method="post">
+                        <form  action="{{url('auth/login')}}" method="post">
+                        {{ csrf_field() }}
                             <div class="row-form">
-                                <input type="text" class="full-form" placeholder="إسم المستخدم" />
+                                <input type="email"  name="email" class="full-form" placeholder=" ادخل البريد الالكترونى " />
                             </div>
                             <div class="row-form">
-                                <input type="password" class="full-form" placeholder="كلمة المرور" />
+                                <input type="password"  name="password" class="full-form" placeholder="كلمة المرور" />
                             </div>
                             <div class="row-form">
                                 <label>
-                                    <input type="checkbox" name="" />
+                                    <input type="checkbox" name="remmeber" />
                                     <span>تذكرني</span>
                                 </label>
                             </div>
@@ -107,7 +131,7 @@
 
     <hr />
 
-    <div class="orders">
+         <!--<div class="orders">
         <div class="container">
             <div class="row">
                 <div class="col-xs-12">
@@ -158,63 +182,10 @@
                         </div>
                     </div>
                 </div>
-
+ -->
 
 
                 <div class="small-imgs">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <h2 class="headline2"> الماركات التجارية </h2>
-                                <div class="owl-carousel carousel1">
-                                    <div class="s-cmera">
-                                        <img src="{{ asset('assets/site/imgs/camera.png') }}" alt="c" />
-                                    </div>
-                                    <div class="s-cmera">
-                                        <img src="{{ asset('assets/site/imgs/camera.png') }}" alt="c" />
-                                    </div>
-                                    <div class="s-cmera">
-                                        <img src="{{ asset('assets/site/imgs/camera.png') }}" alt="c" />
-                                    </div>
-                                    <div class="s-cmera">
-                                        <img src="{{ asset('assets/site/imgs/camera.png') }}" alt="c" />
-                                    </div>
-                                    <div class="s-cmera">
-                                        <img src="{{ asset('assets/site/imgs/camera.png') }}" alt="c" />
-                                    </div>
-                                    <div class="s-cmera">
-                                        <img src="{{ asset('assets/site/imgs/camera.png') }}" alt="c" />
-                                    </div>
-                                    <div class="s-cmera">
-                                        <img src="{{ asset('assets/site/imgs/camera.png') }}" alt="c" />
-                                    </div>
-                                    <div class="s-cmera">
-                                        <img src="{{ asset('assets/site/imgs/camera.png') }}" alt="c" />
-                                    </div>
-                                    <div class="s-cmera">
-                                        <img src="{{ asset('assets/site/imgs/camera.png') }}" alt="c" />
-                                    </div>
-                                    <div class="s-cmera">
-                                        <img src="{{ asset('assets/site/imgs/camera.png') }}" alt="c" />
-                                    </div>
-                                    <div class="s-cmera">
-                                        <img src="{{ asset('assets/site/imgs/camera.png') }}" alt="c" />
-                                    </div>
-                                    <div class="s-cmera">
-                                        <img src="{{ asset('assets/site/imgs/camera.png') }}" alt="c" />
-                                    </div>
-                                    <div class="s-cmera">
-                                        <img src="{{ asset('assets/site/imgs/camera.png') }}" alt="c" />
-                                    </div>
-                                    <div class="s-cmera">
-                                        <img src="{{ asset('assets/site/imgs/camera.png') }}" alt="c" />
-                                    </div>
-                                    <div class="s-cmera">
-                                        <img src="{{ asset('assets/site/imgs/camera.png') }}" alt="c" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                 @include('site.layouts.partials.tradmark')
                 </div>
 @endsection

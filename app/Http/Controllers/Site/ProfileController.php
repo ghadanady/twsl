@@ -22,17 +22,12 @@ class ProfileController extends Controller
 
         $v = validator($r->all(), [
             "f_name" => 'required|min:2',
-            "l_name" => 'required|min:2',
-            "email" => 'required|email|unique:members,email,'.auth()->guard('members')->user()->id,
-            "address" => 'required|min:2',
-            "image" => 'image|mimes:png,gif,jpg,jpeg|max:20000',
-
 
         ]);
 
         // if the validation has been failed return the error msgs
-        if ($v->fails()) {
-            return ['status' => 'error', 'msg' => implode(PHP_EOL, $v->errors()->all())];
+       if ($v->fails()) {
+             return redirect()->back()->withErrors(['خطأ', implode('<br>', $v->errors()->all())]);
         }
 
         $member = Auth()->guard('members')->user();
@@ -45,7 +40,11 @@ class ProfileController extends Controller
             $member->facebook = $r->facebook;
             $member->twitter = $r->twitter;
             $member->google = $r->google;
-            $member->information = $r->information;
+            $member->skype = $r->skype;
+            $member->linked = $r->linked;
+            
+            
+
 
 
         // validate if there's an image remove the old one and  save the new one.
@@ -58,9 +57,11 @@ class ProfileController extends Controller
 
         // update the member data in the database.
         if ($member->save()) {
-            return ['status' => 'success', 'msg' => 'member updated successfully.'];
+            return redirect()->back()->withSuccess(['تم تعديل بيانت بنجاح ']);
         }
-        return ['status' => 'error', 'msg' => 'There\'re some errors, please try again later.'];
+
+        return redirect()->back()->withErrors(['خطأ', 'حدث خطأ تناء التعديل']);
+        
     }
 
 

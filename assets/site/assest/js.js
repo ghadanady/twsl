@@ -3,6 +3,18 @@
 'use strict';
 
 
+// ghada scripts
+//$(document).ready(function(){
+
+    if($('.comment-it').data('last')==1)
+    {
+      console.log("ffff");
+      $(this).css('border-bottom','0px');
+
+    }
+//});
+
+
     function fix(){
         if ($(window).width() < 991) {
             $('.main-box').removeAttr('style');
@@ -235,3 +247,5 @@ $(".slider")
 
 
 });
+
+
