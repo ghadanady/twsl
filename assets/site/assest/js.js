@@ -11,7 +11,7 @@
     jQuery(window).resize(function($) {
         fix();
     });
-    $(".up-menu > li:has(ul)").children('a').removeAttr("href").addClass('togg');
+    $(".up-menu > li:has(ul)").children('a').addClass('togg');
 
 
 jQuery(document).ready(function() {
@@ -64,15 +64,15 @@ jQuery(document).ready(function() {
     $(".open-menuxx").on('click', function (e) {
         $("ul.up-menu").slideToggle("fast", function () {});
     });
-    $('.togg').click(function () {
-        if ($(this).parent('li').hasClass('active')) {
-            $('.up-menu > li > ul').slideUp('fast');
-            $('.up-menu > li').removeClass('active');
+    $('.togg').parent('li').hover(function () {
+        if ($(this).hasClass('active')) {
+            $(this).find('ul').slideUp('fast');
+            $(this).removeClass('active');
         } else {
             $('.up-menu > li > ul').slideUp('fast');
             $('.up-menu > li').removeClass('active');
-            $(this).parent('li').addClass('active');
-            $(this).parent('li').children('ul').slideDown();
+            $(this).addClass('active');
+            $(this).children('ul').slideDown();
         }
     });
     $(document).click(function (event) {
