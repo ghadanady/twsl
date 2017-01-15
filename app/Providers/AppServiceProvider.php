@@ -36,7 +36,7 @@ class AppServiceProvider extends ServiceProvider
                 $categories[$key]['sub']=$sub;
             }
         }
-        
+
 
         $advs = Ad::get();
         $adsPostion=AdsPosition::get();
@@ -60,7 +60,7 @@ class AppServiceProvider extends ServiceProvider
             'adsPostion'=>$adsPostion,
             'trademark'=>$trademark,
             'countries'=>$countries,
-            
+
         ]);
 
         Validator::extend('greater_than', function($attribute, $value, $parameters, $validator) {
@@ -69,7 +69,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Validator::replacer('greater_than', function($message, $attribute, $rule, $parameters) {
-            return trans('validation.greater_than',['attribute' => $attribute, 'field' => $parameters[0]]);
+            return trans('validation.greater_than',['attribute' => $message, 'field' => $parameters[0]]);
         });
 
         Validator::extend('phone', function($attribute, $value, $parameters, $validator) {
@@ -77,7 +77,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Validator::replacer('phone', function($message, $attribute, $rule, $parameters) {
-            return trans('validation.phone',['attribute' => $attribute]);
+            return trans('validation.phone',['attribute' => $message]);
         });
 
         Validator::extend('password', function($attribute, $value, $parameters, $validator) {
@@ -85,7 +85,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Validator::replacer('password', function($message, $attribute, $rule, $parameters) {
-            return trans('validation.password',['attribute' => $attribute]);
+            return trans('validation.password',['attribute' => $message]);
         });
 
     }

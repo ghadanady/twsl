@@ -13,11 +13,9 @@ use App\Review;
 class ProductController extends Controller
 {
 
-    
-
     public function show($slug)
     {
-        
+
         $product =Product::where('slug' , $slug)->first();
         $product->img = $product->image ? $product->image->name : 'default.jpg';
         $comments=Comment::where('product_id',$product->id)->get();
@@ -45,13 +43,13 @@ class ProductController extends Controller
         ]);
         // return error msgs if validation is failed
         if($v->fails()){
-            
+
 
             //return redirect()->back()->with('m', implode('<br>', $v->errors()->all()));
             return redirect()->back()->withErrors(['خطأ', implode('<br>', $v->errors()->all())]);
         }
 
-    
+
         // instanciate new product and save its data
         $comment = new Comment;
         $comment->name = $r->name;
@@ -68,8 +66,8 @@ class ProductController extends Controller
 
       // return redirect()->back()->with('m',"حدث خطأ اثناء الاضافة");
       return redirect()->back()->withErrors(['خطأ', 'The Message']);
-        
-        
+
+
     }
 
  //    public function getCategory($slug , Request $request)

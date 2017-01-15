@@ -10,38 +10,29 @@ Route::group(['namespace' => 'Site'], function () {
     */
     Route::group(['prefix'=>'auth' , 'namespace' => 'Auth'],function(){
         Route::get('/','AuthController@getIndex')
-              ->name('site.auth.index');
+        ->name('site.auth.index');
         Route::post('login','AuthController@postLogin')
-             ->name('site.auth.login');
+        ->name('site.auth.login');
         Route::post('register', 'AuthController@postRegister')
-             ->name('site.auth.register');
+        ->name('site.auth.register');
         Route::get('social/{provider}', 'AuthController@redirectToProvider')
-             ->name('site.auth.social');
+        ->name('site.auth.social');
         Route::get('social/{provider}/callback', 'AuthController@handleProviderCallback');
         Route::get('logout', 'AuthController@getLogout')
-             ->name('site.auth.logout');
+        ->name('site.auth.logout');
         Route::get('forget-password','AuthController@getRecoverPassword')
-             ->name('site.auth.forget-password');
+        ->name('site.auth.forget-password');
     });
     Route::resource('category', 'CategoryController');
 
     Route::post('product/addComment', 'ProductController@postAddComment')->name('site.product.addComment');
 
     Route::resource('product', 'ProductController');
-    //Route::post('product/addComment', 'ProductController@postAddComment');
 
     /**
     *  Home routes
     */
     Route::get('/', 'HomeController@getIndex')->name('site.index');
-
-    /**
-    *  profile routes
-    */
-    Route::group(['prefix'=>'profile'],function(){
-        Route::get('/', 'ProfileController@getIndex')->name('site.profile.index');
-        Route::post('/edit', 'ProfileController@postProfile')->name('site.profile.edit');
-    });
 
     /**
     *  About routes
@@ -108,7 +99,13 @@ Route::group(['namespace' => 'Site'], function () {
 
 
     Route::group(['middleware' => 'auth.site'], function(){
-
+        /**
+        *  profile routes
+        */
+        Route::group(['prefix'=>'profile'],function(){
+            Route::get('/', 'ProfileController@getIndex')->name('site.profile.index');
+            Route::post('/edit', 'ProfileController@postProfile')->name('site.profile.edit');
+        });
 
     });
 

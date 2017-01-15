@@ -99,8 +99,11 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'phone' => [
+            'phone' => 'رقم الجوال ',
+        ],
+        'tel' => [
+            'phone' => 'رقم الجوال ',
         ],
     ],
 

@@ -7,7 +7,7 @@
                 <div class="col-md-12">
                     <div class="box box-default">
                         <div class="box-header with-border">
-                           
+
                             <div class="box-tools pull-left">
                                 <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
                                     <i class="fa fa-minus"></i>
@@ -68,18 +68,18 @@
                             <div class="row">
                                 <div class="form-group col-md-12">
                                     <label class="col-md-4">الاسم </label>
-                                    <input class="form-control" type="text" name="name" 
-                                    placeholder="اسم المنتج" 
+                                    <input class="form-control" type="text" name="name"
+                                    placeholder="اسم المنتج"
                                     value="{{ $product->name }}">
                                 </div>
-                               
+
 
                             </div>
                             <div class="row">
                                 <div class="form-group col-md-12">
                                     <label class="col-md-4">السعر </label>
                                     <input class="form-control" type="number" min="1" name="price"
-                                     placeholder="السعر " 
+                                     placeholder="السعر "
                                      value="{{ $product->price }}">
                                 </div>
                                 </div>
@@ -89,11 +89,11 @@
                                     <select name="category_id" class="form-control">
                                         <option value="">اختر القسم </option>
                                         @foreach ($categories['main'] as $category)
-                                         
+
 
                                             <optgroup label="{{ "$category->name" }}">
                                                 @foreach ($category->subCategories as $sub)
-                                                   
+
 
                                                     <option value="{{ $sub->id }}" {{ $sub->id === $product->category_id ? 'selected' : '' }}>{{ "$sub->name " }}</option>
                                                 @endforeach
@@ -113,26 +113,27 @@
                                     <select name="active" class="form-control">
                                         <option value="">ختر الحله  </option>
                                         <option value="1" {{ $product->active? 'selected' : ''}}>
-                                        فعال 
+                                        فعال
                                         </option>
                                         <option value="0" {{ $product->active? '' : 'selected'}}>
-                                        غير فعال 
+                                        غير فعال
                                         </option>
                                     </select>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="form-group col-md-6">
-                                    <label class="col-md-6">الكميه المتوفرة</label>
-                                    <input class="form-control" type="number" min="1" name="stock" 
-                                    placeholder="الكميىه المتوفرة " value="{{ $product->stock }}">
+                                <div class="form-group col-md-4">
+                                    <label class="col-md-4">{{ trans('products.stock_header') }}</label>
+                                    <input class="form-control" type="number" min="1" name="stock" placeholder="{{ trans('products.stock_placeholder') }}" value="{{ $product->stock }}">
                                 </div>
-                                <div class="form-group col-md-6">
-                                    <label class="col-md-6">نسبه الخصم</label>
-                                    <input class="form-control" type="number" min="0" name="discount" placeholder="الخصم " value="{{ $product->discount }}">
+                                <div class="form-group col-md-4">
+                                    <label class="col-md-4">{{ trans('products.discount_header') }}</label>
+                                    <input class="form-control" type="number" min="0" name="discount" placeholder="{{ trans('products.discount_placeholder') }}" value="{{ $product->discount }}">
                                 </div>
-                               
-
+                                <div class="form-group col-md-4">
+                                    <label class="col-md-4">{{ trans('products.offer_header') }}</label>
+                                    <input class="form-control" type="text" name="discount_date" placeholder="{{ trans('products.offer_placeholder') }}" value="{{ $product->getDate() }}" id="calendar">
+                                </div>
                             </div>
                             <div class="row">
                                 <label class="col-md-4">
@@ -142,13 +143,13 @@
                                     <textarea class="form-control tiny-editor" name="desc" rows="3" placeholder="">الوصف</textarea>
                                 </div>
                             </div>
-                           
+
 
 
                         </div>
                         <div class="box-footer text-center">
                             <button type="submit" class="btn btn-app ajax-submit">
-                                <i class="fa fa-save"></i> حفظ 
+                                <i class="fa fa-save"></i> حفظ
                             </button>
                         </div>
                     </div>
