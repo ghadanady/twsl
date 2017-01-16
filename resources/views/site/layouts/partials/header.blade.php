@@ -13,8 +13,7 @@
                     <span class="welcome-text">
                     
                          
-                        مرحبا بك  <a href="{{url('profile/')}}">{{auth::guard('members')->user()->f_name }}</a>
-                        <a href="{{url('auth/logout')}}">تسجيل خروج </a>           
+                                 
                     </span>
                 </div>
 
