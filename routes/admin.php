@@ -100,6 +100,19 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         });
 
         /**
+        * slider route
+        */
+        Route::group(['prefix' => 'slider'], function () {
+            Route::get('/', 'SliderController@getIndex')->name('admin.slider.index');
+            Route::get('edit/{id}', 'SliderController@getEdit')->name('admin.slider.edit');
+            Route::post('edit', 'SliderController@postEdit');
+            Route::get('add', 'SliderController@getAdd')->name('admin.slider.add');
+            Route::post('add', 'SliderController@postAdd');
+            Route::post('info/{id}', 'SliderController@postInfo')->name('admin.slider.info');
+            Route::get('/delete/{id}','SliderController@getDelete')->name('admin.slider.delete');
+        });
+
+        /**
         * ads route
         */
         Route::group(['prefix' => 'ads'], function () {

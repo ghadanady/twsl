@@ -20,6 +20,12 @@
                     <span>{{ trans('admin_global.main_tab') }}</span>
                 </a>
             </li>
+            <li class="treeview">
+                <a href="{{url('/admin/slider')}}">
+                    <i class="fa fa-dashboard"></i>
+                    <span>الاسليدر</span>
+                </a>
+            </li>
             @if ($user->isAdmin())
                 <li class="treeview">
                     <a href="{{url('admin/settings')}}">
