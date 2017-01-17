@@ -58,206 +58,30 @@
 
                 <div class="newst-top">
                     <div class="newst-inline">
-                        <h2>المضاف حديثاً</h2>
+                        <h2></h2>
                     </div>
                     <div class="newst-inline">
                         <ul class="nav" role="tablist">
-                            <li role="presentation" class="active"><a href="#tx1" aria-controls="tx1" role="tab" data-toggle="tab">إلكترونيات</a></li>
-                            <li role="presentation"><a href="#tx2" aria-controls="tx2" role="tab" data-toggle="tab">سيارات</a></li>
-                            <li role="presentation"><a href="#tx3" aria-controls="tx3" role="tab" data-toggle="tab">إكسسوارات</a></li>
+                            <li role="presentation" class="active">
+                            <a href="#tx1" aria-controls="tx1" role="tab" data-toggle="tab"> عروض</a>
+                            </li>
+                            <li role="presentation">
+                            <a href="#tx2" aria-controls="tx2" role="tab" data-toggle="tab">المضاف حديثا </a>
+                            </li>
+                            
                         </ul>
                     </div>
                 </div>
 
                 <div class="tab-content">
-                    <div role="tabpanel" class="tab-pane active" id="tx1">
+                    <div role="tabpanel" class="tab-pane " id="tx1">
                         <div class="owl-carousel topleft carousel1" id="">
-                            <div class="pro-item">
-                                <div class="pro-s">
-                                    <div class="p-img-holder">
-                                        <img src="{{ asset('assets/site/imgs/prod-img.png') }}" alt="pro" />
-                                        <span class="pro-shadow"></span>
-                                        <span class="prod-info">
-                                            <b>299.00</b>
-                                            ريال
-                                        </span>
-                                        <a href="#">
-                                            <hr />
-                                            <i class="fa fa-shopping-bag"></i>
-                                            <span>أضف إلى السلة</span>
-                                        </a>
-                                    </div>
-                                    <a class="prod-go" href="#">إسم المنتج يظهر هنا</a>
-                                </div>
-                            </div>
-                            <div class="pro-item">
-                                <div class="pro-s">
-                                    <div class="p-img-holder">
-                                        <img src="{{ asset('assets/site/imgs/prod-img.png') }}" alt="pro" />
-                                        <span class="pro-shadow"></span>
-                                        <span class="prod-info">
-                                            <b>299.00</b>
-                                            ريال
-                                        </span>
-                                        <a href="#">
-                                            <hr />
-                                            <i class="fa fa-shopping-bag"></i>
-                                            <span>أضف إلى السلة</span>
-                                        </a>
-                                    </div>
-                                    <a class="prod-go" href="#">إسم المنتج يظهر هنا</a>
-                                </div>
-                            </div>
-                            <div class="pro-item">
-                                <div class="pro-s">
-                                    <div class="p-img-holder">
-                                        <img src="{{ asset('assets/site/imgs/prod-img.png') }}" alt="pro" />
-                                        <span class="pro-shadow"></span>
-                                        <span class="prod-info">
-                                            <b>299.00</b>
-                                            ريال
-                                        </span>
-                                        <a href="#">
-                                            <hr />
-                                            <i class="fa fa-shopping-bag"></i>
-                                            <span>أضف إلى السلة</span>
-                                        </a>
-                                    </div>
-                                    <a class="prod-go" href="#">إسم المنتج يظهر هنا</a>
-                                </div>
-                            </div>
-                            <div class="pro-item">
-                                <div class="pro-s">
-                                    <div class="p-img-holder">
-                                        <img src="{{ asset('assets/site/imgs/prod-img.png') }}" alt="pro" />
-                                        <span class="pro-shadow"></span>
-                                        <span class="prod-info">
-                                            <b>299.00</b>
-                                            ريال
-                                        </span>
-                                        <a href="#">
-                                            <hr />
-                                            <i class="fa fa-shopping-bag"></i>
-                                            <span>أضف إلى السلة</span>
-                                        </a>
-                                    </div>
-                                    <a class="prod-go" href="#">إسم المنتج يظهر هنا</a>
-                                </div>
-                            </div>
-                            <div class="pro-item">
-                                <div class="pro-s">
-                                    <div class="p-img-holder">
-                                        <img src="{{ asset('assets/site/imgs/prod-img.png') }}" alt="pro" />
-                                        <span class="pro-shadow"></span>
-                                        <span class="prod-info">
-                                            <b>299.00</b>
-                                            ريال
-                                        </span>
-                                        <a href="#">
-                                            <hr />
-                                            <i class="fa fa-shopping-bag"></i>
-                                            <span>أضف إلى السلة</span>
-                                        </a>
-                                    </div>
-                                    <a class="prod-go" href="#">إسم المنتج يظهر هنا</a>
-                                </div>
-                            </div>
-
+                       @include('site.layouts.partials.latest_product');
                         </div>
                     </div>
-                    <div role="tabpanel" class="tab-pane" id="tx2">
+                    <div role="tabpanel" class="tab-pane active" id="tx2">
                         <div class="owl-carousel topleft carousel1" id="">
-                            <div class="pro-item">
-                                <div class="pro-s">
-                                    <div class="p-img-holder">
-                                        <img src="{{ asset('assets/site/imgs/prod-img.png') }}" alt="pro" />
-                                        <span class="pro-shadow"></span>
-                                        <span class="prod-info">
-                                            <b>299.00</b>
-                                            ريال
-                                        </span>
-                                        <a href="#">
-                                            <hr />
-                                            <i class="fa fa-shopping-bag"></i>
-                                            <span>أضف إلى السلة</span>
-                                        </a>
-                                    </div>
-                                    <a class="prod-go" href="#">إسم المنتج يظهر هنا</a>
-                                </div>
-                            </div>
-                            <div class="pro-item">
-                                <div class="pro-s">
-                                    <div class="p-img-holder">
-                                        <img src="{{ asset('assets/site/imgs/prod-img.png') }}" alt="pro" />
-                                        <span class="pro-shadow"></span>
-                                        <span class="prod-info">
-                                            <b>299.00</b>
-                                            ريال
-                                        </span>
-                                        <a href="#">
-                                            <hr />
-                                            <i class="fa fa-shopping-bag"></i>
-                                            <span>أضف إلى السلة</span>
-                                        </a>
-                                    </div>
-                                    <a class="prod-go" href="#">إسم المنتج يظهر هنا</a>
-                                </div>
-                            </div>
-                            <div class="pro-item">
-                                <div class="pro-s">
-                                    <div class="p-img-holder">
-                                        <img src="{{ asset('assets/site/imgs/prod-img.png') }}" alt="pro" />
-                                        <span class="pro-shadow"></span>
-                                        <span class="prod-info">
-                                            <b>299.00</b>
-                                            ريال
-                                        </span>
-                                        <a href="#">
-                                            <hr />
-                                            <i class="fa fa-shopping-bag"></i>
-                                            <span>أضف إلى السلة</span>
-                                        </a>
-                                    </div>
-                                    <a class="prod-go" href="#">إسم المنتج يظهر هنا</a>
-                                </div>
-                            </div>
-                            <div class="pro-item">
-                                <div class="pro-s">
-                                    <div class="p-img-holder">
-                                        <img src="{{ asset('assets/site/imgs/prod-img.png') }}" alt="pro" />
-                                        <span class="pro-shadow"></span>
-                                        <span class="prod-info">
-                                            <b>299.00</b>
-                                            ريال
-                                        </span>
-                                        <a href="#">
-                                            <hr />
-                                            <i class="fa fa-shopping-bag"></i>
-                                            <span>أضف إلى السلة</span>
-                                        </a>
-                                    </div>
-                                    <a class="prod-go" href="#">إسم المنتج يظهر هنا</a>
-                                </div>
-                            </div>
-                            <div class="pro-item">
-                                <div class="pro-s">
-                                    <div class="p-img-holder">
-                                        <img src="{{ asset('assets/site/imgs/prod-img.png') }}" alt="pro" />
-                                        <span class="pro-shadow"></span>
-                                        <span class="prod-info">
-                                            <b>299.00</b>
-                                            ريال
-                                        </span>
-                                        <a href="#">
-                                            <hr />
-                                            <i class="fa fa-shopping-bag"></i>
-                                            <span>أضف إلى السلة</span>
-                                        </a>
-                                    </div>
-                                    <a class="prod-go" href="#">إسم المنتج يظهر هنا</a>
-                                </div>
-                            </div>
-
+                         @include('site.layouts.partials.deal_products');
                         </div>
                     </div>
                     <div role="tabpanel" class="tab-pane" id="tx3">
@@ -280,78 +104,7 @@
                                     <a class="prod-go" href="#">إسم المنتج يظهر هنا</a>
                                 </div>
                             </div>
-                            <div class="pro-item">
-                                <div class="pro-s">
-                                    <div class="p-img-holder">
-                                        <img src="{{ asset('assets/site/imgs/prod-img.png') }}" alt="pro" />
-                                        <span class="pro-shadow"></span>
-                                        <span class="prod-info">
-                                            <b>299.00</b>
-                                            ريال
-                                        </span>
-                                        <a href="#">
-                                            <hr />
-                                            <i class="fa fa-shopping-bag"></i>
-                                            <span>أضف إلى السلة</span>
-                                        </a>
-                                    </div>
-                                    <a class="prod-go" href="#">إسم المنتج يظهر هنا</a>
-                                </div>
-                            </div>
-                            <div class="pro-item">
-                                <div class="pro-s">
-                                    <div class="p-img-holder">
-                                        <img src="{{ asset('assets/site/imgs/prod-img.png') }}" alt="pro" />
-                                        <span class="pro-shadow"></span>
-                                        <span class="prod-info">
-                                            <b>299.00</b>
-                                            ريال
-                                        </span>
-                                        <a href="#">
-                                            <hr />
-                                            <i class="fa fa-shopping-bag"></i>
-                                            <span>أضف إلى السلة</span>
-                                        </a>
-                                    </div>
-                                    <a class="prod-go" href="#">إسم المنتج يظهر هنا</a>
-                                </div>
-                            </div>
-                            <div class="pro-item">
-                                <div class="pro-s">
-                                    <div class="p-img-holder">
-                                        <img src="{{ asset('assets/site/imgs/prod-img.png') }}" alt="pro" />
-                                        <span class="pro-shadow"></span>
-                                        <span class="prod-info">
-                                            <b>299.00</b>
-                                            ريال
-                                        </span>
-                                        <a href="#">
-                                            <hr />
-                                            <i class="fa fa-shopping-bag"></i>
-                                            <span>أضف إلى السلة</span>
-                                        </a>
-                                    </div>
-                                    <a class="prod-go" href="#">إسم المنتج يظهر هنا</a>
-                                </div>
-                            </div>
-                            <div class="pro-item">
-                                <div class="pro-s">
-                                    <div class="p-img-holder">
-                                        <img src="{{ asset('assets/site/imgs/prod-img.png') }}" alt="pro" />
-                                        <span class="pro-shadow"></span>
-                                        <span class="prod-info">
-                                            <b>299.00</b>
-                                            ريال
-                                        </span>
-                                        <a href="#">
-                                            <hr />
-                                            <i class="fa fa-shopping-bag"></i>
-                                            <span>أضف إلى السلة</span>
-                                        </a>
-                                    </div>
-                                    <a class="prod-go" href="#">إسم المنتج يظهر هنا</a>
-                                </div>
-                            </div>
+                      
 
                         </div>
                     </div>
@@ -397,593 +150,60 @@
 <div class="products-mx">
     <div class="container">
         <div class="row">
-            <div class="col-xs-12 col-md-6 col-lg-3 mb20">
-                <div class="pro-s">
-                    <div class="p-img-holder">
-                        <img src="{{ asset('assets/site/imgs/prod-img.png') }}" alt="pro" />
-                        <span class="pro-shadow"></span>
-                        <span class="prod-info">
-                            <b>299.00</b>
-                            ريال
-                        </span>
-                        <a href="#">
-                            <hr />
-                            <i class="fa fa-shopping-bag"></i>
-                            <span>أضف إلى السلة</span>
-                        </a>
-                    </div>
-                    <div class="reting">
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gray"></span>
-                    </div>
-                    <a class="prod-go text-center" href="#">إسم المنتج يظهر هنا</a>
-                </div>
-            </div>
-            <div class="col-xs-12 col-md-6 col-lg-3 mb20">
-                <div class="pro-s">
-                    <div class="p-img-holder">
-                        <img src="{{ asset('assets/site/imgs/prod-img.png') }}" alt="pro" />
-                        <span class="pro-shadow"></span>
-                        <span class="prod-info">
-                            <b>299.00</b>
-                            ريال
-                        </span>
-                        <a href="#">
-                            <hr />
-                            <i class="fa fa-shopping-bag"></i>
-                            <span>أضف إلى السلة</span>
-                        </a>
-                    </div>
-                    <div class="reting">
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gray"></span>
-                    </div>
-                    <a class="prod-go text-center" href="#">إسم المنتج يظهر هنا</a>
-                </div>
-            </div>
-            <div class="col-xs-12 col-md-6 col-lg-3 mb20">
-                <div class="pro-s">
-                    <div class="p-img-holder">
-                        <img src="{{ asset('assets/site/imgs/prod-img.png') }}" alt="pro" />
-                        <span class="pro-shadow"></span>
-                        <span class="prod-info">
-                            <b>299.00</b>
-                            ريال
-                        </span>
-                        <a href="#">
-                            <hr />
-                            <i class="fa fa-shopping-bag"></i>
-                            <span>أضف إلى السلة</span>
-                        </a>
-                    </div>
-                    <div class="reting">
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gray"></span>
-                    </div>
-                    <a class="prod-go text-center" href="#">إسم المنتج يظهر هنا</a>
-                </div>
-            </div>
-            <div class="col-xs-12 col-md-6 col-lg-3 mb20">
-                <div class="pro-s">
-                    <div class="p-img-holder">
-                        <img src="{{ asset('assets/site/imgs/prod-img.png') }}" alt="pro" />
-                        <span class="pro-shadow"></span>
-                        <span class="prod-info">
-                            <b>299.00</b>
-                            ريال
-                        </span>
-                        <a href="#">
-                            <hr />
-                            <i class="fa fa-shopping-bag"></i>
-                            <span>أضف إلى السلة</span>
-                        </a>
-                    </div>
-                    <div class="reting">
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gray"></span>
-                    </div>
-                    <a class="prod-go text-center" href="#">إسم المنتج يظهر هنا</a>
-                </div>
-            </div>
-            <div class="col-xs-12 col-md-6 col-lg-3 mb20">
-                <div class="pro-s">
-                    <div class="p-img-holder">
-                        <img src="{{ asset('assets/site/imgs/prod-img.png') }}" alt="pro" />
-                        <span class="pro-shadow"></span>
-                        <span class="prod-info">
-                            <b>299.00</b>
-                            ريال
-                        </span>
-                        <a href="#">
-                            <hr />
-                            <i class="fa fa-shopping-bag"></i>
-                            <span>أضف إلى السلة</span>
-                        </a>
-                    </div>
-                    <div class="reting">
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gray"></span>
-                    </div>
-                    <a class="prod-go text-center" href="#">إسم المنتج يظهر هنا</a>
-                </div>
-            </div>
-            <div class="col-xs-12 col-md-6 col-lg-3 mb20">
-                <div class="pro-s">
-                    <div class="p-img-holder">
-                        <img src="{{ asset('assets/site/imgs/prod-img.png') }}" alt="pro" />
-                        <span class="pro-shadow"></span>
-                        <span class="prod-info">
-                            <b>299.00</b>
-                            ريال
-                        </span>
-                        <a href="#">
-                            <hr />
-                            <i class="fa fa-shopping-bag"></i>
-                            <span>أضف إلى السلة</span>
-                        </a>
-                    </div>
-                    <div class="reting">
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gray"></span>
-                    </div>
-                    <a class="prod-go text-center" href="#">إسم المنتج يظهر هنا</a>
-                </div>
-            </div>
-            <div class="col-xs-12 col-md-6 col-lg-3 mb20">
-                <div class="pro-s">
-                    <div class="p-img-holder">
-                        <img src="{{ asset('assets/site/imgs/prod-img.png') }}" alt="pro" />
-                        <span class="pro-shadow"></span>
-                        <span class="prod-info">
-                            <b>299.00</b>
-                            ريال
-                        </span>
-                        <a href="#">
-                            <hr />
-                            <i class="fa fa-shopping-bag"></i>
-                            <span>أضف إلى السلة</span>
-                        </a>
-                    </div>
-                    <div class="reting">
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gray"></span>
-                    </div>
-                    <a class="prod-go text-center" href="#">إسم المنتج يظهر هنا</a>
-                </div>
-            </div>
-            <div class="col-xs-12 col-md-6 col-lg-3 mb20">
-                <div class="pro-s">
-                    <div class="p-img-holder">
-                        <img src="{{ asset('assets/site/imgs/prod-img.png') }}" alt="pro" />
-                        <span class="pro-shadow"></span>
-                        <span class="prod-info">
-                            <b>299.00</b>
-                            ريال
-                        </span>
-                        <a href="#">
-                            <hr />
-                            <i class="fa fa-shopping-bag"></i>
-                            <span>أضف إلى السلة</span>
-                        </a>
-                    </div>
-                    <div class="reting">
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gray"></span>
-                    </div>
-                    <a class="prod-go text-center" href="#">إسم المنتج يظهر هنا</a>
-                </div>
-            </div>
-            <div class="col-xs-12 col-md-6 col-lg-3 mb20">
-                <div class="pro-s">
-                    <div class="p-img-holder">
-                        <img src="{{ asset('assets/site/imgs/prod-img.png') }}" alt="pro" />
-                        <span class="pro-shadow"></span>
-                        <span class="prod-info">
-                            <b>299.00</b>
-                            ريال
-                        </span>
-                        <a href="#">
-                            <hr />
-                            <i class="fa fa-shopping-bag"></i>
-                            <span>أضف إلى السلة</span>
-                        </a>
-                    </div>
-                    <div class="reting">
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gray"></span>
-                    </div>
-                    <a class="prod-go text-center" href="#">إسم المنتج يظهر هنا</a>
-                </div>
-            </div>
-            <div class="col-xs-12 col-md-6 col-lg-3 mb20">
-                <div class="pro-s">
-                    <div class="p-img-holder">
-                        <img src="{{ asset('assets/site/imgs/prod-img.png') }}" alt="pro" />
-                        <span class="pro-shadow"></span>
-                        <span class="prod-info">
-                            <b>299.00</b>
-                            ريال
-                        </span>
-                        <a href="#">
-                            <hr />
-                            <i class="fa fa-shopping-bag"></i>
-                            <span>أضف إلى السلة</span>
-                        </a>
-                    </div>
-                    <div class="reting">
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gray"></span>
-                    </div>
-                    <a class="prod-go text-center" href="#">إسم المنتج يظهر هنا</a>
-                </div>
-            </div>
-            <div class="col-xs-12 col-md-6 col-lg-3 mb20">
-                <div class="pro-s">
-                    <div class="p-img-holder">
-                        <img src="{{ asset('assets/site/imgs/prod-img.png') }}" alt="pro" />
-                        <span class="pro-shadow"></span>
-                        <span class="prod-info">
-                            <b>299.00</b>
-                            ريال
-                        </span>
-                        <a href="#">
-                            <hr />
-                            <i class="fa fa-shopping-bag"></i>
-                            <span>أضف إلى السلة</span>
-                        </a>
-                    </div>
-                    <div class="reting">
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gray"></span>
-                    </div>
-                    <a class="prod-go text-center" href="#">إسم المنتج يظهر هنا</a>
-                </div>
-            </div>
-            <div class="col-xs-12 col-md-6 col-lg-3 mb20">
-                <div class="pro-s">
-                    <div class="p-img-holder">
-                        <img src="{{ asset('assets/site/imgs/prod-img.png') }}" alt="pro" />
-                        <span class="pro-shadow"></span>
-                        <span class="prod-info">
-                            <b>299.00</b>
-                            ريال
-                        </span>
-                        <a href="#">
-                            <hr />
-                            <i class="fa fa-shopping-bag"></i>
-                            <span>أضف إلى السلة</span>
-                        </a>
-                    </div>
-                    <div class="reting">
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gray"></span>
-                    </div>
-                    <a class="prod-go text-center" href="#">إسم المنتج يظهر هنا</a>
-                </div>
-            </div>
-            <div class="col-xs-12 col-md-6 col-lg-3 mb20">
-                <div class="pro-s">
-                    <div class="p-img-holder">
-                        <img src="{{ asset('assets/site/imgs/prod-img.png') }}" alt="pro" />
-                        <span class="pro-shadow"></span>
-                        <span class="prod-info">
-                            <b>299.00</b>
-                            ريال
-                        </span>
-                        <a href="#">
-                            <hr />
-                            <i class="fa fa-shopping-bag"></i>
-                            <span>أضف إلى السلة</span>
-                        </a>
-                    </div>
-                    <div class="reting">
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gray"></span>
-                    </div>
-                    <a class="prod-go text-center" href="#">إسم المنتج يظهر هنا</a>
-                </div>
-            </div>
-            <div class="col-xs-12 col-md-6 col-lg-3 mb20">
-                <div class="pro-s">
-                    <div class="p-img-holder">
-                        <img src="{{ asset('assets/site/imgs/prod-img.png') }}" alt="pro" />
-                        <span class="pro-shadow"></span>
-                        <span class="prod-info">
-                            <b>299.00</b>
-                            ريال
-                        </span>
-                        <a href="#">
-                            <hr />
-                            <i class="fa fa-shopping-bag"></i>
-                            <span>أضف إلى السلة</span>
-                        </a>
-                    </div>
-                    <div class="reting">
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gray"></span>
-                    </div>
-                    <a class="prod-go text-center" href="#">إسم المنتج يظهر هنا</a>
-                </div>
-            </div>
-            <div class="col-xs-12 col-md-6 col-lg-3 mb20">
-                <div class="pro-s">
-                    <div class="p-img-holder">
-                        <img src="{{ asset('assets/site/imgs/prod-img.png') }}" alt="pro" />
-                        <span class="pro-shadow"></span>
-                        <span class="prod-info">
-                            <b>299.00</b>
-                            ريال
-                        </span>
-                        <a href="#">
-                            <hr />
-                            <i class="fa fa-shopping-bag"></i>
-                            <span>أضف إلى السلة</span>
-                        </a>
-                    </div>
-                    <div class="reting">
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gray"></span>
-                    </div>
-                    <a class="prod-go text-center" href="#">إسم المنتج يظهر هنا</a>
-                </div>
-            </div>
-            <div class="col-xs-12 col-md-6 col-lg-3 mb20">
-                <div class="pro-s">
-                    <div class="p-img-holder">
-                        <img src="{{ asset('assets/site/imgs/prod-img.png') }}" alt="pro" />
-                        <span class="pro-shadow"></span>
-                        <span class="prod-info">
-                            <b>299.00</b>
-                            ريال
-                        </span>
-                        <a href="#">
-                            <hr />
-                            <i class="fa fa-shopping-bag"></i>
-                            <span>أضف إلى السلة</span>
-                        </a>
-                    </div>
-                    <div class="reting">
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gray"></span>
-                    </div>
-                    <a class="prod-go text-center" href="#">إسم المنتج يظهر هنا</a>
-                </div>
-            </div>
-            <div class="col-xs-12 col-md-6 col-lg-3 mb20">
-                <div class="pro-s">
-                    <div class="p-img-holder">
-                        <img src="{{ asset('assets/site/imgs/prod-img.png') }}" alt="pro" />
-                        <span class="pro-shadow"></span>
-                        <span class="prod-info">
-                            <b>299.00</b>
-                            ريال
-                        </span>
-                        <a href="#">
-                            <hr />
-                            <i class="fa fa-shopping-bag"></i>
-                            <span>أضف إلى السلة</span>
-                        </a>
-                    </div>
-                    <div class="reting">
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gray"></span>
-                    </div>
-                    <a class="prod-go text-center" href="#">إسم المنتج يظهر هنا</a>
-                </div>
-            </div>
-            <div class="col-xs-12 col-md-6 col-lg-3 mb20">
-                <div class="pro-s">
-                    <div class="p-img-holder">
-                        <img src="{{ asset('assets/site/imgs/prod-img.png') }}" alt="pro" />
-                        <span class="pro-shadow"></span>
-                        <span class="prod-info">
-                            <b>299.00</b>
-                            ريال
-                        </span>
-                        <a href="#">
-                            <hr />
-                            <i class="fa fa-shopping-bag"></i>
-                            <span>أضف إلى السلة</span>
-                        </a>
-                    </div>
-                    <div class="reting">
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gray"></span>
-                    </div>
-                    <a class="prod-go text-center" href="#">إسم المنتج يظهر هنا</a>
-                </div>
-            </div>
-            <div class="col-xs-12 col-md-6 col-lg-3 mb20">
-                <div class="pro-s">
-                    <div class="p-img-holder">
-                        <img src="{{ asset('assets/site/imgs/prod-img.png') }}" alt="pro" />
-                        <span class="pro-shadow"></span>
-                        <span class="prod-info">
-                            <b>299.00</b>
-                            ريال
-                        </span>
-                        <a href="#">
-                            <hr />
-                            <i class="fa fa-shopping-bag"></i>
-                            <span>أضف إلى السلة</span>
-                        </a>
-                    </div>
-                    <div class="reting">
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gray"></span>
-                    </div>
-                    <a class="prod-go text-center" href="#">إسم المنتج يظهر هنا</a>
-                </div>
-            </div>
-            <div class="col-xs-12 col-md-6 col-lg-3 mb20">
-                <div class="pro-s">
-                    <div class="p-img-holder">
-                        <img src="{{ asset('assets/site/imgs/prod-img.png') }}" alt="pro" />
-                        <span class="pro-shadow"></span>
-                        <span class="prod-info">
-                            <b>299.00</b>
-                            ريال
-                        </span>
-                        <a href="#">
-                            <hr />
-                            <i class="fa fa-shopping-bag"></i>
-                            <span>أضف إلى السلة</span>
-                        </a>
-                    </div>
-                    <div class="reting">
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gray"></span>
-                    </div>
-                    <a class="prod-go text-center" href="#">إسم المنتج يظهر هنا</a>
-                </div>
-            </div>
-            <div class="col-xs-12 col-md-6 col-lg-3 mb20">
-                <div class="pro-s">
-                    <div class="p-img-holder">
-                        <img src="{{ asset('assets/site/imgs/prod-img.png') }}" alt="pro" />
-                        <span class="pro-shadow"></span>
-                        <span class="prod-info">
-                            <b>299.00</b>
-                            ريال
-                        </span>
-                        <a href="#">
-                            <hr />
-                            <i class="fa fa-shopping-bag"></i>
-                            <span>أضف إلى السلة</span>
-                        </a>
-                    </div>
-                    <div class="reting">
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gray"></span>
-                    </div>
-                    <a class="prod-go text-center" href="#">إسم المنتج يظهر هنا</a>
-                </div>
-            </div>
-            <div class="col-xs-12 col-md-6 col-lg-3 mb20">
-                <div class="pro-s">
-                    <div class="p-img-holder">
-                        <img src="{{ asset('assets/site/imgs/prod-img.png') }}" alt="pro" />
-                        <span class="pro-shadow"></span>
-                        <span class="prod-info">
-                            <b>299.00</b>
-                            ريال
-                        </span>
-                        <a href="#">
-                            <hr />
-                            <i class="fa fa-shopping-bag"></i>
-                            <span>أضف إلى السلة</span>
-                        </a>
-                    </div>
-                    <div class="reting">
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gray"></span>
-                    </div>
-                    <a class="prod-go text-center" href="#">إسم المنتج يظهر هنا</a>
-                </div>
-            </div>
-            <div class="col-xs-12 col-md-6 col-lg-3 mb20">
-                <div class="pro-s">
-                    <div class="p-img-holder">
-                        <img src="{{ asset('assets/site/imgs/prod-img.png') }}" alt="pro" />
-                        <span class="pro-shadow"></span>
-                        <span class="prod-info">
-                            <b>299.00</b>
-                            ريال
-                        </span>
-                        <a href="#">
-                            <hr />
-                            <i class="fa fa-shopping-bag"></i>
-                            <span>أضف إلى السلة</span>
-                        </a>
-                    </div>
-                    <div class="reting">
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gold"></span>
-                        <span class="fa fa-star gray"></span>
-                    </div>
-                    <a class="prod-go text-center" href="#">إسم المنتج يظهر هنا</a>
-                </div>
-            </div>
+            
+                @if(count($latest_product)>0)
+                                          @foreach($latest_product as $p)
+                                          
+                                          <div class="col-xs-12 col-md-6 col-lg-3 mb20" style="max-height: 300px">
+                                              <div class="pro-s">
+                                                  <div class="p-img-holder">
+                                                       @php
+                                                          $imgs = $p->getImages();
+                                                          @endphp
+
+                                                          @if($imgs->isEmpty())
+                                                              <img src="{{url('storage/uploads/images/category/p_default.png')}}" alt="c" />
+                                                          @else
+                                                              <img src="{{ $imgs->first()->url }}" alt="mob" />
+                                                          @endif
+
+                                                      <span class="pro-shadow"></span>
+                                                      <span class="prod-info">
+                                                        @if($p->hasOffer() )
+                                                          <b>{{$p->getDiscount()}}</b>
+                                                          ريال
+                                                      </span>
+                                                       
+                                                      @else
+                                                      <div class="price new">
+                                                          <strong>{{$p->price}}</strong>
+                                                          <span>ريال</span>
+                                                      </div>
+                                                      @endif
+
+
+                                                      <a href="">
+                                                          <hr />
+                                                          <i class="fa fa-shopping-bag"></i>
+                                                          <span>أضف إلى السلة</span>
+                                                      </a>
+                                                  </div>
+                                                  <a class="prod-go" href="{{$p->getUrl()}}">{{$p->name}}</a>
+                                              </div>
+                                          </div>
+                                          @endforeach
+                                          
+                                          @endif
+           
+ 
         </div>
         <div class="row">
-            <div class="col-xs-12 text-center">
-                <a href="#" class="navgat-a nmr">
-                    <i class="fa fa-angle-right"></i>
-                    <span>السابق</span>
-                </a>
-                <a href="#" class="navgat-a nml">
-                    <span>التالي</span>
-                    <i class="fa fa-angle-left"></i>
-                </a>
-            </div>
+            
+            @if (!$products->isEmpty())
+                        
+                                {{ $latest_product->links() }}
+                         
+                    @endif
         </div>
     </div>
 </div>

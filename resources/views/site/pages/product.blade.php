@@ -51,17 +51,19 @@
                             <p class="in-o-det">
                                {!!$product->desc!!}
                             </p>
-                            @if($product->discount==0)
+                            @if($product->hasOffer() )
                             <div class="price new">
-                                <strong>{{$product->price}}</strong>
-                                <span>ريال</span>
-                            </div>
-                            @else
-                             <div class="price new">
-                                <strong>{{$product->price-($product->price*$product->discount)/100}}</strong>
+                                <strong>{{$product->getDiscount()}}</strong>
                                 <span>ريال</span>
                             </div>
                             <div class="price old">
+                                <strong>{{$product->price}}</strong>
+                                <span>ريال</span>
+                            </div>
+                            
+                            @else
+                             
+                            <div class="price new">
                                 <strong>{{$product->price}}</strong>
                                 <span>ريال</span>
                             </div>

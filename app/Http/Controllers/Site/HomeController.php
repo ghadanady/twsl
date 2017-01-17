@@ -32,6 +32,7 @@ class HomeController extends Controller
     	// })
     	// ->take(16)->all();
         $slider=Slider::get();
+        
         return view('site.pages.index',compact('slider'));
     }
 

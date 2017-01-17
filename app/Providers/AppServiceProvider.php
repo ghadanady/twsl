@@ -43,6 +43,8 @@ class AppServiceProvider extends ServiceProvider
         $products = Product::paginate(9);
         $product_count = Product::count();
         $best_seller = Product::orderBy('sold' , 'desc')->take(12)->get();
+        $latest_product = Product::orderBy('created_at','desc')->paginate(6);
+        
         $hot_deals   = Product::orderBy('discount' , 'desc')
         ->get()
         ->filter(function($product){
@@ -60,6 +62,7 @@ class AppServiceProvider extends ServiceProvider
             'adsPostion'=>$adsPostion,
             'trademark'=>$trademark,
             'countries'=>$countries,
+            'latest_product'=>$latest_product
 
         ]);
 
