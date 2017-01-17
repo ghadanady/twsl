@@ -118,19 +118,18 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="form-group col-md-6">
-                                    <label class="col-md-6">
-                                    الكميه  المتوفرة </label>
-                                    <input class="form-control" type="number" min="1" name="stock"
-                                     placeholder="
-                                    مثال :230" >
+                                <div class="form-group col-md-4">
+                                    <label class="col-md-4">الكميه  المتوفرة </label>
+                                    <input class="form-control" type="number" min="1" name="stock" placeholder="{{ trans('products.stock_placeholder') }}" >
                                 </div>
-                                <div class="form-group col-md-6">
-                                    <label class="col-md-6">
-                                   نسبة الخصم (اختياري)</label>
+                                <div class="form-group col-md-4">
+                                    <label class="col-md-4">نسبة الخصم (اختياري)</label>
                                     <input class="form-control" type="number" min="0" name="discount" placeholder="{{ trans('products.discount_placeholder') }}" >
                                 </div>
-
+                                <div class="form-group col-md-4">
+                                    <label class="col-md-4">تاريخ انتهاء فترة الخصم</label>
+                                    <input class="form-control" type="text" name="discount_date" placeholder="{{ trans('products.offer_placeholder') }}" id="calendar">
+                                </div>
                             </div>
                             <div class="row">
                                 <label class="col-md-6"> وصف المنتج</label>

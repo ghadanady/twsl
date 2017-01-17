@@ -4,21 +4,47 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
+use willvincent\Rateable\Rateable;
 class Product extends Model
 {
+     use Rateable;
     public $quantity = null;
 
-
+    protected $dates = ['discount_date'];
 
     /**
     * Check if a product has a low stock.
     *
     * @return boolean
     */
+   
+
     public function hasLowStock()
     {
         return ($this->outOfStock() ? false : ($this->stock <= 5));
     }
+
+    /**
+    * add rate .
+    *
+    * @return boolean
+    */
+   
+   
+    public function addRate($rate,$productID)
+    {
+       $product=Product::find($productID);
+       $rating = new willvincent\Rateable\Rating;
+       $rating->rating = $rate;
+       $rating->user_id = \Auth::guard('members')->user()->id;
+
+       if($product->ratings()->save($rating))
+       {
+        dd(product::first()->ratings);
+       }
+       
+    }
+
 
 
     /**
@@ -80,17 +106,17 @@ class Product extends Model
 
     public function getUrl()
     {
-        return route('site.products.details',['slug'=> $this->translated()->slug]);
+        return route('product.show',['product'=> $this->slug]);
     }
 
     public function getWishlistUrl()
     {
-        return route('site.wishlist.update',['slug'=> $this->translated()->slug]);
+        return route('site.wishlist.update',['slug'=> $this->slug]);
     }
 
     public function getCartUrl($type)
     {
-        return route('site.cart.'.$type,['slug'=> $this->translated()->slug]);
+        return route('site.cart.'.$type,['slug'=> $this->slug]);
     }
 
     public function isActive()
@@ -113,12 +139,12 @@ class Product extends Model
 
     public function getImages()
     {
-        return $this->images->map(function ($image)
+        return collect($this->images->map(function ($image)
         {
             $image->url = url('storage/uploads/images/products/'.$image->name);
 
             return $image;
-        });
+        }));
     }
 
     public function getDate()
@@ -148,11 +174,11 @@ class Product extends Model
 
     public function total_reviews()
     {
-      try{
-        return round($this->reviews->sum('rate')/ $this->reviews->count());
-      }catch(\Exception $e){
+        try{
+            return round($this->reviews->sum('rate')/ $this->reviews->count());
+        }catch(\Exception $e){
             return 0;
-      }
+        }
 
     }
 
@@ -173,10 +199,10 @@ class Product extends Model
     }
 
     /**
-     * Trash product images from the upload destination and the [images] table.
-     *
-     * @return void
-     */
+    * Trash product images from the upload destination and the [images] table.
+    *
+    * @return void
+    */
     protected function trashImages()
     {
         $this->images->map(function ($image)
@@ -196,10 +222,10 @@ class Product extends Model
     }
 
     /**
-     * Trash the self product.
-     *
-     * @return void
-     */
+    * Trash the self product.
+    *
+    * @return void
+    */
     protected function trashSelf()
     {
         $this->delete();

@@ -96,6 +96,8 @@ class productController extends Controller {
             'price' => 'required|numeric|greater_than:0',
             'stock' => 'required|numeric|greater_than:0',
             'discount' => 'numeric|greater_than:0',
+            'discount_date' => 'date',
+            'editor1' => 'required|min:2',
             'category_id' => 'required|integer',
             'active' => 'required|digits_between:0,1',
         ]);
@@ -107,7 +109,8 @@ class productController extends Controller {
             'price' => trans('products.price_header'),
             'stock' => trans('products.stock_header'),
             'discount' => trans('products.discount_header'),
-            'desc' => trans('products.ar_description_header'),
+            'discount_date' => trans('products.offer_header'),
+            'editor1' => trans('products.ar_description_header'),
             'category_id' => trans('products.category_col'),
             'active' => trans('products.status_col'),
         ]);
@@ -125,15 +128,41 @@ class productController extends Controller {
             ]);
         }
 
+        //validate if there's an offer
+        if (!empty($r->input('discount')) && empty($r->input('discount_date'))) {
+            return msg('error.save',[
+                'msg' => trans('validation.required',['attribute' =>  trans('products.offer_header')]),
+            ]);
+        }
+
+        //validate if there's an offer
+        if (empty($r->input('discount')) && !empty($r->input('discount_date'))) {
+            return msg('error.save',[
+                'msg' => trans('validation.required',['attribute' =>  trans('products.discount_header')]),
+            ]);
+        }
+
+
         // instanciate new product and save its data
         $product = new Product;
+        $product->name = $r->name;
+        $product->desc = $r->editor1;
+        $product->slug= $this->generateSlug($r->name);
         $product->active = $r->active;
         $product->category_id = $r->category_id;
         $product->price = $r->price;
         $product->stock = $r->stock;
-        $product->name = $r->name;
-        $product->desc = $r->desc;
-        $product->slug= $this->generateSlug($r->name);
+
+        //if there is an offer
+        if (!empty($r->input('discount'))) {
+            $product->discount = $r->input('discount');
+            $product->discount_date = Carbon::createFromFormat('m/d/Y', $r->input('discount_date'))->toDateString();
+        } else {
+            $product->discount = null;
+            $product->discount_date = null;
+        }
+
+
 
         if($product->save()){
 
@@ -177,7 +206,8 @@ class productController extends Controller {
             'price' => 'required|numeric|greater_than:0',
             'stock' => 'required|numeric|greater_than:0',
             'discount' => 'numeric|greater_than:0',
-            'desc' => 'required|min:2',
+            'discount_date' => 'date',
+            'editor1' => 'required|min:2',
             'category_id' => 'required|integer',
             'active' => 'required|digits_between:0,1',
         ]);
@@ -188,7 +218,8 @@ class productController extends Controller {
             'price' => trans('products.price_header'),
             'stock' => trans('products.stock_header'),
             'discount' => trans('products.discount_header'),
-            'desc' => trans('products.desc'),
+            'discount_date' => trans('products.offer_header'),
+            'editor1' => trans('products.ar_description_header'),
             'category_id' => trans('products.category_col'),
             'active' => trans('products.status_col'),
         ]);
@@ -207,14 +238,38 @@ class productController extends Controller {
             ]);
         }
 
+
+        //validate if there's an offer
+        if (!empty($r->input('discount')) && empty($r->input('discount_date'))) {
+            return msg('error.save',[
+                'msg' => trans('validation.required',['attribute' =>  trans('products.offer_header')]),
+            ]);
+        }
+
+        //validate if there's an offer
+        if (empty($r->input('discount')) && !empty($r->input('discount_date'))) {
+            return msg('error.save',[
+                'msg' => trans('validation.required',['attribute' =>  trans('products.discount_header')]),
+            ]);
+        }
+
+
         //  save product data
         $product->active = $r->active;
         $product->category_id = $r->category_id;
         $product->price = $r->price;
         $product->stock = $r->stock;
         $product->name = $r->name;
-        $product->desc = $r->desc;
+        $product->desc = $r->editor1;
 
+        //if there is an offer
+        if (!empty($r->input('discount'))) {
+            $product->discount = $r->input('discount');
+            $product->discount_date = Carbon::createFromFormat('m/d/Y', $r->input('discount_date'))->toDateString();
+        } else {
+            $product->discount = null;
+            $product->discount_date = null;
+        }
 
         if($product->save()){
 
@@ -236,7 +291,7 @@ class productController extends Controller {
 
     public function getSearch($q = null) {
         $products = Product::latest();
-        
+
         if (!empty($q)) {
             $cols = (new Product)->getTableColumns();
             $products->where('id', 'LIKE', "%$q%");

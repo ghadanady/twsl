@@ -4,15 +4,44 @@
 
 
 // ghada scripts
-//$(document).ready(function(){
 
-    if($('.comment-it').data('last')==1)
-    {
-      console.log("ffff");
-      $(this).css('border-bottom','0px');
+ 
+  
+  
+$(function () {
 
-    }
-//});
+ var x=$(this);
+  var login=x.data('login');
+
+             $(".rateyo").rateYo({  
+               rtl: true
+               }).on("rateyo.set", function (e, data) 
+               {
+                 form=$(this).closest('form');
+                 console.log(form.attr('action'));
+                 request(form.attr('action'), form[0],
+            // on request success handler
+                function (result) {
+                if (result.status) {
+                    swal({title: "success.", text: result.data, type: "success"}, function () {
+                        location.reload(true);
+                    });
+                } else {
+                    swal('wrong.', result.data, 'error');
+                }
+            },
+            // on request failure handler
+            function () {
+                alert('Internal Server Error.');
+            });
+                                  
+
+               });
+
+});
+
+    
+
 
 
     function fix(){
@@ -249,3 +278,54 @@ $(".slider")
 });
 
 
+
+   function request(url, data, completeHandler, errorHandler, progressHandler) {
+            if (typeof progressHandler === 'string' || progressHandler instanceof String) {
+                method = progressHandler;
+            } else {
+                method = "POST"
+            }
+
+            $.ajax({
+                url: url, //server script to process data
+                type: method,
+                xhr: function () {  // custom xhr
+                    myXhr = $.ajaxSettings.xhr();
+                    if (myXhr.upload) { // if upload property exists
+                        myXhr.upload.addEventListener('progress', progressHandler, false); // progressbar
+                    }
+                    return myXhr;
+                },
+                // Ajax events
+                success: completeHandler,
+                error: errorHandler,
+                // Form data
+                data: data,
+                // Options to tell jQuery not to process data or worry about the content-type
+                cache: false,
+                contentType: false,
+                processData: false
+            }, 'json');
+        }
+
+
+    function toggleChevron(e) {
+    $(e.target)
+        .prev('.panel-heading')
+        .find("i.indicator")
+        .toggleClass('fa-caret-down fa-caret-right');
+  }
+  $('#accordion').on('hidden.bs.collapse', toggleChevron);
+  $('#accordion').on('shown.bs.collapse', toggleChevron);
+
+
+  //fliter product script
+    
+            $('input').change(function(){
+              
+                // var url      = window.location.href
+                // var data=$("#filterSubmit").serialize();
+                //  url=url+'/?'+data;
+                //  window.location.href = url
+                $("#filterSubmit").submit();
+            })

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Site;
 
-use App\_Product;
+use App\Product;
 use App\Http\Requests;
 use App\Basket\Basket;
 use Illuminate\Http\Request;
@@ -54,7 +54,7 @@ class CartController extends Controller
      */
     public function postAdd($slug ,Request $request)
     {
-        $product = _Product::where('slug' , $slug)->first();
+        $product = Product::where('slug' , $slug)->first();
 
         if (!$product) {
             return [
@@ -62,8 +62,6 @@ class CartController extends Controller
                 'msg' => 'You want to add non existing product "'.$slug.'"',
             ];
         }
-
-        $product = $product->master;
 
         try {
             $this->basket->add($product, $request->quantity);
@@ -76,7 +74,7 @@ class CartController extends Controller
 
         return [
             'status' => 'success',
-            'msg' => 'The product with name "'.$product->translated()->name.'" added to cart successfully.',
+            'msg' => 'The product with name "'.$product->name.'" added to cart successfully.',
         ];
     }
 
@@ -91,7 +89,7 @@ class CartController extends Controller
      */
     public function postUpdate($slug, Request $request)
     {
-        $product = _Product::where('slug' , $slug)->first();
+        $product = Product::where('slug' , $slug)->first();
 
         if (!$product) {
             return [
@@ -99,8 +97,6 @@ class CartController extends Controller
                 'msg' => 'You want to update non existing product "'.$slug.'"',
             ];
         }
-
-        $product = $product->master;
 
         try {
             $this->basket->update($product, $request->quantity);
@@ -110,7 +106,7 @@ class CartController extends Controller
                 'msg' => $e->message,
             ];
         }
-        $name = $product->translated()->name;
+        $name = $product->name;
         $status = 'success';
         $msg = 'The product with name "'.$name.'" updated successfully.';
 

@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "4ca52006a5e2b05f0a65c6c85638dff7",
-    "content-hash": "fbb9bcd54f26ecb1a2090dd99beee37b",
+    "hash": "5117a4d9fad4500f85ec1575bb7d8873",
+    "content-hash": "2b44d3cb1b7d0e0ac9d79a2d38ae6867",
     "packages": [
         {
             "name": "barryvdh/laravel-debugbar",
@@ -2702,6 +2702,58 @@
                 "environment"
             ],
             "time": "2016-09-01 10:05:43"
+        },
+        {
+            "name": "willvincent/laravel-rateable",
+            "version": "1.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/willvincent/laravel-rateable.git",
+                "reference": "72e8ad2d7c565b3f226dac093f385ec3d3308df4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/willvincent/laravel-rateable/zipball/72e8ad2d7c565b3f226dac093f385ec3d3308df4",
+                "reference": "72e8ad2d7c565b3f226dac093f385ec3d3308df4",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "~5.0",
+                "illuminate/support": "~5.0",
+                "php": ">=5.4"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src/commands"
+                ],
+                "psr-4": {
+                    "willvincent\\Rateable\\": "src/Rateable"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Will Vincent",
+                    "email": "tcindie@gmail.com"
+                }
+            ],
+            "description": "Allows multiple models to be rated with a fivestar like system.",
+            "keywords": [
+                "Rating",
+                "fivestar",
+                "laravel",
+                "laravel 5",
+                "rateable",
+                "vote"
+            ],
+            "time": "2016-10-27 15:28:22"
         }
     ],
     "packages-dev": [

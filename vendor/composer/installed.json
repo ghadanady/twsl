@@ -4421,5 +4421,59 @@
             "laravel",
             "oauth"
         ]
+    },
+    {
+        "name": "willvincent/laravel-rateable",
+        "version": "1.0.4",
+        "version_normalized": "1.0.4.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/willvincent/laravel-rateable.git",
+            "reference": "72e8ad2d7c565b3f226dac093f385ec3d3308df4"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/willvincent/laravel-rateable/zipball/72e8ad2d7c565b3f226dac093f385ec3d3308df4",
+            "reference": "72e8ad2d7c565b3f226dac093f385ec3d3308df4",
+            "shasum": ""
+        },
+        "require": {
+            "illuminate/database": "~5.0",
+            "illuminate/support": "~5.0",
+            "php": ">=5.4"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "~4.0"
+        },
+        "time": "2016-10-27 15:28:22",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "classmap": [
+                "src/commands"
+            ],
+            "psr-4": {
+                "willvincent\\Rateable\\": "src/Rateable"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Will Vincent",
+                "email": "tcindie@gmail.com"
+            }
+        ],
+        "description": "Allows multiple models to be rated with a fivestar like system.",
+        "keywords": [
+            "Rating",
+            "fivestar",
+            "laravel",
+            "laravel 5",
+            "rateable",
+            "vote"
+        ]
     }
 ]

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Site;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -13,11 +14,10 @@ use App\Review;
 class ProductController extends Controller
 {
 
-    
 
     public function show($slug)
     {
-        
+
         $product =Product::where('slug' , $slug)->first();
         $product->img = $product->image ? $product->image->name : 'default.jpg';
         $comments=Comment::where('product_id',$product->id)->get();
@@ -45,13 +45,13 @@ class ProductController extends Controller
         ]);
         // return error msgs if validation is failed
         if($v->fails()){
-            
+
 
             //return redirect()->back()->with('m', implode('<br>', $v->errors()->all()));
             return redirect()->back()->withErrors(['خطأ', implode('<br>', $v->errors()->all())]);
         }
 
-    
+
         // instanciate new product and save its data
         $comment = new Comment;
         $comment->name = $r->name;
@@ -68,8 +68,19 @@ class ProductController extends Controller
 
       // return redirect()->back()->with('m',"حدث خطأ اثناء الاضافة");
       return redirect()->back()->withErrors(['خطأ', 'The Message']);
-        
-        
+
+
+    }
+
+    public function postAddRate()
+    {
+       //ckeck if login user
+       if(!Auth::guard('members')->check())
+       {
+
+         return ['status' => 'wrong', 'msg' => 'قم بتسجيل الدخول اولا '];
+       }
+       
     }
 
  //    public function getCategory($slug , Request $request)
@@ -113,34 +124,29 @@ class ProductController extends Controller
 	// }
 
 
- //    protected function filterProducts(Request $request)
- //    {
- //        $per_page = $request->per_page;
- //        $order = $request->order;
- //        $first_limit = floatval(str_replace('$', '',$request->first_limit));
- //        $last_limit = floatval(str_replace('$', '',$request->last_limit));
- //        $products = Product::whereBetween('price' ,[$first_limit , $last_limit]);
+    protected function postFilter(Request $request)
+    {
+        
+        $per_page = $request->per_page;
+        $order = $request->order;
+        $first_limit = floatval(str_replace('$', '',$request->first_limit));
+        $last_limit = floatval(str_replace('$', '',$request->last_limit));
+        $products = Product::whereBetween('price' ,[$first_limit , $last_limit]);
 
- //        switch ($order) {
- //            case 'price':
- //            $products->orderBy('price');
- //            break;
- //            case 'date':
- //            $products->orderBy('created_at');
- //            break;
- //            case 'name':
- //            $products = Product::join('__products', '__products.product_id', '=', 'products.id')
- //            ->where('__products.locale_id' ,Locale::where('name',app()->getLocale())->first()->id)
- //            ->whereBetween('products.price' ,[$first_limit , $last_limit])
- //            ->orderBy('__products.name')
- //            ->select('products.*') ;
- //            break;
- //        }
+        switch ($order) {
+            case 'old':
+            $products->orderBy('created_at','desc');
+            break;
+            case 'new':
+            $products->orderBy('created_at');
+            break;
+            
+        }
 
- //        $products = $products->paginate($per_page);
+        $products = $products->paginate(6);
 
- //        return view('site.pages.products.templates.products' , compact('products'))->render();
- //    }
+        return view('site.pages.products.templates.products' , compact('products'))->render();
+    }
 
  //    protected function filterCategoryProducts(Collection $products, Request $request)
  //    {

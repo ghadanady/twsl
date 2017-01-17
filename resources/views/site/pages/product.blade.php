@@ -39,13 +39,14 @@
                             <div class="pro-title-in">
                               {{$product->name}}
                             </div>
-                            <div class="reting text-right">
-                                <span class="fa fa-star gold"></span>
-                                <span class="fa fa-star gold"></span>
-                                <span class="fa fa-star gold"></span>
-                                <span class="fa fa-star gold"></span>
-                                <span class="fa fa-star gray"></span>
+                            <form action="{{ route('site.product.addRate') }}">
+                                 <div style="direction: ltr" >
+                            
+                            <div  class="rateyo" data-login="{{Auth::guard('members')->check()}}" ></div>
                             </div>
+                            </form>
+                           
+
                             <div class="red-t">التفاصيل</div>
                             <p class="in-o-det">
                                {!!$product->desc!!}
@@ -80,6 +81,7 @@
                             </div>
                         </div>
                     </div>
+
 
 
                     <h2 class="headline2"> التعليقات </h2>
