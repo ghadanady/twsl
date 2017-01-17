@@ -2,26 +2,20 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-12">
+            @if(count($slider)>0)
                 <div class="owl-carousel" id="main-slider">
+                @foreach($slider as $img)
                     <div class="slide">
-                        <img src="{{ asset('assets/site/imgs/slide.png') }}" alt="xsa" />
+                        <img src="{{url('storage/uploads/images/slider')}}/{{$img->image->name}}" alt="xsa" />
                         <p>
-                            أيفون الجديد بشكلة المميز حصرياً على توصل كوم
+                            {{$img->title}}
                         </p>
                     </div>
-                    <div class="slide">
-                        <img src="{{ asset('assets/site/imgs/slide.png') }}" alt="xsa" />
-                        <p>
-                            أيفون الجديد بشكلة المميز حصرياً على توصل كوم
-                        </p>
-                    </div>
-                    <div class="slide">
-                        <img src="{{ asset('assets/site/imgs/slide.png') }}" alt="xsa" />
-                        <p>
-                            أيفون الجديد بشكلة المميز حصرياً على توصل كوم
-                        </p>
-                    </div>
+                    @endforeach
+                 
+
                 </div>
+                @endif
                 <div class="blocks-inlines">
                     <div class="row">
                         <div class="col-xs-12 col-md-6 col-lg-3">

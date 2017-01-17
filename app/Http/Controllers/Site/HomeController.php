@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Product;
 use App\Category;
+use App\Slider;
 
 class HomeController extends Controller
 {
@@ -30,8 +31,8 @@ class HomeController extends Controller
     	// 	return $product->hasOffer();
     	// })
     	// ->take(16)->all();
-
-        return view('site.pages.index');
+        $slider=Slider::get();
+        return view('site.pages.index',compact('slider'));
     }
 
 
