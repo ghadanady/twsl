@@ -5,35 +5,76 @@
 
 // ghada scripts
 
- 
-  
-  
 $(function () {
 
- var x=$(this);
-  var login=x.data('login');
+var $geturl=$('.rateyo').attr('data-geturl');
+var $product_id=$('.rateyo').attr('data-productId');
+
+  //get rate value and  display it
+  //$(document).ready(function(){
+
+    $.ajax({
+              url:$geturl+"/"+$product_id,
+              type:"GET",
+              success:function(data){
+                if(data.status=='success')
+              
+              $('.rateyo').rateYo("rating",data.value[0]);
+              }
+
+          });
+ // })
+  
+
+  //add rate 
+ 
+   var $url=$('.rateyo').attr('data-url');
 
              $(".rateyo").rateYo({  
-               rtl: true
+               rtl: true,
+                fullStar: true,
+               // rating:3,
+                starWidth: "30px"
                }).on("rateyo.set", function (e, data) 
                {
-                 form=$(this).closest('form');
-                 console.log(form.attr('action'));
-                 request(form.attr('action'), form[0],
-            // on request success handler
-                function (result) {
-                if (result.status) {
-                    swal({title: "success.", text: result.data, type: "success"}, function () {
-                        location.reload(true);
-                    });
-                } else {
-                    swal('wrong.', result.data, 'error');
-                }
-            },
-            // on request failure handler
-            function () {
-                alert('Internal Server Error.');
-            });
+
+                $.ajax({
+                  url:$url+"/"+$product_id+"/"+data.rating,
+                  type:"GET",
+                  success:function(data){
+                    if(data.status=='login')
+                    {
+                      toastr.error(data.msg);
+                    }else if(data.status=='notallowed')
+                    {
+                      toastr.warning(data.msg);
+                    }else if(data.status=='success')
+                    {
+                      toastr.success(data.msg);
+                    }else
+                    {
+                     toastr.error(data.msg); 
+                    }
+                  }
+
+                })
+                  //     //  form=x.closest('form');
+                  //     //  console.log(form.attr('action'));
+                  //      request("http://localhost/twsl/product/addRate/"+$product_id+"/"+data.rating , 
+                  //       [],
+                  //       // on request success handler
+                  //     function (result) {
+                  //           if (result.status) {
+                  //               swal({title: "success.", text: result.data, type: "success"});
+                  //           } 
+                  //           else {
+                  //               swal('wrong.', result.data, 'error');
+                  //           }
+                  // },
+                  // // on request failure handler
+                  //  function () {
+                  //     alert('Internal Server Error.');
+                  //  });
                                   
 
                });

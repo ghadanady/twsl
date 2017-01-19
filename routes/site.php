@@ -27,8 +27,15 @@ Route::group(['namespace' => 'Site'], function () {
     Route::resource('category', 'CategoryController');
 
 
-    Route::post('product/addComment', 'ProductController@postAddComment')->name('site.product.addComment');
-    Route::post('product/addRate', 'ProductController@postAddRate')->name('site.product.addRate');
+    Route::post('product/addComment', 'ProductController@postAddComment')
+         ->name('site.product.addComment');
+
+    Route::get('product/addrate/{product_id}/{rate}', 'ProductController@getAddRate')
+         ->name('site.product.addrate');
+     Route::get('product/rate/{product_id}', 'ProductController@getRate')
+         ->name('site.product.rate');
+
+
      Route::post('product/filter', 'ProductController@postFilter')->name('site.products.filter');
 
     Route::resource('product', 'ProductController');

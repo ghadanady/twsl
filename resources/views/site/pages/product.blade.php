@@ -38,13 +38,17 @@
                         <div class="col-xs-12 col-md-6">
                             <div class="pro-title-in">
                               {{$product->name}}
+                              {{$rate}}
                             </div>
-                            <form action="{{ route('site.product.addRate') }}">
-                                 <div style="direction: ltr" >
+                          
+                                 <div style="direction: ltr;margin-left: 250px" >
                             
-                            <div  class="rateyo" data-login="{{Auth::guard('members')->check()}}" ></div>
+                            <div   class="rateyo"
+                             data-geturl="{{url('product/rate')}}" 
+                             data-url="{{url('product/addrate')}}"
+                             data-productId="{{$product->id}}" ></div>
                             </div>
-                            </form>
+                           
                            
 
                             <div class="red-t">التفاصيل</div>

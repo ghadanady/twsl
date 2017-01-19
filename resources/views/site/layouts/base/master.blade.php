@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.2.0/jquery.rateyo.min.css">
       <link rel="stylesheet" href="{{ asset('assets/site/sweetalert.css') }}">
+      <link rel="stylesheet" href="{{ asset('assets/site/toastr.css') }}">
     <title>توصل | @yield('title')</title>
     <style type="text/css">
                 .behclick-panel  .list-group {
@@ -123,6 +124,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.2.0/jquery.rateyo.min.js"></script>
     <script type="text/javascript" src="{{ asset('assets/admin/process.js') }}"></script>
     <script src="{{ asset('assets/site/sweetalert.min.js') }}"></script>
+    <script src="{{ asset('assets/site/toastr.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets/site/assest/js.js') }}"></script>
     
     @yield('scripts')

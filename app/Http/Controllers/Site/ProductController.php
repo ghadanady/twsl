@@ -9,7 +9,7 @@ use Illuminate\Support\Collection;
 use App\Product;
 use App\Comment;
 use App\Category;
-use App\Review;
+use App\Rate;
 
 class ProductController extends Controller
 {
@@ -17,15 +17,18 @@ class ProductController extends Controller
 
     public function show($slug)
     {
-
+        $rate=null;
         $product =Product::where('slug' , $slug)->first();
         $product->img = $product->image ? $product->image->name : 'default.jpg';
         $comments=Comment::where('product_id',$product->id)->get();
+        $user_id=\Auth::guard('members')->user()->id;
+        $rate=Rate::where('user_id',$user_id)
+                  ->where('product_id',$product->id)->pluck('rating');
         $related_products=Product::where('category_id',$product->category_id)->get();
         if (!$product) {
             abort(404);
         }
-        return view('site.pages.product' , compact('product','comments','related_products'));
+        return view('site.pages.product' , compact('product','comments','related_products','rate'));
 
     }
 
@@ -72,15 +75,54 @@ class ProductController extends Controller
 
     }
 
-    public function postAddRate()
+    public function getAddRate($product_id,$rateValue)
     {
        //ckeck if login user
-       if(!Auth::guard('members')->check())
+       if(!\Auth::guard('members')->check())
        {
 
-         return ['status' => 'wrong', 'msg' => 'قم بتسجيل الدخول اولا '];
+         return ['status' => 'login', 'msg' => 'قم بتسجيل الدخول اولا '];
        }
+       // add rate 
+        $user_id=\Auth::guard('members')->user()->id;
+        $rate=Rate::where('user_id',$user_id)
+                  ->where('product_id',$product_id)->get();
+            if(count($rate)>0)
+            {
+                 return ['status' => 'notallowed', 'msg' => 'لقد قمت بالتقييم سابقا '];
+            }
+
+        $Addrate=new Rate();
+        $Addrate->user_id=$user_id;
+        $Addrate->product_id=$product_id;
+        $Addrate->rating=$rateValue;
+                            
+
+        if($Addrate->save()) 
+
+        return ['status' => 'success', 'msg' => 'تم  اضافه التقييم بنجاح'];
+
+        return  ['status' => 'error', 'msg' => 'حدث خطأ اثناء اضافه التققيم '];
+
+
+
        
+
+       
+    }
+    public function getRate($product_id)
+    {
+       $user_id=\Auth::guard('members')->user()->id;
+       $rate=Rate::where('user_id',$user_id)
+                 ->where('product_id',$product_id)->pluck('rating');
+
+        if($rate)
+        {
+             return ['status' => 'success', 'value' => $rate ];
+        }
+
+        return  ['status' => 'error', 'value' => null];
+  
     }
 
  //    public function getCategory($slug , Request $request)

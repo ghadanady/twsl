@@ -4,10 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
-use willvincent\Rateable\Rateable;
+
 class Product extends Model
 {
-     use Rateable;
+     
     public $quantity = null;
 
     protected $dates = ['discount_date'];
@@ -31,19 +31,18 @@ class Product extends Model
     */
    
    
-    public function addRate($rate,$productID)
-    {
-       $product=Product::find($productID);
-       $rating = new willvincent\Rateable\Rating;
-       $rating->rating = $rate;
-       $rating->user_id = \Auth::guard('members')->user()->id;
-
-       if($product->ratings()->save($rating))
-       {
-        dd(product::first()->ratings);
-       }
+    // public function addRate($rate,$productID)
+    // {
+    //    $product=Product::find($productID);
+    //    $rating = new willvincent\Rateable\Rating;
+    //    $rating->rating = $rate;
+    //    $rating->user_id = \Auth::guard('members')->user()->id;
+    //    if($product->ratings()->save($rating))
+    //    {
+    //     dd(product::first()->ratings);
+    //    }
        
-    }
+    // }
 
 
 
@@ -131,6 +130,11 @@ class Product extends Model
 
         return $this->belongsTo('App\Category' ,'category_id');
 
+    }
+
+    public function rate()
+    {
+        return $this->belongsTo('App\Rate' ,'product_id');
     }
 
     public function images(){
